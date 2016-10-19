@@ -22,7 +22,8 @@
 ## 首頁
 目標：分三大區塊
 - 一個畫面，三個區塊已經是最多了，再多就會凌亂。
-- **只顯示標題**，細節內容點進去看即可。
+- 每個區塊內的文章，都 **只顯示標題**，細節內容點進去看即可。
+
 
 
 學生的需求
@@ -56,6 +57,10 @@
     - 專題生
   - 右邊需要一個 **SideBar**
   - ~~需要開個CRUD~~，用一個table呈現，**直接撈實驗室成員發表的論文**
+
+>用Vue.js寫markdown editor可參考[Markdown Editor - vue.js](https://vuejs.org/examples/)
+
+>WYSIWYG editor可參考[Rails 中如何集成帶圖片上傳功能的simditor 編輯器· Ruby China](https://ruby-china.org/topics/28467?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## 網站內容
 
