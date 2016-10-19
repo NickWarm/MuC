@@ -35,7 +35,6 @@
 
 ## 面試時，用Onboarding增加offer get的機會
 
+# Step.5：實作創業MOOC prototype
 
-# Step.5：實作第三版
-
-# Step.6：實作MOOC prototype
+# Step.6：實作第三版
