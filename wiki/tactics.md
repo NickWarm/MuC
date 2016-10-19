@@ -34,6 +34,24 @@
 
 # Step.3：實作第二版
 
+## 架構
+- 實驗室簡介
+- 學習資源
+  - CRUD
+  - 用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
+- 實驗室公告
+  - CRUD，WYSIWYG editor
+- 實驗室成員資料   
+  - CRUD
+  - 用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
+- 榮譽榜
+  - CRUD，WYSIWYG editor
+- 研究成果
+
+>1. 用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
+
+>2. 把前端改為RWD
+
 ## deadline
 16/10/31
 

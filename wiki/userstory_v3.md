@@ -128,6 +128,10 @@
   - CRUD，WYSIWYG editor
 - 研究成果
 
+>1. 用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
+
+>2. 把前端改為RWD
+
 ### 第三版
 - 實驗室簡介
 - 學習資源
@@ -142,13 +146,16 @@
   - CRUD，WYSIWYG editor
 - 研究成果
 
+>用Vue.js 2.0開發，一個online markdown editor，即時編輯、即時儲存、即時顯示
 
 ### 細節
+
 實驗室簡介
 - 寫死，沒有CRUD
 - **多媒體計算與通訊研究室** 這串字要提到
 - 地點要提到
 - 50字以內
+- 最下面是 **「研究成果」的連結**
 
 學習資源
 - **需要開個CRUD**
