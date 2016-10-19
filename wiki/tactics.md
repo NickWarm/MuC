@@ -15,7 +15,7 @@
 ## 實作
 16/10/20開始實作
 
-# Step.2：實作第一版
+# Step.2：實作Mu Lab第一版
 
 ## deadline
 16/10/25
@@ -32,7 +32,12 @@
   - CRUD，WYSIWYG editor
 - 研究成果
 
-# Step.3：實作第二版
+## 技術重點
+1. 以Mackenzie Child的UI設計為主，然後稍作修改
+2. WYSIWYG editor
+3. 用臉書、google帳號來登入的功能
+
+# Step.3：實作Mu Lab第二版
 
 ## 架構
 - 實驗室簡介
@@ -66,4 +71,5 @@
 
 # Step.5：實作創業MOOC prototype
 
-# Step.6：實作第三版
+
+# Step.6：實作Mu Lab第三版

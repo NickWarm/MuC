@@ -44,9 +44,9 @@
 - 榮譽榜
 
 >**榮譽榜**、**研究成果** 不放在NavBar裡，這些主要是為了 **給陌生人吸眼球用的**
-
+>
 >**研究成果** 會與實驗室成員的個人資料有重疊，更不需要放在NavBar裡面
-
+>
 >榮譽榜只有得獎紀錄，研究成果是實驗室成員的論文與專題題目，**榮譽榜包含在研究成果裡面**，所以研究成果是有必要存在的
 
 學習資源
@@ -74,7 +74,7 @@
 - ~~需要開個CRUD~~，用一個table呈現，**直接撈實驗室成員發表的論文**
 
 >用Vue.js寫markdown editor可參考[Markdown Editor - vue.js](https://vuejs.org/examples/)
-
+>
 >WYSIWYG editor可參考[Rails 中如何集成帶圖片上傳功能的simditor 編輯器· Ruby China](https://ruby-china.org/topics/28467?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 
 ## 網站內容
@@ -128,8 +128,8 @@
   - CRUD，WYSIWYG editor
 - 研究成果
 
->1. 用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
-
+>1. 用Vue.js 2.0開發，一個online markdown editor，編輯頁面按右下角有儲存鍵
+>
 >2. 把前端改為RWD
 
 ### 第三版
@@ -178,7 +178,7 @@
   - 撰寫模式：細節，有圖片輔助說明更佳。 **需要開個CRUD，需要WYSIWYG editor**
 
 > 教授跟實驗室成員是不同的兩張database table
-
+>
 >實驗室成員可以透過 **臉書帳號**、**google帳號** 來登入
 
 實驗室成員資料
@@ -214,9 +214,9 @@
       2. 姓名
       3. 發表的論文/專題題目
       3. 個人介紹
-        - 專長
-        - 研究領域
-        - 個人部落格
+         - 專長
+         - 研究領域
+         - 個人部落格
   - 第三版：即時更新、即時儲存、即時顯示的markdwon online editor
 
 
