@@ -6,6 +6,8 @@
 先寫一次[How to create a blog & portfolio application - YouTube](https://www.youtube.com/playlist?list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)的rails部落格
 - 以他的UI設計為主，然後稍作修改
   - 從[Coding the homepage - How to build a blog & portfolio with Rails 4 - YouTube](https://www.youtube.com/watch?v=n4xI59HtUPk&index=8&list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)開始看
+- [GitHub：blog_course_demo](https://github.com/mackenziechild/blog_course_demo)
+
 
 ## 快速建構世界觀
 16/10/19晚上影片重複刷
