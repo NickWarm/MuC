@@ -5,17 +5,51 @@
 # Step.1：臨摹範例
 先寫一次[How to create a blog & portfolio application - YouTube](https://www.youtube.com/playlist?list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)的rails部落格
 - 以他的UI設計為主，然後稍作修改
-  - 從[Coding the homepage - How to build a blog & portfolio with Rails 4 - YouTube](https://www.youtube.com/watch?v=n4xI59HtUPk&index=8&list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)開始看
-- [GitHub：blog_course_demo](https://github.com/mackenziechild/blog_course_demo)
+
+## 實驗室網站icons
+辜狗關鍵字[free icon cat](http://www.flaticon.com/free-icons/cat_1667)
+
+目前挑了四個，請見 **icons** 資料夾
+
+# Step.0.5 MuCat Lab UI 實作
+
+## 架構
+- 實驗室簡介
+- 學習資源
+  - 第一版 (五篇獨立文章，文章依序)
+    - 學習方法論
+    - 教書時的pdf檔
+    - 影像處理
+    - 訊號與系統
+    - 機率與統計
+  - CRUD，考量到編輯的便利性與靈活性，直接使用Markdwon
+- 實驗室公告
+  - CRUD，WYSIWYG editor
+- 實驗室成員資料   
+  - CRUD，傳統rails的寫法，用一個table呈現
+    1. 學籍
+    2. 姓名
+    3. 專長
+    4. 研究領域
+    5. 發表的論文
+    6. 個人部落格
+- 榮譽榜
+  - CRUD，WYSIWYG editor
+- 研究成果
+  - 第一版
+    - 進入頁面：三個區塊
+      - 由左而右：博士生、研究生、專題生
+      - 點進去後，可以看到不同學位的學生，歷年的論文與專題題目
+
+一個model
+- 擁有一張資料表定義
+- 依照 **類型** 從資料庫中撈出不同相關的資料
+  - 用 **SQL** 語法撈出不同類型資料
+  - 例如：研究成果用 **不同學位** 去撈，撈出實驗室成員資料中的「學籍、姓名、發表的論文」
+
+學習資源一組model、controller
 
 
-## 快速建構世界觀
-16/10/19晚上影片重複刷
-- 先前已經刷過一輪，這次刷會更快
-- 要注意css那邊UI的寫法
-
-## 實作
-16/10/20開始實作
 
 # Step.2：實作Mu Lab第一版
 
