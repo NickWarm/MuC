@@ -56,7 +56,10 @@
   - 各種學習資源
     - UI：第1版
       - 分成獨立三篇文章：機率與統計、訊號與系統、影響處理。學習資源區共五篇文章
-      - **開個CRUD**，傳統rails的寫法，寫個`ul > li`用`form_for`去撈
+      - **開個CRUD**，~~傳統rails的寫法，寫個`ul > li`用`each`去撈~~
+        - 缺點：要一筆一筆資料輸入進去，很麻煩，如果資源過時 **想要解釋哪邊不好，為何不再推薦** 這樣的呈現方式完全不符合需求
+      - 這三篇專業科目的學習資源，都是Markdown editable
+      - 一個 **partial form，input的資料型別用text**
     - UI：第2版
       - 進入頁面：三個區塊
       - 由左而右：機率與統計、訊號與系統、影像處理。學習資源區共三篇文章
@@ -66,7 +69,7 @@
         - 訊號與系統
         - 影像處理
     - 更新教材，**需要開個CRUD**
-      - ~~第一版：開一個CRUD，傳統rails的寫法，寫個`ul > li`用`form_for`去撈~~
+      - ~~第一版：開一個CRUD，傳統rails的寫法，寫個`ul > li`用`each`去撈~~
       - 第一版：考量到編輯的便利性與靈活性，直接使用Markdwon
       - 第二版：用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
       - 第三版：markdown editor 即時編輯、即時儲存、即時顯示
@@ -129,11 +132,11 @@
 ### 第一版
 - 實驗室簡介
 - 學習資源
-  - CRUD，傳統rails的寫法
+  - CRUD，Markdown editable
 - 實驗室公告
   - CRUD，WYSIWYG editor
 - 實驗室成員資料   
-  - CRUD，傳統rails的寫法，用一個table呈現
+  - CRUD，Markdwon editable
 - 榮譽榜
   - CRUD，WYSIWYG editor
 - 研究成果
@@ -223,6 +226,10 @@
   - 研究主題
   - 發表的論文/技術報告/個人著作
     - 第一版：在教授介紹的頁面，直接給三篇文章的連結，分別是「發表的論文、技術報告、個人著作」
+      - 類似首頁的那種UI：左邊介紹，右邊h2著作然後下面依序三篇獨立文章：發表的論文、技術報告、個人著作
+      - 三篇獨立文章
+        - 需要開一個 **CRUD**
+        - **使用Markdown**，這樣比較方便編輯
     - 第二版：右邊需要一個 **隱藏式SideBar**
 - 博士生
 - 研究生
@@ -238,7 +245,7 @@
   - **需要開個CRUD**
   - 傳統rails的寫法，用一個table呈現
   - 第一版
-      1. 學籍
+      1. 學籍 (入學學年)
       2. 姓名
       3. 發表的論文/專題題目
          - 論文篇數不只一篇，需要使用 **巢狀表單**
@@ -267,8 +274,8 @@
 
 
 ## footbar
-  - 製作於西元幾年
-  - 網站製作者：我的聯絡資訊
+© 2016 MuCat Lab
+Website is made by <a href="GitHub"> **NickWarm** </a> , UI design is adapted by <a> **Mackenzie Child** </a>
 
 
 # 後台

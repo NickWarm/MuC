@@ -1,12 +1,12 @@
 # 職涯策略
 
-以 **實驗室網站：Mu Lab** 當作品去投履歷
+以 **實驗室網站：MuCat Lab** 當作品去投履歷
 
 # Step.1：臨摹範例
 先寫一次[How to create a blog & portfolio application - YouTube](https://www.youtube.com/playlist?list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)的rails部落格
 - 以他的UI設計為主，然後稍作修改
 
-## 實驗室網站icons
+## 實驗室網站icons尚未確定
 辜狗關鍵字[free icon cat](http://www.flaticon.com/free-icons/cat_1667)
 
 目前挑了四個，請見 **icons** 資料夾
@@ -41,25 +41,32 @@
       - 由左而右：博士生、研究生、專題生
       - 點進去後，可以看到不同學位的學生，歷年的論文與專題題目
 
-一個model
-- 擁有一張資料表定義
-- 依照 **類型** 從資料庫中撈出不同相關的資料
-  - 用 **SQL** 語法撈出不同類型資料
-  - 例如：研究成果用 **不同學位** 去撈，撈出實驗室成員資料中的「學籍、姓名、發表的論文」
-
-學習資源一組model、controller
+>思考：
+>
+>一個model
+>- 擁有一張資料表定義
+>- 依照 **類型** 從資料庫中撈出不同相關的資料
+>  - 用 **SQL** 語法撈出不同類型資料
+>  - 例如：研究成果用 **不同學位** 去撈，撈出實驗室成員資料中的「學籍、姓名、發表的論文」
+>
+>學習資源一組model、controller
 
 
 
 # Step.2：實作Mu Lab第一版
 
+可展示的能力
+- 構思網站的能力，PM
+- 文案書寫的能力
+- 實踐想法，實作的能力
+
 ## deadline
-16/10/25
+10/31
 
 ## 架構
 - 實驗室簡介
 - 學習資源
-  - CRUD，傳統rails的寫法，寫個`ul > li`用`form_for`去撈
+  - CRUD
 - 實驗室公告
   - CRUD，WYSIWYG editor
 - 實驗室成員資料   

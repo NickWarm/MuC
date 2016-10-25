@@ -56,7 +56,7 @@
   - 各種學習資源  
     - 右邊需要一個 **SideBar**
     - **需要開個CRUD**
-    - 第一版：開一個CRUD，傳統rails的寫法，寫個`ul > li`用`form_for`去撈
+    - 第一版：開一個CRUD，傳統rails的寫法，寫個`ul > li`用`each`去撈
     - 第二版：用Vue.js 2.0開發，一個online markdown editor，儲存要在編輯頁面按右下角的儲存鍵
     - 第三版：markdown editor 即時編輯、即時儲存、即時顯示
 
@@ -105,7 +105,7 @@
 ### 第一版
 - 實驗室簡介
 - 學習資源
-  - CRUD，傳統rails的寫法，寫個`ul > li`用`form_for`去撈
+  - CRUD，傳統rails的寫法，寫個`ul > li`用`each`去撈
 - 實驗室公告
   - CRUD，WYSIWYG editor
 - 實驗室成員資料   
