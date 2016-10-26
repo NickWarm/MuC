@@ -1,0 +1,116 @@
+// ----------- 首頁三個區塊的排版
+
+.col-1, .col-2, .col-3 {
+  float: left;
+}
+
+.col-1 {
+  width: 45%;
+  padding: 0 5% 0 2.5%;
+}
+
+.col-2, .col-3 {
+  width: 27.5%;
+  padding: 0 2.5%;
+}
+
+.homepage_content {
+  margin: 0 auto;
+  h2 {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    font-size: 1.35em;
+    font-weight: 400;
+    margin-bottom: .5em;
+  }
+  a {
+    text-decoration: none;
+    color: $dark;
+    &:hover {
+      color: $highlight;
+    }
+  }
+  .date {
+    font-size: .85em;
+    margin-bottom: 2em;
+    color: $light;
+  }
+
+  p {
+    margin: 0 0 .75em 0;
+  }
+}
+
+.about {
+  padding: 0 7.5% 0 0;
+  a {
+    color: $highlight;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+.bottom {
+  margin: 0 auto;
+}
+
+// ----------- View More Link
+
+.view_more {
+  outline: none;
+  background: transparent;
+  border: 2px solid $border;
+  text-align: center;
+  font-size: 1em;
+  color: $dark;
+  text-decoration: none;
+  padding: .5em 1em;
+  &:hover {
+    border: 2px solid $highlight;
+    color: $highlight;
+  }
+}
+
+// ----------- Lab Members
+
+#doctor, #master, #college, #graduation {
+  h2 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+  }
+}
+
+#graduation {
+  a {
+    // float: right;
+    padding-bottom: .5em;
+    margin-bottom: 5em;
+  }
+}
+
+.row {
+  width: 100%;
+  .lab_member {
+    width: 14%;
+    float: left;
+    // margin-right: 2.5%;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: .5em;
+    }
+    .name {
+      margin: auto;
+      text-align: center;
+    }
+    .year {
+      font-size: .85em;
+      text-align: center;
+      color: $light;
+    }
+  }
+}
