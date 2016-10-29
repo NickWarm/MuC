@@ -19,6 +19,8 @@
 4. 實驗室網站不同版本，請見`MuWeb/versions`
 5. 實驗室網站的UserStorys與研究「哪些功能要寫、想寫」，請見`MuWeb/wiki`
 
+# ToDo
+公開版，要刪除`features/dropdown_list/`裡ihower相關的資料，因為那是 **付費資源**
 
 # 待討論
 
