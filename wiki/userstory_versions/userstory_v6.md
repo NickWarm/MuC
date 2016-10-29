@@ -1,5 +1,5 @@
 # 停止更新
-請直接看[MuCat_v1](./MuCat_v1.md)
+請直接看[MuCat_v1](../MuCat_v1.md)
 
 # MuWeb UserStory_v6
 

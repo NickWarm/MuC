@@ -20,10 +20,6 @@
 - 學習資源
   - CRUD，**Resource model**
 
-> 榮譽榜：
->
-> 學習資源：
-
 ### NavBar
 - 實驗室公告
   - CRUD，WYSIWYG editor，**News model**
@@ -35,7 +31,7 @@
 - 研究成果
   - 用`each`撈 **Member model** 的「學籍、姓名、論文題目」
 
->不知道News model在rails會不會有語法問題...
+>不知道`News model`在rails會不會有語法問題...
 
 >不要用`rails g model title:string content:text`這種寫法，這樣要修改schema不方便
 >
@@ -74,7 +70,7 @@
   - **CRUD**
     - **Resource model**
     - 作者:string、標題:string、內容:text
-    - `author:string title:string content:text`
+    - `author:string title:string content:text other_can_edit:boolean`
 - 實驗室公告
   - **CRUD**，WYSIWYG editor
     - **News model**
@@ -119,15 +115,17 @@
   - 個人照片、姓名、學籍、論文題目、簡要介紹、身份
     - 個人照片
       - paperclip gem
-    - 姓名、學籍
+    - 姓名、入學學年
       - 一般的表單
+    - 就讀學位：博士生？研究生？大學生？
+      - 下拉式選單
+    - 身份：在學生？畢業生？
+      - 下拉式選單
     - 論文題目
       - nested form
     - 簡要介紹
       - `profile:text`
       - markdown
-    - 身份：博士生？研究生？大學生？畢業生？
-      - 下拉式選單
 - 實驗室公告，**News model**
   - 標題、內容
   - `title:string content:text`
@@ -135,18 +133,20 @@
   - WYSIWYG editor
 - 學習資源，**Resource model**
   - markdown
-  - 標題、內容
-  - `title:string content:text`  
+  - 作者、標題、內容、他人是否可編輯
+  - `author:string title:string content:text other_can_edit:boolean`
 
 >思考：
 >
 >下拉式選單
->- ~~是否是 **在學生**？~~
->  - ~~`is_student:boolean`~~
+>- 是否是 **在學生**？
+>  - `is_student:boolean`
 >- 身份
 >  - 博士生？研究生？大學生？畢業生？
 
-
+### 實驗室成員的index page
+- 依照身份不同，在不同的階層
+  - 用scope實作
 
 ### Nested Form
 - 實驗室成員，**Member model**
@@ -154,15 +154,16 @@
     - `name:string`
 
 ### 文章編輯權限
-- 一開始會用老師在中原的信箱與統一密碼`lab515`建畢業生的個人資料，然後再寄給眾畢業生，讓他們自己去改個人資料與自介
+- 一開始會用老師在中原的信箱`miaou@cycu.edu.tw`與統一密碼`lab515`建畢業生的個人資料
+- 然後再寄給眾畢業生，讓他們自己去改個人資料與自介
 - 總管理員
   - 我與老師
   - 擁有 **刪除** 的權限
 - 學習資源的文章
-  - 給學習資源的文章，在 **Resource Model** 開一個新的欄位`can_other_guy_edit:boolean`
+  - 給學習資源的文章，在 **Resource Model** 開一個新的欄位`other_can_edit:boolean`
     - 在表單裡弄成下拉式選單，發表文章時
       - `false`，只有發文者可以編輯
-      - `true`，其他人可以編輯
+      - `true`，其他實驗室成員可以編輯
     - 留言系統
       - Disqus
   - 實驗室成員都有 **新增文章** 的權限，但只有總管理員可以 **刪除文章**
@@ -179,15 +180,21 @@
 - devise的寫法
 - 用臉書、google帳號登入
 
-### 實驗室成員的index page
-- 依照身份不同，在不同的階層
-
-筆記太多，請直接觀看[../features/member_index/]
+### SEO優化
+- friendly_id gem
 
 # 練習順序
+1. Nested Form
+2. 下拉式選單
+3. 登入系統
+4. 實作Mackenize Child的部落格
+   - Form use markdown
+   - Disqus
+   - SEO優化：friendly_id
+5. i18n
+6. 實驗室成員用scope實作
 
-
-# 練習的參考資料
+# 參考資料
 
 #### Nested Form
 - [rails nested forms - YouTube](https://www.youtube.com/results?search_query=rails+nested+forms)
@@ -208,9 +215,9 @@
    - [rails google login - YouTube](https://www.youtube.com/results?search_query=rails+google+login)
 2. 文章
    - [Ruby on Rails - 整合 Devise 實作 Facebook 登入機制 « 魚人筆>記](http://fisherliang.logdown.com/posts/301654-ruby-on-rails-real-facebook-login-mechanism)
-   - [[rails4]使用Omniauth整合facebook及google註冊認證 – 酷思小魏の IT筆記](https://blog.coolsea.net/archives/153)
-   - [[Rails] Devise使用Google實作登入 « NicLin Dev](http://blog.niclin.tw/posts/628482--devise-used-google-implements-login)
-   - [[Rails] Devise 使用 Facebook 註冊與登入 « 像貓一樣懶](http://georgiowan.logdown.com/notes/733856/rails-devise-using-facebook-signup-login)
+   - [使用Omniauth整合facebook及google註冊認證 – 酷思小魏の IT筆記](https://blog.coolsea.net/archives/153)
+   - [Devise使用Google實作登入 « NicLin Dev](http://blog.niclin.tw/posts/628482--devise-used-google-implements-login)
+   - [Devise 使用 Facebook 註冊與登入 « 像貓一樣懶](http://georgiowan.logdown.com/notes/733856/rails-devise-using-facebook-signup-login)
    - [透過OmniAuth使用FB帳號登入 « Kuro_Sean's Blog](http://kuro-sean-blog.logdown.com/posts/712195-via-omniauth-fb-account-login)
 
 #### Form use markdown
@@ -223,3 +230,15 @@
 
 #### 留言系統：Disqus
 - [Add Disqus Comments - How to build a blog & portfolio with Rails 4 - YouTube](https://www.youtube.com/watch?v=_8tRlrU3tZQ&index=17&list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)
+
+#### SEO優化
+- [Add the friendly id gem - How to build a blog & portfolio with Rails 4 - YouTube](https://www.youtube.com/watch?v=62PQUaDhgqw)
+
+#### 英文版
+使用i18n
+
+#### 實驗室成員用scope實作
+- 在校生？畢業生？
+- 依照身份不同，在不同的階層
+
+筆記太多，請直接觀看[member_index.md](../features/member_index/member_index.md)

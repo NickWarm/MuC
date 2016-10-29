@@ -1,5 +1,6 @@
-# 下拉式選單：[一對多-2](https://www.youtube.com/watch?v=-fwl_aFNewM&feature=youtu.be)
+# 下拉式選單
 
+臨摹其他專案的筆記，礙於是非公開影片，無法給影片來源
 
 ### step.1
 add category table and create relation
@@ -42,7 +43,7 @@ rails c
 開始準備做介面
 
 #### step.3-1
-一對多-2的影片跟前面教學進度有落差，少了一大段
+影片跟前面教學進度有落差，少了一大段
 
 首先我必須要開一個新的migrate來讓event table加入下列columns
 ```
@@ -60,14 +61,14 @@ rails g migration AddDetailsToEvents state:string start_on:date schedule_at:date
 
 我們再`rake db:migrate`
 
-就能生成跟 **一對多-2** 的影片相同的`schema.rb`
+就能生成與的影片相同的`schema.rb`
 
 #### step.3-2
 **目標：** 與影片相同的`index.html.erb`
 
-**要有跟ihower在一對多-2相同的_form.html.erb**
+**要有跟影片相同的_form.html.erb**
 
-因為我不希望影響到前面寫的code，所以我在events下新增了`_formlist.html.erb`，然後寫 **一對多-2** 裡`_form.html.erb`相同的code
+因為我不希望影響到前面寫的code，所以我在events下新增了`_formlist.html.erb`，然後寫與影片裡`_form.html.erb`相同的code
 
 **views/events/_formlist.html.erb**
 ```
@@ -125,7 +126,7 @@ rails g migration AddDetailsToEvents state:string start_on:date schedule_at:date
 ```
 @event = Event.new
 ```
-就能看到跟ihower影片相同的index.html.erb了
+就能看到跟影片相同的index.html.erb了
 
 #### step.3-3 下拉選單
 
