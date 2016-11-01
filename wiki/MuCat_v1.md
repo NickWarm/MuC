@@ -2,6 +2,12 @@
 
 基於[UserStory_v6](./userstory_v6.md)整理實作細節
 
+# 情境
+
+實驗室成員新登入 -> 依據信箱自動創建帳號  -> 點到實驗室成員頁面  -> 修改自己的個人資料
+
+
+
 # 架構
 
 ## 概觀
@@ -122,7 +128,9 @@
     - 身份：在學生？畢業生？
       - 下拉式選單
     - 論文題目
-      - nested form
+      - 論文可能不只一篇，**一對多**
+      - **Paper Model**
+      - dynamic nested form
     - 簡要介紹
       - `profile:text`
       - markdown
