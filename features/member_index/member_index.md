@@ -41,7 +41,7 @@ LuI平常都用這方法
 
 ![](./LuI_2.jpg)
 
-在schema裡 **Member model** 的table再給一個欄位，專門做排序的
+在schema裡 **User model** 的table再給一個欄位，專門做排序的
 
 然後在第一個用scope 寫一個專門排序的function
 

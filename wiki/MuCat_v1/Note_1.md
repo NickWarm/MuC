@@ -126,9 +126,9 @@ Rails.application.routes.draw do
   resources :learningnotes   # 學習資源
   resources :posts           # 實驗室公告
   resources :honors          # 榮譽榜
-  resources :users           # 實驗室成員資料
+  resources :lab_members     # 實驗室成員資料
 
-  devise_for :users          # 登入系統
+  devise_for :lab_members    # 登入系統
   devise_for :managers
 
   get 'welcome/index'        # 首頁
@@ -138,34 +138,82 @@ Rails.application.routes.draw do
     resources :learningnotes
     resources :posts
     resources :honors
-    resources :users
+    resources :lab_members
 
     namespace :admin do      # 網站管理員：上線的版本要把admin改成亂碼
       resources :honors
-      resources :users
+      resources :lab_members
     end
   end
 end
 ```
 
-# devise與上傳圖片
+注意：由於這時我們還沒用devise，所以先把會用到devise的部分都註解掉
+```
+# devise_for :lab_members    # 登入系統
+# devise_for :managers
+```
+上面這段code在使用`rails g devise Lab_Member`、`rails g devise Manager`時會自動生成
+
+然後，我們要先弄一下`welcome controller`不然會噴掉，因為首頁設為`welcome#index`
+
+```
+rails g controller welcome
+```
+
+create `app/views/welcome/index.html.erb`，and add
+```
+<h1>This is welcome index</h1>
+```
+
+and then `rails s`，success!!!
+
+# devise
 
 目前計劃
 - 登入系統一律用devise
 - 實驗室成員的個人照片用paperclip來處理
 
+參考
+- 以前的筆記：[JCcart GitHub wiki - Step.3 註冊系統與產品圖片](https://github.com/NickWarm/jccart/wiki/Step.3-註冊系統與產品圖片)
+- [plataformatec/devise - GitHub](https://github.com/plataformatec/devise)
+
+```
+rails g devise:install
+rails g devise Lab_Member
+rails g devise Manager
+```
+
+覺得沒必要像JC一樣關掉其他功能，照原始設定就好
+
+參考
+- [lustan3216 GitHub - FUSAKIGG/db/migrate/20160628174512_devise_create_users.rb](https://github.com/lustan3216/FUSAKIGG/blob/master/db/migrate/20160628174512_devise_create_users.rb)
+- [建立shop的table](https://github.com/NickWarm/jccart/wiki/Step.3-註冊系統與產品圖片#建立shop的table)
+- [ActiveRecord::Migration](http://api.rubyonrails.org/classes/ActiveRecord/Migration.html)
+
+覺得另外開一個migration來定義資料表會比較好維護
+
+and then `rake db:migrate`
+
 # 定義model
 
-奇怪，在[JCcart GitHub wiki - Step.4 models](https://github.com/NickWarm/jccart/wiki/Step.4-models)時，直接寫`rails g model Item`會噴掉，但這次不會噴....
+奇怪，在[JCcart GitHub wiki - Step.4 models](https://github.com/NickWarm/jccart/wiki/Step.4-models)時，直接寫`rails g model Item`會噴掉，但這次不會噴....，不過也沒打算用這方法，決定使用[建立shop的table](https://github.com/NickWarm/jccart/wiki/Step.3-註冊系統與產品圖片#建立shop的table)的方法來建model
 
 學習資源的model用兩個字命名   
 - [Ruby/Rails - Models Named with Two Words (Naming Convention Issues) - Stack Overflow](http://stackoverflow.com/questions/4893342/ruby-rails-models-named-with-two-words-naming-convention-issues)
+
+比較對照表：
+-
 
 ```
 rails g model learning_note
 
 rails g model post
 ```
+
+# paperclip
+
+用來上傳實驗室成員的個人照片
 
 # 設定controller
 
