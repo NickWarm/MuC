@@ -2,18 +2,26 @@
 
 實驗室成員新增論文
 
-# 可能的問題
-
-MuCat_v1先用nested_form去實作，最簡單的那種，不要用深度解析的寫法
-- 必須考量，**刪除論文**
-  - 有可能要直接學用form_tag 做dynamic form
-
-MuCat_v2用Railsfun day6教的，用form_tag與jQuery實作動態表單
-- [Ruby on Rails - Railscasts PRO #403 Dynamic Forms (pro) - YouTube](https://www.youtube.com/watch?v=t_FNKR7jahM)
+MuCat_v1 放棄nested_form。決定採用Dynamic_form
 
 # 我的寫法 v1
 
-情境：同一張表單下
+情境：
+
+實驗室成員新登入 -> 依據信箱自動創建帳號  -> 點到實驗室成員頁面  -> 修改自己的個人資料
+
+跟老師要歷年實驗室成員的信箱
+
+我自己手動一個一個幫他們註冊，預先密碼用`lab515`
+
+在controller設定
+```
+if member.profile.blank?
+  render to edit頁面
+else
+  render to 實驗室首頁
+
+```
 
 建立
 - 名字
@@ -22,9 +30,21 @@ MuCat_v2用Railsfun day6教的，用form_tag與jQuery實作動態表單
 - 論文題目 (一個或一個以上)
 
 MuCat_v1 放棄nested_form。決定採用Dynamic_form
--
+- [Dynamic Input Fields in Rails | Dan Barbarito - Student, Web Developer, Musician, Programmer](http://www.barbarito.me/blog/dynamic-input-fields-in-rails/)
+  - 用CoffeScript的寫法
+  - [ActionView::Helpers::FormHelper](http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html)，點進去後搜尋「Resource-oriented style」，讀完後就能看懂這篇的`form_for`在寫什麼
+  - 這篇很棒，請見 **筆記1**
+- [實作動態增加的表單 - RailsFun 新手教學 Day 6](https://youtu.be/r1pq5wvRS7c?list=PLJ6M-k9dQEQ3VsyOZQwjZ5GdjaLJH3eB_&t=3254)
+  - 可以搭配[RailsDemoHasMany/multi.html.erb](https://github.com/JokerCatz/RailsDemoHasMany/blob/master/app/views/items/multi.html.erb)這code來閱讀，會比較清楚
+  - [text_field_tag - rails API](http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html#method-i-text_field_tag)
+  - 有教 [params 的包裝與使用 - Rails Fun](http://railsfun.tw/t/params/55) 這篇文章要怎麼看，可以理解要怎麼送資料進controller
 
 
+# 可能的問題
+
+MuCat_v1先用nested_form去實作，最簡單的那種，不要用深度解析的寫法
+- 必須考量，**刪除論文**
+  - 放棄nested_form，改成獨立頁面做dynamic form
 
 # 學習資源
 
@@ -45,12 +65,14 @@ MuCat_v1 放棄nested_form。決定採用Dynamic_form
   - 雖然是[用coffescript](https://youtu.be/t_FNKR7jahM?t=283)，不過那code看起來就jQuery啊XD
 
 #### 文章
-
 - [Ruby on Rails - Accepts_nested_attributes_for - Leon's Blogging](http://mgleon08.github.io/blog/2015/12/13/ruby-on-rails-accepts-nested-attributes-for/)
 - [Dynamic Input Fields in Rails | Dan Barbarito - Student, Web Developer, Musician, Programmer](http://www.barbarito.me/blog/dynamic-input-fields-in-rails/)
   - 用CoffeScript的寫法
   - [ActionView::Helpers::FormHelper](http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html)，點進去後搜尋「Resource-oriented style」，讀完後就能看懂這篇的`form_for`在寫什麼
   - 這篇很棒，請見 **筆記1**
+  - [respond_to 與 respond_with](http://openhome.cc/Gossip/Rails/RespondToWith.html)
+  - [respond_to 與 respond_with | Rails 102](https://rocodev.gitbooks.io/rails-102/content/chapter1-mvc/c/respond_to__respond_with.html)
+  - [respond_to - rails API](http://api.rubyonrails.org/classes/ActionController/MimeResponds.html#method-i-respond_to)
 - [RailsFun 新手教學 Day 6 實作動態增加的表單](https://youtu.be/r1pq5wvRS7c?list=PLJ6M-k9dQEQ3VsyOZQwjZ5GdjaLJH3eB_&t=3254)
 - [form_for相關問題：想要把複選題改成單選題 - Rails - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/form-for/445/13)
 - [動態一對多表單建立 - 教學 - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/topic/447)
@@ -239,6 +261,21 @@ def create
 end
 ```
 
+controller所收到的json長成
+```
+{"utf8"=>"✓",
+  "poll"=>{"title"=>"Should you comment below?"},
+  "choices"=>["Yes",
+              "Most definitely",
+              "No reason not to",
+              "Only an idiot would say no",
+              "Of Course"],
+  "user_id"=>"1",
+  "commit"=>"Create Poll"
+}
+```
+controller會取出`choices`，然後把它存入資料庫。
+
 > 筆記2 end
 
 ## Nested Form
@@ -291,6 +328,39 @@ accepts_nested_attributes_for的官方極清晰API
 - [ActionController::StrongParameters](http://api.rubyonrails.org/classes/ActionController/StrongParameters.html)
   - [Strong Parameter 解釋 & 一對一關聯製作 - Rails - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/strong-parameter/442)
 
+> 筆記3：`accepts_nested_attributes_for`到底在幹麻
+
+直接看官方API，這篇[ActiveRecord::NestedAttributes::ClassMethods](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html)，就會非常容易理解。
+
+過去我們知道了，在前台頁面填完表單後，按下submit，在controller收到的是一串json。這串json的格式又會依據我們前台表單頁面的input欄位的`name`屬性，來決定名字。
+
+現在我們看[ActiveRecord::NestedAttributes::ClassMethods](http://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html)的 **One-to-many** 這節。
+
+一開始在`member.rb`下定義
+
+```
+class Member < ActiveRecord::Base
+  has_many :posts
+  accepts_nested_attributes_for :posts
+end
+```
+
+表單送出後，所收到的json長成
+```
+params = { member: {
+  name: 'joe', posts_attributes: [
+    { title: 'Kari, the awesome Ruby documentation browser!' },
+    { title: 'The egalitarian assumption of the modern citizen' },
+    { title: '', _destroy: '1' } # this will be ignored
+  ]
+}}
+```
+
+換句話說，`accepts_nested_attributes_for`幫我們在nested_form定義的input欄位，他的`name`命名為`posts_attributes`。
+
+而controller收到`posts_attributes`後，會把它裡頭的東西送到資料庫裡去。
+
+> 筆記3 end
 
 ## random note
 

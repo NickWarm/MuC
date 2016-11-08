@@ -53,7 +53,12 @@
 總管理員可以 **編輯** 實驗室成員的 **身份**
 - 實驗室成員排序：由新到舊
 
+```
+/dashboard/                 #使用者後台網址
+/dashboard/qazrfvyhnqwecvb  #管理者後台網址
+```
 
+> ref：[會員與登入系統要點：devise / robots.txt - Rails - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/devise-robots-txt/376)
 
 # 細節
 - 實驗室簡介
@@ -162,7 +167,7 @@
     - `name:string`
 
 ### 文章編輯權限
-- 一開始會用老師在中原的信箱`miaou@cycu.edu.tw`與統一密碼`lab515`建畢業生的個人資料
+- 跟老師要歷屆實驗室成員的信箱，我一個一個手動幫他們註冊。密碼統一用`lab515`來建的個人資料
 - 然後再寄給眾畢業生，讓他們自己去改個人資料與自介
 - 總管理員
   - 我與老師
@@ -212,7 +217,7 @@
 - [Ruby on Rails 如何實作可動態新增欄位的表單(dynamic nested form) – 先求有再求好](https://krammer0.wordpress.com/2016/05/04/ror-%E5%8B%95%E6%85%8B%E6%96%B0%E5%A2%9E%E6%AC%84%E4%BD%8D%E7%9A%84%E8%A1%A8%E5%96%AE/)
 - [simple_form nested attribute 巢狀表格 Rails 要注意的點 - 丹哥的技術培養皿](http://tech.guojheng-lin.com/posts/2014/07/01/simple-form-nested-nested-table-attribute-rails-to-note-the-points/)
 
-#### 下拉式選單
+#### 下拉式選單 (v1不考慮)
 - [dropdown in rails - YouTube](https://www.youtube.com/watch?v=B2uEbkAk6aI)
 - [Integrating a Dropdown Element into a Rails Form - YouTube](https://www.youtube.com/watch?v=FWIXWutlxIg)
 - [Step.12 類別的下拉選單 · NickWarm/jccart Wiki](https://github.com/NickWarm/jccart/wiki/Step.12--%E9%A1%9E%E5%88%A5%E7%9A%84%E4%B8%8B%E6%8B%89%E9%81%B8%E5%96%AE)

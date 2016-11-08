@@ -37,3 +37,10 @@
    - SEO優化：friendly_id
 5. i18n
 6. 實驗室成員用scope實作
+
+# 目標
+1108
+- 完成FUSAKIGG login筆記
+- 完成MuCat_v1 login後台route、Facebook login system
+
+# 進度
