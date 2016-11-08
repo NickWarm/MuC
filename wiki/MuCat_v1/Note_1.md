@@ -7,7 +7,7 @@ rails new MuCat_v1 -d mysql -T
 
 ## 加入debug工具
 
-fix `MuCat_v1/Gemfile`
+add to `MuCat_v1/Gemfile`
 
 ```
 ...
@@ -24,6 +24,17 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+```
+
+## 會用到的gem
+
+add to `MuCat_v1/Gemfile`
+
+```
+gem 'will_paginate'
+gem 'awesome_print'
+gem 'devise'
+gem 'paperclip'
 ```
 
 and then `bundle install`
@@ -66,10 +77,95 @@ success!!!
 
 # 建後台路由
 
-refer to my past post
+refer to this posts
 - [JCcart GitHub wiki - Step.2 路由設定](https://github.com/NickWarm/jccart/wiki/Step.2-%E8%B7%AF%E7%94%B1%E8%A8%AD%E5%AE%9A)
+- [mackenziechild GitHub - blog_course_demo/config/routes.rb ](https://github.com/mackenziechild/blog_course_demo/blob/master/config/routes.rb)
+- [lustan3216 GitHub - FUSAKIGG/config/routes.rb](https://github.com/lustan3216/FUSAKIGG/blob/master/config/routes.rb)
+
+~~由於該專案是實驗室網站，並不像購物車，需要有個使用者後台~~
+
+目前打算，一樣分兩層後台：實驗室成員後台、管理員後台
+
+實驗室成員可以看到
+- 個人資料編輯頁面
+- 可以在「實驗室公告、學習資源」發佈、修改文章
+- 無刪除 **榮譽榜** 的權限
+
+網站管理員
+- 開發者我與指導教授
+- 具有刪除 **榮譽榜、實驗室成員** 的權限
+
+## 架構
+第一層：public
+- 學習資源
+- 實驗室公告
+- 實驗室成員資料   
+- 榮譽榜
+
+第二層：namespace
+- 實驗室成員有編輯這些的權限
+  - 學習資源
+  - 實驗室公告
+  - 實驗室成員資料   
+  - 榮譽榜
+
+第三層：namespace
+- 網站管理員有刪除的權限
+  - 實驗室成員資料
+
+model用兩個字命名   
+- [Ruby/Rails - Models Named with Two Words (Naming Convention Issues) - Stack Overflow](http://stackoverflow.com/questions/4893342/ruby-rails-models-named-with-two-words-naming-convention-issues)
+- [物件導向程式的九個體操練習 | ihower { blogging }](https://ihower.tw/blog/archives/1960)
+  - 見第五點
+
+fix `config/routes.rb`
+
+完整code
+```
+Rails.application.routes.draw do
+  resources :learningnotes   # 學習資源
+  resources :posts           # 實驗室公告
+  resources :honors          # 榮譽榜
+  resources :users           # 實驗室成員資料
+
+  devise_for :users          # 登入系統
+  devise_for :managers
+
+  get 'welcome/index'        # 首頁
+  root 'welcome#index'
+
+  namespace :dashboard do    # 實驗室成員：新增編輯文章、個資使用
+    resources :learningnotes
+    resources :posts
+    resources :honors
+    resources :users
+
+    namespace :admin do      # 網站管理員：上線的版本要把admin改成亂碼
+      resources :honors
+      resources :users
+    end
+  end
+end
+```
 
 # devise與上傳圖片
+
+目前計劃
+- 登入系統一律用devise
+- 實驗室成員的個人照片用paperclip來處理
+
+# 定義model
+
+奇怪，在[JCcart GitHub wiki - Step.4 models](https://github.com/NickWarm/jccart/wiki/Step.4-models)時，直接寫`rails g model Item`會噴掉，但這次不會噴....
+
+學習資源的model用兩個字命名   
+- [Ruby/Rails - Models Named with Two Words (Naming Convention Issues) - Stack Overflow](http://stackoverflow.com/questions/4893342/ruby-rails-models-named-with-two-words-naming-convention-issues)
+
+```
+rails g model learning_note
+
+rails g model post
+```
 
 # 設定controller
 

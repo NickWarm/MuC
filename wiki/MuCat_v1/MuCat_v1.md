@@ -24,7 +24,7 @@
 - 榮譽榜
   - CRUD，WYSIWYG editor，**Honor model**
 - 學習資源
-  - CRUD，**Resource model**
+  - CRUD，**Learning model**
 
 ### NavBar
 - 實驗室公告
@@ -33,9 +33,9 @@
   - 教授
     - CRUD，**Work model**
   - 實驗室成員
-    - CRUD，**Member model**
+    - CRUD，**User model**
 - 研究成果
-  - 用`each`撈 **Member model** 的「學籍、姓名、論文題目」
+  - 用`each`撈 **User model** 的「學籍、姓名、論文題目」
 
 >不知道`News model`在rails會不會有語法問題...
 
@@ -79,7 +79,7 @@
       - 文章都是 **Markdown editable**
       - 一個 **partial form，input的資料型別用text**        
   - **CRUD**
-    - **Resource model**
+    - **LearningNote model**
     - 作者:string、標題:string、內容:text
     - `author:string title:string content:text other_can_edit:boolean`
 - 實驗室公告
@@ -102,7 +102,7 @@
     - 個人介紹採用Markdown editable
     - 一個 **partial form，input的資料型別用text**
     - **CRUD**：個人照片、姓名、學籍、論文題目、自我介紹、學位(**博士生？研究生？大學生？**)、身份 (**在校生？畢業生？**)
-      - **Member model**
+      - **User model**
       - 入學學籍:integer、姓名:string、論文題目:string、自我介紹:text、學位、身份狀態:string
       - `name:string year:integer paper:string profile:text academic_degree:string has_graduated:boolean`
     - 實驗室成員頁面排序
@@ -122,7 +122,7 @@
 # Features
 
 ### Form
-- 實驗室成員，**Member model**
+- 實驗室成員，**User model**
   - 個人照片、姓名、學籍、論文題目、簡要介紹、身份
     - 個人照片
       - paperclip gem
@@ -144,7 +144,7 @@
   - `title:string content:text`
 - 榮譽榜，**Honor model**
   - WYSIWYG editor
-- 學習資源，**Resource model**
+- 學習資源，**Learning model**
   - markdown
   - 作者、標題、內容、他人是否可編輯
   - `author:string title:string content:text other_can_edit:boolean`
@@ -162,7 +162,7 @@
   - 用scope實作
 
 ### Nested Form
-- 實驗室成員，**Member model**
+- 實驗室成員，**User model**
   - paper
     - `name:string`
 
@@ -173,7 +173,7 @@
   - 我與老師
   - 擁有 **刪除** 的權限
 - 學習資源的文章
-  - 給學習資源的文章，在 **Resource Model** 開一個新的欄位`other_can_edit:boolean`
+  - 給學習資源的文章，在 **Learning Model** 開一個新的欄位`other_can_edit:boolean`
     - 在表單裡弄成下拉式選單，發表文章時
       - `false`，只有發文者可以編輯
       - `true`，其他實驗室成員可以編輯
@@ -186,7 +186,7 @@
 >
 >學習資源的文章
 >- ~~我發表的文章，只有我有 **編輯** 的權限~~
->- 在 **Resource Model** 開一個新的欄位`other_can_edit:boolean`
+>- 在 **Learning Model** 開一個新的欄位`other_can_edit:boolean`
 
 
 ### 登入系統

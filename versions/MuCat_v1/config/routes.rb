@@ -1,56 +1,24 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :learningnotes   # 學習資源
+  resources :posts           # 實驗室公告
+  resources :honors          # 榮譽榜
+  resources :users           # 實驗室成員資料
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  devise_for :users          # 登入系統
+  devise_for :managers
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'welcome/index'        # 首頁
+  root 'welcome#index'
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  namespace :dashboard do    # 實驗室成員：新增編輯文章、個資使用
+    resources :learningnotes
+    resources :posts
+    resources :honors
+    resources :users
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    namespace :admin do      # 網站管理員：上線的版本要把admin改成亂碼
+      resources :honors
+      resources :users
+    end
+  end
 end
