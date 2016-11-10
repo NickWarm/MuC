@@ -123,26 +123,28 @@ fix `config/routes.rb`
 完整code
 ```
 Rails.application.routes.draw do
-  resources :learningnotes   # 學習資源
-  resources :posts           # 實驗室公告
-  resources :honors          # 榮譽榜
-  resources :lab_members     # 實驗室成員資料
 
-  devise_for :lab_members    # 登入系統
+  resources :learningnotes       # 學習資源
+  resources :posts               # 實驗室公告
+  resources :honors              # 榮譽榜
+  resources :users               # 實驗室成員資料
+  resources :professorworks      # 教授的著作
+
+  devise_for :users              # 登入系統
   devise_for :managers
 
-  get 'welcome/index'        # 首頁
+  get 'welcome/index'            # 首頁
   root 'welcome#index'
 
-  namespace :dashboard do    # 實驗室成員：新增編輯文章、個資使用
+  namespace :dashboard do        # 實驗室成員：新增編輯文章、個資使用
     resources :learningnotes
     resources :posts
     resources :honors
-    resources :lab_members
+    resources :users
 
-    namespace :admin do      # 網站管理員：上線的版本要把admin改成亂碼
-      resources :honors
-      resources :lab_members
+    namespace :admin do          # 網站管理員：上線的版本要把admin改成亂碼
+      resources :users           # 刪除實驗室成員的權限
+      resources :professorworks  # 教授的著作
     end
   end
 end
@@ -150,10 +152,10 @@ end
 
 注意：由於這時我們還沒用devise，所以先把會用到devise的部分都註解掉
 ```
-# devise_for :lab_members    # 登入系統
+# devise_for :users    # 登入系統
 # devise_for :managers
 ```
-上面這段code在使用`rails g devise Lab_Member`、`rails g devise Manager`時會自動生成
+上面這段code在使用`rails g devise User`、`rails g devise Manager`時會自動生成
 
 然後，我們要先弄一下`welcome controller`不然會噴掉，因為首頁設為`welcome#index`
 
@@ -180,7 +182,7 @@ and then `rails s`，success!!!
 
 ```
 rails g devise:install
-rails g devise Lab_Member
+rails g devise User
 rails g devise Manager
 ```
 
@@ -202,14 +204,38 @@ and then `rake db:migrate`
 學習資源的model用兩個字命名   
 - [Ruby/Rails - Models Named with Two Words (Naming Convention Issues) - Stack Overflow](http://stackoverflow.com/questions/4893342/ruby-rails-models-named-with-two-words-naming-convention-issues)
 
-比較對照表：
--
+model比較對照表：
+- 學習資源：`learning_notes`
+- 榮譽榜：`honors`
+- 實驗室公告：`posts`
+- 實驗室成員：`users`
+- 學生的論文：`papers`
+- 教授的著作：`professor_works`
+
+## 學習資源
+
+學習資源的表單設計，除了原本[MuCat_v1.md](../MuCat_v1/MuCat_v1.md)的
+- ~~`author:string title:string content:text other_can_edit:boolean`~~
+- 改成：`author:string title:string content:text is_editable:boolean`
+
+後來參考
+- [mackenziechild GitHub - blog_course_demo/db/migrate/20150509171512_create_projects.rb](https://github.com/mackenziechild/blog_course_demo/blob/master/db/migrate/20150509171512_create_projects.rb)
+- [mackenziechild GitHub - blog_course_demo/app/views/projects/show.html.erb](https://github.com/mackenziechild/blog_course_demo/blob/master/app/views/projects/show.html.erb)
+
+應該加個`link:string`才對，這樣才能連到外部文章，這樣也比較符合我的需求
+
+### create_learning_note migration
+
+
+
+
+
+## 實作
 
 ```
-rails g model learning_note
-
-rails g model post
+rails g migration init_mucat_v1
 ```
+
 
 # paperclip
 
