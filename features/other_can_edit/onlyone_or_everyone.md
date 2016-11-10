@@ -26,7 +26,7 @@
   - `title:string content:text user_id:integer`
   - 會關聯：(特定)實驗室成員 -> 多對多用中介表
 - 實驗室公告：`posts`
-  - `title:string content:text is_editable:boolean  user_id:integer  `
+  - `title:string content:text is_editable:boolean  user_id:integer`
   - 「獨自編輯」與「對所有實驗室成員開放」
 - 實驗室成員：`users`
   - 會關聯：學習資源、榮譽榜、實驗室公告、學生的論文
