@@ -122,7 +122,7 @@ fix `config/routes.rb`
 
 完整code
 ```
-Rails.application.routes.draw do
+Rails.application.routes.draw do # 發表文章、編輯文章
 
   resources :learningnotes       # 學習資源
   resources :posts               # 實驗室公告
@@ -136,8 +136,8 @@ Rails.application.routes.draw do
   get 'welcome/index'            # 首頁
   root 'welcome#index'
 
-  namespace :dashboard do        # 實驗室成員：新增編輯文章、個資使用
-    resources :learningnotes
+  namespace :dashboard do        # 實驗室成員：編輯個資、查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
+    resources :learningnotes    
     resources :posts
     resources :honors
     resources :users
@@ -212,7 +212,24 @@ model比較對照表：
 - 學生的論文：`papers`
 - 教授的著作：`professor_works`
 
-## 學習資源
+# 實驗室公告
+
+實驗室公告的功能實作，請參考[MuWeb/features/professor_assigned](../../features/professor_assigned/)這個資料夾所寫的筆記，以下實作的緣由紀錄於[controller_design.md](../../features/professor_assigned/controller_design.md)
+
+首先，修改Gemfile讓專案使用[Semantic UI](http://semantic-ui.com)，我們要用Semantic UI 來做[多選下拉選單的UI](http://semantic-ui.com/modules/dropdown.html#multiple-selections)
+
+按照[Semantic-Org/Semantic-UI-Rails-LESS - GitHub](https://github.com/Semantic-Org/Semantic-UI-Rails-LESS)的教學，在Gemfile加入
+
+add to `Gemfile`
+
+```
+gem 'less-rails-semantic_ui'
+gem 'autoprefixer-rails'
+```
+
+然後`bundle install`
+
+# 學習資源
 
 學習資源的表單設計，除了原本[MuCat_v1.md](../MuCat_v1/MuCat_v1.md)的
 - ~~`author:string title:string content:text other_can_edit:boolean`~~
@@ -224,6 +241,7 @@ model比較對照表：
 
 應該加個`link:string`才對，這樣才能連到外部文章，這樣也比較符合我的需求
 
+
 ### create_learning_note migration
 
 
@@ -232,9 +250,6 @@ model比較對照表：
 
 ## 實作
 
-```
-rails g migration init_mucat_v1
-```
 
 
 # paperclip

@@ -8,17 +8,31 @@
 
 直接在post model裡開一個 **is_editable** 的布林欄位就好了
 
+只限本人編輯
+- 學生的論文
+  - 直接在user model下開一個欄位`paper:context`
+  - 然後讓他用Markdown編輯
+  - 瞬間什麼nested_form都不用考慮了XDDDDDDDDDD
+
 要開權限給任何人編輯
 - 學習資源
-- 實驗室公告
+  - Markdown
 
 
 開權限給特定人編輯
 - 榮譽榜
+  - WYSIWYG
+- 實驗室公告
+  - WYSIWYG
 - 教授的著作
+  - Markdown
 
 
 # model比較對照表
+- 實驗室成員：`users`
+  - 除了devise內建好email那些欄位之外
+  - add_column：`name:string year:integer paper:text profile:text academic_degree:string has_graduated:boolean`
+  - 會關聯：學習資源、榮譽榜、實驗室公告、學生的論文
 - 學習資源：`learning_notes`
   - `title:string content:text is_editable:boolean link:string user_id:string`
   - 「獨自編輯」與「對所有實驗室成員開放」
@@ -28,15 +42,13 @@
 - 實驗室公告：`posts`
   - `title:string content:text is_editable:boolean  user_id:integer`
   - 「獨自編輯」與「對所有實驗室成員開放」
-- 實驗室成員：`users`
-  - 會關聯：學習資源、榮譽榜、實驗室公告、學生的論文
-- 學生的論文：`papers`
 - 教授的著作：`professor_works`
   - 會關聯：(特定)實驗室成員 -> 多對多用中介表
 
 
 用sdlong的寫法就不需要開author欄位了
 - [4. 建立使用者功能 « Rails 101 S](http://rails101s.logdown.com/posts/247881-20-4-adding-user-functions)，搜尋「author」
+  - [rails API - belongs_to](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-belongs_to)，搜尋「belongs_to :author」
 - [rails101s GitHub - rails101s/db/schema.rb](https://github.com/sdlong/rails101s/blob/master/db/schema.rb)
 
 
@@ -110,7 +122,7 @@ class Post < ActiveRecord::Base
 end
 ```
 
-# 該篇post的view裡的edit button
+# 該篇post的show view裡的edit button
 
 參考
 - sdlong的這篇：[4. 建立使用者功能 « Rails 101 S](http://rails101s.logdown.com/posts/247881-20-4-adding-user-functions)
@@ -119,14 +131,14 @@ end
 
 ```
 <!-- 作者自己可以編輯 -->
-<% if post.editable_by(current_user) %>
+<% if @post.editable_by(current_user) %>
   <%= link_to "edit" %>
   <%= link_to "delete" %>
 <% end %>
 
 
 <!-- 開放給他人編輯 -->
-<% if user_signed_in? && post.is_editable %>
+<% if user_signed_in? && @post.is_editable %>
   <%= link_to "edit" %>
 <% end %>
 ```
