@@ -390,8 +390,11 @@ gem 'autoprefixer-rails'
 
 然後`bundle install`
 
+完成後`rails generate semantic_ui:install`
 
+然後fail後他說要裝`gem 'therubyracer'`，於是在Gemfile加入`gem 'therubyracer'`，然後`bundle install`
 
+然後再`rails generate semantic_ui:install`，就能work了
 
 ### controller，第二版
 

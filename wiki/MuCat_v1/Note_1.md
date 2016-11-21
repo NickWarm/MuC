@@ -216,9 +216,11 @@ model比較對照表：
 
 實驗室公告的功能實作，請參考[MuWeb/features/professor_assigned](../../features/professor_assigned/)這個資料夾所寫的筆記，以下實作的緣由紀錄於[controller_design.md](../../features/professor_assigned/controller_design.md)
 
+### 設定Semantic UI
+
 首先，修改Gemfile讓專案使用[Semantic UI](http://semantic-ui.com)，我們要用Semantic UI 來做[多選下拉選單的UI](http://semantic-ui.com/modules/dropdown.html#multiple-selections)
 
-按照[Semantic-Org/Semantic-UI-Rails-LESS - GitHub](https://github.com/Semantic-Org/Semantic-UI-Rails-LESS)的教學，在Gemfile加入
+按照[Semantic-Org/Semantic-UI-Rails-LESS - GitHub](https://github.com/Semantic-Org/Semantic-UI-Rails-LESS)的README教學，在Gemfile加入
 
 add to `Gemfile`
 
@@ -228,6 +230,125 @@ gem 'autoprefixer-rails'
 ```
 
 然後`bundle install`
+
+完成後`rails generate semantic_ui:install`，然後就噴了。
+
+他說要裝`gem 'therubyracer'`，於是在Gemfile加入`gem 'therubyracer'`，然後`bundle install`
+
+然後再`rails generate semantic_ui:install`，就能work了
+
+但是，semantic_ui的功能我也不是每個都要用，我可以要用時再把它開起來就好了
+
+參考[FUSAKIGG GitGuh - vendor/assets/javascripts/semantic_ui/semantic_ui.js](https://github.com/lustan3216/FUSAKIGG/blob/master/vendor/assets/javascripts/semantic_ui/semantic_ui.js)
+
+去看 `vendor/assets/javascripts/semantic_ui/semantic_ui.js`
+
+可以看到一開始所有功能都開起來，`//= require ...`
+
+但是我只打算用semantic_ui的dropdown的[Multiple Selection](http://semantic-ui.com/modules/dropdown.html#multiple-selection)與checkbox的[Toggle](http://semantic-ui.com/modules/checkbox.html#toggle)功能，其他沒用到的可以把它關掉，於是修改`semantic_ui.js`
+
+from
+
+`//= require ...`
+
+to
+
+`// require ...`
+
+所以，fix `vendor/assets/javascripts/semantic_ui/semantic_ui.js`
+
+```
+// require semantic_ui/definitions/modules/accordion.js
+// require semantic_ui/definitions/behaviors/api.js
+//= require semantic_ui/definitions/modules/checkbox.js
+// require semantic_ui/definitions/behaviors/colorize.js
+// require semantic_ui/definitions/modules/dimmer.js
+//= require semantic_ui/definitions/modules/dropdown.js
+// require semantic_ui/definitions/modules/embed.js
+// require semantic_ui/definitions/behaviors/form.js
+// require semantic_ui/definitions/modules/modal.js
+// require semantic_ui/definitions/modules/nag.js
+// require semantic_ui/definitions/modules/popup.js
+//= require semantic_ui/definitions/modules/progress.js
+// require semantic_ui/definitions/modules/rating.js
+// require semantic_ui/definitions/modules/search.js
+// require semantic_ui/definitions/modules/shape.js
+//= require semantic_ui/definitions/modules/sidebar.js
+// require semantic_ui/definitions/globals/site.js
+// require semantic_ui/definitions/behaviors/state.js
+// require semantic_ui/definitions/modules/sticky.js
+// require semantic_ui/definitions/modules/tab.js
+// require semantic_ui/definitions/modules/transition.js
+// require semantic_ui/definitions/behaviors/visibility.js
+// require semantic_ui/definitions/behaviors/visit.js
+```
+
+>發現semantic_ui的一些功能滿有用的，以後可以拿它來做有趣的功能，所以先開著
+>- [process](http://semantic-ui.com/modules/progress.html)
+>- [sidebar](http://semantic-ui.com/modules/sidebar.html)
+
+> Toggle可以用在「學習資源」那邊，如果這篇文章要開放給所有人編輯，就點開來，反之則關掉。
+
+改好後，我們去`MuCat_v1/assets/application.js`來引用`semantic_ui.js`
+
+add to `MuCat_v1/app/assets/javascripts/application.js`
+```
+//= require semantic_ui/semantic_ui
+```
+
+然後semantic_ui的CSS也是一樣的道理，我只想要用它的dropdown、checkbox、process、sidebar，其他不要的都關掉
+
+fix `vendor/assets/stylesheets/semantic_ui/semantic_ui.css`
+
+> 由於他的這些功能滿好的，所以開著
+>- [card](http://semantic-ui.com/views/card.html)
+>- [modal](http://semantic-ui.com/modules/modal.html)
+>- [dimmer](http://semantic-ui.com/modules/dimmer.html)
+>- [form](http://semantic-ui.com/collections/form.html)
+>- [label](http://semantic-ui.com/elements/label.html)
+>- [menu](http://semantic-ui.com/collections/menu.html)
+>- [comment](http://semantic-ui.com/views/comment.html)
+>- [divider](http://semantic-ui.com/elements/divider.html)
+>- [input](http://semantic-ui.com/elements/input.html)
+>- [message](http://semantic-ui.com/collections/message.html)
+>- [popup](http://semantic-ui.com/modules/popup.html)
+>- [step](http://semantic-ui.com/elements/step.html)
+
+然後讓我們的專案可以用semantic_ui的CSS
+
+add to `MuCat_v1/app/assets/stylesheets/application.css`
+```
+*= require semantic_ui/semantic_ui
+```
+
+### 關掉require_tree
+
+參考這兩篇後，決定把它關掉
+- [Ruby on Rails 實戰聖經 | Asset Pipeline](https://ihower.tw/rails/assets-pipeline.html)
+- [rails 的 asset 下的 js/css 設定問題? - Rails - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/rails-asset-js-css/285)
+
+fix `MuCat_v1/app/assets/javascripts/application.js`
+
+刪掉`//= require_tree .`
+
+### 關掉turbolink
+
+由於實務上turbolink會與很多jQuery或JavaScript的東西相衝
+- [詢問看看 turbolinks 實際利弊 - 雜談 - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/turbolinks/610/2)
+
+所以我們順便把它給關掉，參考[turbolinks 介紹 « 捷姆斯](http://james1239090-blog.logdown.com/posts/738162-turbolinks-introduction)這篇的解法
+
+fix `MuCat_v1/app/assets/javascripts/application.js`，刪除`//= require turbolinks`
+
+fix `Gemfile`，把turbolink給註解掉，然後`bundle install`
+```
+# gem 'turbolinks'
+```
+
+fix `app/views/layouts/application.html.erb`，移除 layout 中的 `data-turbolinks-track` 屬性
+
+
+
 
 # 學習資源
 
