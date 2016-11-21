@@ -197,26 +197,7 @@ rails g devise Manager
 
 and then `rake db:migrate`
 
-# 定義model
-
-奇怪，在[JCcart GitHub wiki - Step.4 models](https://github.com/NickWarm/jccart/wiki/Step.4-models)時，直接寫`rails g model Item`會噴掉，但這次不會噴....，不過也沒打算用這方法，決定使用[建立shop的table](https://github.com/NickWarm/jccart/wiki/Step.3-註冊系統與產品圖片#建立shop的table)的方法來建model
-
-學習資源的model用兩個字命名   
-- [Ruby/Rails - Models Named with Two Words (Naming Convention Issues) - Stack Overflow](http://stackoverflow.com/questions/4893342/ruby-rails-models-named-with-two-words-naming-convention-issues)
-
-model比較對照表：
-- 學習資源：`learning_notes`
-- 榮譽榜：`honors`
-- 實驗室公告：`posts`
-- 實驗室成員：`users`
-- 學生的論文：`papers`
-- 教授的著作：`professor_works`
-
-# 實驗室公告
-
-實驗室公告的功能實作，請參考[MuWeb/features/professor_assigned](../../features/professor_assigned/)這個資料夾所寫的筆記，以下實作的緣由紀錄於[controller_design.md](../../features/professor_assigned/controller_design.md)
-
-### 設定Semantic UI
+# 設定Semantic UI
 
 首先，修改Gemfile讓專案使用[Semantic UI](http://semantic-ui.com)，我們要用Semantic UI 來做[多選下拉選單的UI](http://semantic-ui.com/modules/dropdown.html#multiple-selections)
 
@@ -321,7 +302,7 @@ add to `MuCat_v1/app/assets/stylesheets/application.css`
 *= require semantic_ui/semantic_ui
 ```
 
-### 關掉require_tree
+# 關掉require_tree
 
 參考這兩篇後，決定把它關掉
 - [Ruby on Rails 實戰聖經 | Asset Pipeline](https://ihower.tw/rails/assets-pipeline.html)
@@ -331,7 +312,7 @@ fix `MuCat_v1/app/assets/javascripts/application.js`
 
 刪掉`//= require_tree .`
 
-### 關掉turbolink
+# 關掉turbolink
 
 由於實務上turbolink會與很多jQuery或JavaScript的東西相衝
 - [詢問看看 turbolinks 實際利弊 - 雜談 - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/turbolinks/610/2)
@@ -346,37 +327,3 @@ fix `Gemfile`，把turbolink給註解掉，然後`bundle install`
 ```
 
 fix `app/views/layouts/application.html.erb`，移除 layout 中的 `data-turbolinks-track` 屬性
-
-
-
-
-# 學習資源
-
-學習資源的表單設計，除了原本[MuCat_v1.md](../MuCat_v1/MuCat_v1.md)的
-- ~~`author:string title:string content:text other_can_edit:boolean`~~
-- 改成：`author:string title:string content:text is_editable:boolean`
-
-後來參考
-- [mackenziechild GitHub - blog_course_demo/db/migrate/20150509171512_create_projects.rb](https://github.com/mackenziechild/blog_course_demo/blob/master/db/migrate/20150509171512_create_projects.rb)
-- [mackenziechild GitHub - blog_course_demo/app/views/projects/show.html.erb](https://github.com/mackenziechild/blog_course_demo/blob/master/app/views/projects/show.html.erb)
-
-應該加個`link:string`才對，這樣才能連到外部文章，這樣也比較符合我的需求
-
-
-### create_learning_note migration
-
-
-
-
-
-## 實作
-
-
-
-# paperclip
-
-用來上傳實驗室成員的個人照片
-
-# 設定controller
-
-# Facebook login system

@@ -103,7 +103,7 @@ A model 與 D model 多對多，配一個中介表：A_D -> **user, professor_wo
 class User < ActiveRecord::Base
   has_many :posts
   has_many :post_authorities
-  has_many :editable_post, through: :post_authorities, source: :post
+  has_many :editable_posts, through: :post_authorities, source: :post
 end
 
 class PostAuthority < ActiveRecord::Base

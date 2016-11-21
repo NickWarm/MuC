@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+                                 # 第一層：發表文章、編輯文章
   resources :learningnotes       # 學習資源
   resources :posts               # 實驗室公告
   resources :honors              # 榮譽榜
@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get 'welcome/index'            # 首頁
   root 'welcome#index'
 
-  namespace :dashboard do        # 實驗室成員：新增編輯文章、個資使用
+  namespace :dashboard do        # 實驗室成員：編輯個資、
+                                 #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
     resources :learningnotes
     resources :posts
     resources :honors
