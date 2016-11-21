@@ -257,8 +257,4 @@ Rails.application.routes.draw do
 end
 ```
 
-# 建立post controller
-
-```
-rails g controller Post
-```
+# 開始設計表單
