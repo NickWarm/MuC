@@ -286,6 +286,7 @@ fix `vendor/assets/stylesheets/semantic_ui/semantic_ui.css`
 >- [modal](http://semantic-ui.com/modules/modal.html)
 >- [dimmer](http://semantic-ui.com/modules/dimmer.html)
 >- [form](http://semantic-ui.com/collections/form.html)
+>  - [Form | Semantic UI](http://legacy.semantic-ui.com/collections/form.html)
 >- [label](http://semantic-ui.com/elements/label.html)
 >- [menu](http://semantic-ui.com/collections/menu.html)
 >- [comment](http://semantic-ui.com/views/comment.html)

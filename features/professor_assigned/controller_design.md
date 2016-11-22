@@ -400,6 +400,7 @@ gem 'autoprefixer-rails'
 
 ref
 - [Tutorial: Multi Select Drop Down with Ruby on Rails - YouTube，觀看5:55](https://youtu.be/ZNrNGTe2Zqk?t=355)
+- [Tutorial: Multi Select Drop Down with Ruby on Rails - YouTube，觀看7:48](https://youtu.be/ZNrNGTe2Zqk?t=468)
 - [Tutorial: Multi Select Drop Down with Ruby on Rails - YouTube，觀看10:05](https://youtu.be/ZNrNGTe2Zqk?t=605)
 - [4.3 has_many 關聯參考手冊 - Active Record 關聯 — Ruby on Rails 指南](http://rails.ruby.tw/association_basics.html#has-many-關聯參考手冊)的 **4.3.1.14**
 - [Ruby on Rails 實戰聖經 | RESTful 應用實作](https://ihower.tw/rails/restful-practices.html)，搜尋「event has_many :attendees」
@@ -432,7 +433,7 @@ before_action :authenticate_user!, except: [:index, :show]
 
 def new
   @post = current_user.posts.build
-  @post_authority = @post.post_authorities.build
+  @post_authorities = @post.post_authorities.build
 end
 
 def create

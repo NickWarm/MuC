@@ -1,0 +1,37 @@
+<%=  content_for :header do %>
+<script>
+  $(function(){
+    $(".ui.dropdown").dropdown()
+  });
+</script>
+<% end %>
+
+<%= form_for @post do |f| %>
+
+
+  <%= f.label :title %><br>
+  <%= f.text_field :title  %>
+
+  <br>
+  <br>
+
+  <% if @post.is_written_by?(current_user)  %>
+    <%= fields_for @post_authorities do |p| %>
+      <%= p.select :user_id, User.all.map{|x| [x.email, x.id] unless x.has_graduated},
+                {multiple: true, include_blank:true}, 
+                {class: "ui dropdown selection multiple", "multiple" => " " } %>
+    <% end %>
+  <% end %>
+
+
+
+  <br>
+  <br>
+
+  <%= f.label :content, "Write your article here" %><br>
+  <%= f.text_area :content %>
+
+  <br>
+  <br>
+
+<% end %>
