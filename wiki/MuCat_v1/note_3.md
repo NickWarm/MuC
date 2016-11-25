@@ -65,4 +65,14 @@ and then fix `MuCat_v1/.gitignore`
 
 如此一來，git 就不會把這個檔案放進版本管理裡面
 
-來測試一下能不能work，所以來把該專案上傳到GitHub
+來測試一下能不能work，所以來把該專案上傳到GitHub，恩......fail
+
+![](../../wiki/img/settinglogic_fail?.png)
+
+經過測試後，我知道原因了，因為我最初的構想是在MuWeb這專案有不同版本的實驗室網站，後來發現這樣無法用settingslogic
+
+>如何在MAC使用`tree`指令，請見[mac tree命令 - 破男孩 - 博客园](http://www.cnblogs.com/ayseeing/p/4097066.html)
+
+
+
+最後決定把資料夾結構改變，這專案就不再更動了，開一個新專案，然後把MuCat_v1的東西複製過去
