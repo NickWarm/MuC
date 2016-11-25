@@ -4,7 +4,7 @@
 >
 > Rails 4.2.5.2
 
-## wiki結構
+# wiki結構
 ```
 wiki
   ├── Dev_Notes            # 開發紀錄
@@ -16,3 +16,8 @@ wiki
   ├── meetup               # 與老師討論的紀錄
   └── userstory_versions   # 使用者故事
 ```
+
+在`MuCat_v1/wiki`記錄了各種筆記
+- 各種概念、構想
+- 思考的過程
+- 實作的方法
