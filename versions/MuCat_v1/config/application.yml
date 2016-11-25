@@ -1,0 +1,14 @@
+defaults: &defaults
+  app_name: "demotest"
+  facebook_app_id: "自己申請的key"
+  facebook_secret: "自己申請的key"
+
+development:
+  <<: *defaults
+  domain: "http:/localhost:3000" #最後 "/" 要拿掉
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

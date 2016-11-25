@@ -121,12 +121,13 @@ footer應該要用partial來寫
 
 除了論文著作可以空白之外，其他都要用User model validate必填。
 
-## 臉書開發者金鑰
+## 保密臉書開發者金鑰
 
 大多數的影片教學都教，會讓開發者金鑰流出的寫法，於是參考下面這些文章
 - [Rails 新手村 - Facebook 自動登入功能 « sdlong's Blog](http://sdlong.logdown.com/posts/207194-rails-newbie-3)
   - [Rails 4 + SettingsLogic + Googl 製作短網址功能 « 赫謙小天地](http://hechien.logdown.com/posts/2014/03/08/rails-4-settingslogic-googl-production-short-url-functionality)
   - [Settingslogic插件 | Ruby迷](http://rubyer.me/blog/551/)
+  - [binarylogic/settingslogic GitHub](https://github.com/binarylogic/settingslogic)
   - [xdite/auto-facebook - GitHub](https://github.com/xdite/auto-facebook)
 - [Rails 新手村 - FB會員登入API--PLga « 阿嘎筆記](http://paulchia.logdown.com/posts/365026)
 - [Rails 新手村 - google sign_in api----PLGa « 阿嘎筆記](http://paulchia.logdown.com/posts/370630)
@@ -138,7 +139,7 @@ gem 'settingslogic'      # 管理金鑰
 ```
 to `Gemfile`，and then `bundle install`
 
-add to `app/models/settings.rb`
+create `app/models/settings.rb`
 
 ```
 class Settings < Settingslogic
@@ -146,3 +147,39 @@ class Settings < Settingslogic
   namespace Rails.env
 end
 ```
+
+and then create `config/application.yml`
+
+```
+defaults: &defaults
+  app_name: "demotest"
+  facebook_app_id: "自己申請的key"
+  facebook_secret: "自己申請的key"
+
+development:
+  <<: *defaults
+  domain: "http:/localhost:3000" #最後 "/" 要拿掉
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+```
+
+and then fix `MuCat_v1/.gitignore`
+
+```
+...
+...
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+# Ignore application.yml
+/config/application.yml
+```
+
+如此一來，git 就不會把這個檔案放進版本管理裡面

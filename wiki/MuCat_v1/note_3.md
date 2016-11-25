@@ -17,3 +17,52 @@ gem 'omniauth-facebook'
 gem 'settingslogic'      # 管理金鑰
 ```
 to `Gemfile`，and then `bundle install`
+
+然後專案裡多了一個`Gemfile.lock`檔
+
+create `app/models/settings.rb`
+
+```
+class Settings < Settingslogic
+  source "#{Rails.root}/config/application.yml"
+  namespace Rails.env
+end
+```
+
+and then create `config/application.yml`
+
+```
+defaults: &defaults
+  app_name: "demotest"
+  facebook_app_id: "自己申請的key"
+  facebook_secret: "自己申請的key"
+
+development:
+  <<: *defaults
+  domain: "http:/localhost:3000" #最後 "/" 要拿掉
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+```
+
+and then fix `MuCat_v1/.gitignore`
+
+```
+...
+...
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp
+
+# Ignore application.yml
+/config/application.yml
+```
+
+如此一來，git 就不會把這個檔案放進版本管理裡面
+
+來測試一下能不能work，所以來把該專案上傳到GitHub

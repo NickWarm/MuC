@@ -11,3 +11,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore application.yml
+/config/application.yml
+
+# Ignore Note_8-2:drop_down_list.md
+../../features/dropdown_list/Note_8-2:drop_down_list.md
