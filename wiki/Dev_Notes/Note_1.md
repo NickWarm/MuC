@@ -1,6 +1,7 @@
 # 建專案、設定好debug工具、連結資料庫
 
 ## 建立專案
+
 ```
 rails new MuCat_v1 -d mysql -T
 ```
@@ -69,7 +70,7 @@ production:
   password: iamgroot
 ```
 
-and then  `rake db:create`
+and then `rake db:create`
 
 and then `rails s`
 
@@ -78,8 +79,9 @@ success!!!
 # 建後台路由
 
 refer to this posts
+
 - [JCcart GitHub wiki - Step.2 路由設定](https://github.com/NickWarm/jccart/wiki/Step.2-%E8%B7%AF%E7%94%B1%E8%A8%AD%E5%AE%9A)
-- [mackenziechild GitHub - blog_course_demo/config/routes.rb ](https://github.com/mackenziechild/blog_course_demo/blob/master/config/routes.rb)
+- [mackenziechild GitHub - blog_course_demo/config/routes.rb](https://github.com/mackenziechild/blog_course_demo/blob/master/config/routes.rb) 
 - [lustan3216 GitHub - FUSAKIGG/config/routes.rb](https://github.com/lustan3216/FUSAKIGG/blob/master/config/routes.rb)
 
 ~~由於該專案是實驗室網站，並不像購物車，需要有個使用者後台~~
@@ -87,40 +89,51 @@ refer to this posts
 目前打算，一樣分兩層後台：實驗室成員後台、管理員後台
 
 實驗室成員可以看到
+
 - 個人資料編輯頁面
 - 可以在「實驗室公告、學習資源」發佈、修改文章
 - 無刪除 **榮譽榜** 的權限
 
 網站管理員
+
 - 開發者我與指導教授
 - 具有刪除 **榮譽榜、實驗室成員** 的權限
 
 ## 架構
+
 第一層：public
+
 - 學習資源
 - 實驗室公告
-- 實驗室成員資料   
+- 實驗室成員資料
 - 榮譽榜
 
 第二層：namespace
+
 - 實驗室成員有編輯這些的權限
+
   - 學習資源
   - 實驗室公告
-  - 實驗室成員資料   
+  - 實驗室成員資料
   - 榮譽榜
 
 第三層：namespace
+
 - 網站管理員有刪除的權限
+
   - 實驗室成員資料
 
-model用兩個字命名   
+model用兩個字命名
+
 - [Ruby/Rails - Models Named with Two Words (Naming Convention Issues) - Stack Overflow](http://stackoverflow.com/questions/4893342/ruby-rails-models-named-with-two-words-naming-convention-issues)
 - [物件導向程式的九個體操練習 | ihower { blogging }](https://ihower.tw/blog/archives/1960)
+
   - 見第五點
 
 fix `config/routes.rb`
 
 完整code
+
 ```
 Rails.application.routes.draw do # 發表文章、編輯文章
 
@@ -151,10 +164,12 @@ end
 ```
 
 注意：由於這時我們還沒用devise，所以先把會用到devise的部分都註解掉
+
 ```
 # devise_for :users    # 登入系統
 # devise_for :managers
 ```
+
 上面這段code在使用`rails g devise User`、`rails g devise Manager`時會自動生成
 
 然後，我們要先弄一下`welcome controller`不然會噴掉，因為首頁設為`welcome#index`
@@ -164,6 +179,7 @@ rails g controller welcome
 ```
 
 create `app/views/welcome/index.html.erb`，and add
+
 ```
 <h1>This is welcome index</h1>
 ```
@@ -173,10 +189,12 @@ and then `rails s`，success!!!
 # devise
 
 目前計劃
+
 - 登入系統一律用devise
 - 實驗室成員的個人照片用paperclip來處理
 
 參考
+
 - 以前的筆記：[JCcart GitHub wiki - Step.3 註冊系統與產品圖片](https://github.com/NickWarm/jccart/wiki/Step.3-註冊系統與產品圖片)
 - [plataformatec/devise - GitHub](https://github.com/plataformatec/devise)
 
@@ -189,6 +207,7 @@ rails g devise Manager
 覺得沒必要像JC一樣關掉其他功能，照原始設定就好
 
 參考
+
 - [lustan3216 GitHub - FUSAKIGG/db/migrate/20160628174512_devise_create_users.rb](https://github.com/lustan3216/FUSAKIGG/blob/master/db/migrate/20160628174512_devise_create_users.rb)
 - [建立shop的table](https://github.com/NickWarm/jccart/wiki/Step.3-註冊系統與產品圖片#建立shop的table)
 - [ActiveRecord::Migration](http://api.rubyonrails.org/classes/ActiveRecord/Migration.html)
@@ -264,15 +283,17 @@ to
 // require semantic_ui/definitions/behaviors/visit.js
 ```
 
->發現semantic_ui的一些功能滿有用的，以後可以拿它來做有趣的功能，所以先開著
->- [process](http://semantic-ui.com/modules/progress.html)
->- [sidebar](http://semantic-ui.com/modules/sidebar.html)
+> 發現semantic_ui的一些功能滿有用的，以後可以拿它來做有趣的功能，所以先開著
+
+> - [process](http://semantic-ui.com/modules/progress.html)
+> - [sidebar](http://semantic-ui.com/modules/sidebar.html)
 
 > Toggle可以用在「學習資源」那邊，如果這篇文章要開放給所有人編輯，就點開來，反之則關掉。
 
 改好後，我們去`MuCat_v1/assets/application.js`來引用`semantic_ui.js`
 
 add to `MuCat_v1/app/assets/javascripts/application.js`
+
 ```
 //= require semantic_ui/semantic_ui
 ```
@@ -282,23 +303,27 @@ add to `MuCat_v1/app/assets/javascripts/application.js`
 fix `vendor/assets/stylesheets/semantic_ui/semantic_ui.css`
 
 > 由於他的這些功能滿好的，所以開著
->- [card](http://semantic-ui.com/views/card.html)
->- [modal](http://semantic-ui.com/modules/modal.html)
->- [dimmer](http://semantic-ui.com/modules/dimmer.html)
->- [form](http://semantic-ui.com/collections/form.html)
->  - [Form | Semantic UI](http://legacy.semantic-ui.com/collections/form.html)
->- [label](http://semantic-ui.com/elements/label.html)
->- [menu](http://semantic-ui.com/collections/menu.html)
->- [comment](http://semantic-ui.com/views/comment.html)
->- [divider](http://semantic-ui.com/elements/divider.html)
->- [input](http://semantic-ui.com/elements/input.html)
->- [message](http://semantic-ui.com/collections/message.html)
->- [popup](http://semantic-ui.com/modules/popup.html)
->- [step](http://semantic-ui.com/elements/step.html)
+
+> - [card](http://semantic-ui.com/views/card.html)
+> - [modal](http://semantic-ui.com/modules/modal.html)
+> - [dimmer](http://semantic-ui.com/modules/dimmer.html)
+> - [form](http://semantic-ui.com/collections/form.html)
+
+>   - [Form | Semantic UI](http://legacy.semantic-ui.com/collections/form.html)
+
+> - [label](http://semantic-ui.com/elements/label.html)
+> - [menu](http://semantic-ui.com/collections/menu.html)
+> - [comment](http://semantic-ui.com/views/comment.html)
+> - [divider](http://semantic-ui.com/elements/divider.html)
+> - [input](http://semantic-ui.com/elements/input.html)
+> - [message](http://semantic-ui.com/collections/message.html)
+> - [popup](http://semantic-ui.com/modules/popup.html)
+> - [step](http://semantic-ui.com/elements/step.html)
 
 然後讓我們的專案可以用semantic_ui的CSS
 
 add to `MuCat_v1/app/assets/stylesheets/application.css`
+
 ```
 *= require semantic_ui/semantic_ui
 ```
@@ -306,6 +331,7 @@ add to `MuCat_v1/app/assets/stylesheets/application.css`
 # 關掉require_tree
 
 參考這兩篇後，決定把它關掉
+
 - [Ruby on Rails 實戰聖經 | Asset Pipeline](https://ihower.tw/rails/assets-pipeline.html)
 - [rails 的 asset 下的 js/css 設定問題? - Rails - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/rails-asset-js-css/285)
 
@@ -316,6 +342,7 @@ fix `MuCat_v1/app/assets/javascripts/application.js`
 # 關掉turbolink
 
 由於實務上turbolink會與很多jQuery或JavaScript的東西相衝
+
 - [詢問看看 turbolinks 實際利弊 - 雜談 - Rails Fun!! Ruby & Rails 中文論壇](http://railsfun.tw/t/turbolinks/610/2)
 
 所以我們順便把它給關掉，參考[turbolinks 介紹 « 捷姆斯](http://james1239090-blog.logdown.com/posts/738162-turbolinks-introduction)這篇的解法
@@ -323,6 +350,7 @@ fix `MuCat_v1/app/assets/javascripts/application.js`
 fix `MuCat_v1/app/assets/javascripts/application.js`，刪除`//= require turbolinks`
 
 fix `Gemfile`，把turbolink給註解掉，然後`bundle install`
+
 ```
 # gem 'turbolinks'
 ```
