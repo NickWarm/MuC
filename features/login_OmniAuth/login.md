@@ -2,7 +2,7 @@
 
 **sign in**、**Log in** 都是「登入」
 
-**sign up**、**refister** 都是「註冊」
+**sign up**、**register** 都是「註冊」
 
 需要實驗室 **現在成員** 與 **畢業成員** 每個人的信箱，一個一個幫他們註冊帳號
 
@@ -12,6 +12,7 @@
 
 #### Step.1 基本設定
 - [Rails Screencast #1 - Criando autenticação com o Facebook! (Devise + Omniauth)](https://youtu.be/BeJpFQHm4A8?t=132)
+  - 影片開始處已經略掉前面廢話，這篇有教你如何撈到FB的大頭貼，請見[5:18](https://youtu.be/BeJpFQHm4A8?t=318)
   - facebook developer申請
     - [Facebook Userlogin für Ruby On Rails mit OmniAuth](https://youtu.be/yibLfNXoY5M?t=57)，後面不用看，那是不用devsie的做法。
     - [Rails 新手村-3. Facebook 自動登入功能 « sdlong's Blog](http://sdlong.logdown.com/posts/207194-rails-newbie-3)

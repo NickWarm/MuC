@@ -1,30 +1,19 @@
-# 學習資源
+# 實驗室成員註冊、登入、編輯個人資訊
 
-學習資源的表單設計，除了原本[MuCat_v1.md](../MuCat_v1/MuCat_v1.md)的
-- ~~`author:string title:string content:text other_can_edit:boolean`~~
-- 改成：`author:string title:string content:text is_editable:boolean`
+情境：
 
-後來參考
-- [mackenziechild GitHub - blog_course_demo/db/migrate/20150509171512_create_projects.rb](https://github.com/mackenziechild/blog_course_demo/blob/master/db/migrate/20150509171512_create_projects.rb)
-- [mackenziechild GitHub - blog_course_demo/app/views/projects/show.html.erb](https://github.com/mackenziechild/blog_course_demo/blob/master/app/views/projects/show.html.erb)
+>實驗室成員可以透過臉書帳號登入與註冊
+>1. 在首頁有登入連結
+>2. 註冊頁面是在「特殊網址」的頁面，註冊完後會跳轉到個人資訊的頁面，來編輯個人資料
+>3. 註冊方式：由老師寄信給實驗室成員註冊網址，信中註明不能讓該網址外流
 
-應該加個`link:string`才對，這樣才能連到外部文章，這樣也比較符合我的需求
+詳情請參考[implement_login.md](../../features/login_OmniAuth/implement_login.md)
 
+# 實作
 
-### create_learning_note migration
-
-
-
-
-
-## 實作
-
-
-
-# paperclip
-
-用來上傳實驗室成員的個人照片
-
-# 設定controller
-
-# Facebook login system
+add
+```
+gem 'omniauth-facebook'
+gem 'settingslogic'      # 管理金鑰
+```
+to `Gemfile`，and then `bundle install`
