@@ -72,7 +72,35 @@ and then fix `MuCat_v1/.gitignore`
 經過測試後，我知道原因了，因為我最初的構想是在MuWeb這專案有不同版本的實驗室網站，後來發現這樣無法用settingslogic
 
 >如何在MAC使用`tree`指令，請見[mac tree命令 - 破男孩 - 博客园](http://www.cnblogs.com/ayseeing/p/4097066.html)
+>
+>我個人習慣下`tree -d`，這樣比較不會有太多資訊
 
+最後決定把資料夾結構改變，這專案就不再更動了，開一個新專案，然後把MuCat_v1的東西複製過去  ->  成功
 
+上傳到GitHub的專案，可以看到`config`資料夾裡沒有`application.yml`這個檔案
 
-最後決定把資料夾結構改變，這專案就不再更動了，開一個新專案，然後把MuCat_v1的東西複製過去
+## 插曲
+
+先前測試時，在GitHub開了一個專案也叫MuCat_v1，然後把它砍掉
+
+接著把重新弄好的專案一樣命名為MuCat_v1，然後要用`git remote add github git@github.com:NickWarm/MuCat_v1.git`時，就一直失敗
+
+最後是看到這篇[Removing a remote - User Documentation](https://help.github.com/articles/removing-a-remote/)，我先在此專案下指令`git remote -v`
+
+```
+nicholas at NicholasdeMacBook-Pro.local in ~/Desktop/mucat_v1 on dev
+$ git remote -v
+github	git@github.com:NickWarm/MuCat.git (fetch)
+github	git@github.com:NickWarm/MuCat.git (push)
+```
+
+然後再下指令`git remote rm github`，之後再下一次`git remote -v`就可以看到remote已經空了
+
+```
+nicholas at NicholasdeMacBook-Pro.local in ~/Desktop/mucat_v1 on dev
+$ git remote -v
+```
+
+於是我就可以成功`git remote add github git@github.com:NickWarm/MuCat_v1.git`，然後再`git push github dev`了
+
+# 申請Facebook developer

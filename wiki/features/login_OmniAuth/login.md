@@ -184,7 +184,7 @@ dalli
 - [OmniAuth: Overview · plataformatec/devise Wiki](https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview)
   - devise官方wiki就有教如何串devise與omniauth-facebook
   - 因為實驗室網站拆成實驗室成員與網站管理員。最初構想是實驗室成員與網站管理員都能用臉書帳號登入
-  - 不過讀這篇才知道 **傳統devise 只能讓一個model使用**，若想讓複數model使用，要閱讀[OmniAuth with multiple models · plataformatec/devise Wiki](https://github.com/plataformatec/devise/wiki/OmniAuth-with-multiple-models)這篇
+  - 不過讀這篇才知道 **傳統OmniAuth 只能讓一個model使用**，若想讓複數model使用，要閱讀[OmniAuth with multiple models · plataformatec/devise Wiki](https://github.com/plataformatec/devise/wiki/OmniAuth-with-multiple-models)這篇
 - [Setting up User Authentication in Rails (Devise, Facebook,Twitter,Google) – CodeShutters](https://codeshutters.wordpress.com/2016/03/17/setting-up-user-authentication-in-rails-devise-facebooktwittergoogle/)
   - 這篇有教，用devise複數設定使用google與facebook帳號登入
 - [陳雲濤的部落格: ROR - FB會員登入APP -- YTChen](http://violin-tao.blogspot.tw/2015/05/ror-fbapp-ytchen.html)
