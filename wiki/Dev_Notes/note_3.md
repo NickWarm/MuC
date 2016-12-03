@@ -39,7 +39,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  domain: "http:/localhost:3000" #最後 "/" 要拿掉
+  domain: "http:/localhost:3000" # 必須要跟 facebook 上的 website 網址一樣，但是尾端不放『/』
 
 test:
   <<: *defaults
@@ -102,5 +102,60 @@ $ git remote -v
 ```
 
 於是我就可以成功`git remote add github git@github.com:NickWarm/MuCat_v1.git`，然後再`git push github dev`了
+
+## 修正FB developer ID、密碼的儲存方式
+
+一開始以為只能用settingslogic才不會暴露你的FB developer的ID、密碼，後來臨摹ALPHA camp體系的login寫法發現，只要寫在yml檔，然後在`.gitignore`裡設定好，讓該檔案不會存到git裡去即可
+
+create `config/facebook.yml` and `config/facebook.yml.example`
+
+```
+development:
+
+  facebook_app_id: "申請facebook app 拿到的 app ID"
+
+  facebook_secret: "申請facebook app 拿到的 app secret"
+
+```
+
+```
+development:
+
+  facebook_app_id: "申請facebook app 拿到的 app ID"
+
+  facebook_secret: "申請facebook app 拿到的 app secret"
+
+```
+
+fix `config/initializers/devise.rb`
+- ref：[FUSAKIGG/config/initializers/devise.rb](https://github.com/lustan3216/FUSAKIGG/blob/master/config/initializers/devise.rb)
+
+```
+fb_config = Rails.application.config_for(:facebook)
+config.omniauth :facebook, fb_config["facebook_app_id"], fb_config["facebook_secret"],
+                :scope => 'public_profile, email', :info_fields => 'email, name'
+```
+
+and then add to `.gitignore`
+```
+# Ignore facebook app config
+/config/facebook.yml
+```
+
+
+
+## 修正使用者情境
+
+原本的想法
+- 登入按鈕所有人都看得到
+- 但是只有實驗室成員能登入
+
+但是這樣很不合邏輯，看得到登入頁面卻無法註冊
+
+修正後的使用者情境
+- 登入註冊頁面不公開
+- 後台與登入頁面寫入`robots.txt`
+
+
 
 # 申請Facebook developer

@@ -1,0 +1,5 @@
+development:
+
+  facebook_app_id: "申請facebook app 拿到的 app ID"
+
+  facebook_secret: "申請facebook app 拿到的 app secret"

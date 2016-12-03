@@ -20,3 +20,7 @@
 
 # Ignore rubymine settings
 /.idea
+
+
+# Ignore facebook app config
+/config/facebook.yml
