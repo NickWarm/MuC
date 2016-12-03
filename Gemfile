@@ -42,7 +42,7 @@ gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
 gem 'therubyracer'
 gem 'omniauth-facebook'
-gem 'settingslogic'        # 管理金鑰用的
+# gem 'settingslogic'        # 管理金鑰用的
 
 
 

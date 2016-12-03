@@ -18,7 +18,7 @@ gem 'settingslogic'      # 管理金鑰
 ```
 to `Gemfile`，and then `bundle install`
 
-然後專案裡多了一個`Gemfile.lock`檔
+~~然後專案裡多了一個`Gemfile.lock`檔~~
 
 create `app/models/settings.rb`
 
@@ -142,7 +142,26 @@ and then add to `.gitignore`
 /config/facebook.yml
 ```
 
+接著刪除原本sdlong體系settingslogic的設定
 
+edit `.gitignore`, and then delete
+
+```
+# Ignore application.yml
+/config/application.yml
+```
+
+and then delete `config/application.yml`
+
+and then delete `app/models/settings.rb`
+
+edit `Gemfile` , 註解掉
+```
+gem 'settingslogic'      # 管理金鑰
+```
+and then `bundle install`
+
+delete `Gemfile.lock`
 
 ## 修正使用者情境
 
