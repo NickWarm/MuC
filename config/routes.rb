@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     # 下面這行，把註冊的預設網址改成http://localhost:3000/lab515/sign_up，一樣上線版要改成不同的網址
     get "/lab515/sign_up" => "devise/registrations#new", as: "new_user_registration"
+    get "/lab515/sign_in" => "devise/sessions#new"
+
+    get "/users/sign_up"  => redirect('/')  # 關掉devise原始路由設定
+    get "/users/sign_in"  => redirect('/')
   end
                                  # 第一層：發表文章、編輯文章
   resources :learningnotes       # 學習資源
@@ -9,7 +13,8 @@ Rails.application.routes.draw do
   resources :honors              # 榮譽榜
   resources :professorworks      # 教授的著作
 
-  devise_for :users              # 登入系統，實驗室成員資料，只能登入不能註冊
+  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+                                 # 登入系統，實驗室成員資料，只能登入不能註冊
   devise_for :managers
 
   get 'welcome/index'            # 首頁
@@ -29,4 +34,6 @@ Rails.application.routes.draw do
       resources :professorworks  # 教授的著作
     end
   end
+
+  get '*path' => redirect('/')
 end

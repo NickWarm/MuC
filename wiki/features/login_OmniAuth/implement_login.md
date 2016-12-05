@@ -514,6 +514,8 @@ end
 
 `rails g migration AddOmniauthToUsers`
 
+
+
 ```
 class AddOmniauthToUsers < ActiveRecord::Migration
   def change
@@ -526,6 +528,8 @@ class AddOmniauthToUsers < ActiveRecord::Migration
   end
 end
 ```
+
+然後`rake db:migrate`
 
 ### Case 1: Find existing user by facebook uid
 
@@ -658,6 +662,8 @@ PS:
 - [Change devise user password in rails console](http://blog.cloud-mes.com/2013/01/23/change-devise-user-password-in-rails-console/)
 
 恩....這時只能先忽略不管它了XD
+
+## 不使用settingslogic的寫法
 
 然後補充一下，不使用settingslogic的寫法
 

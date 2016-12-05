@@ -430,6 +430,18 @@ Rails.application.routes.draw do
 end
 ```
 
+如此一來，你再`rake routes`，就可以看到註冊的路由跑到最上面
+
+```
+nicholas at NicholasdeMacBook-Pro.local in ~/Desktop/MuCat_v1 on dev*
+$ rake routes
+
+               Prefix Verb   URI Pattern                                        Controller#Action
+new_user_registration GET    /lab515/sign_up(.:format)                          devise/registrations#new
+learningnotes         GET    /learningnotes(.:format)                           learningnotes#index
+                      POST   /learningnotes(.:format)                           learningnotes#create
+```
+
 完成後我在註冊頁面註冊第一筆帳號
 ```
 帳號：mucat@gmail.com

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161122091021) do
+ActiveRecord::Schema.define(version: 20161205115725) do
 
   create_table "managers", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -58,9 +58,17 @@ ActiveRecord::Schema.define(version: 20161122091021) do
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.boolean  "has_graduated",                      default: false
+    t.string   "fb_uid",                 limit: 255
+    t.string   "fb_token",               limit: 255
+    t.string   "fb_image",               limit: 255
+    t.string   "fb_name",                limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "taiwan_name",            limit: 255
+    t.string   "english_name",           limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["fb_uid"], name: "index_users_on_fb_uid", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
