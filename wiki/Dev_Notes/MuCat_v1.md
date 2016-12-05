@@ -99,8 +99,8 @@
     - 一個 **partial form，input的資料型別用text**
     - **CRUD**：個人照片、姓名、學籍、論文題目、自我介紹、學位(**博士生？研究生？大學生？**)、身份 (**在校生？畢業生？**)
       - **User model**
-      - 入學學年:integer、姓名:string、論文題目:string、自我介紹:text、學位、身份狀態:string
-      - `name:string year:integer paper:string profile:text academic_degree:string has_graduated:boolean`
+      - 姓名:string、入學學年:integer、論文題目:~~string~~(改成`paper:text`)、自我介紹:text、現在幾年級、身份狀態:string
+      - `name:string joined_CYCU_year:integer paper:text profile:text academic_degree:integer has_graduated:boolean`
     - 實驗室成員頁面排序
       - 在學生：新到舊
       - 畢業生：舊到新
