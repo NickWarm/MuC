@@ -19,3 +19,8 @@
 
 # Ignore facebook app config
 /config/facebook.yml
+
+
+# Ignore tactics
+/vender
+/wiki/Dev_Notes/tactics.md

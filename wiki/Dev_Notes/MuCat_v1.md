@@ -1,6 +1,6 @@
 # MuCat Lab v1
 
-基於[UserStory_v7](./userstory_v7.md)整理實作細節
+基於[UserStory_v7](../userstory_versions/userstory_v7.md)整理實作細節
 
 # 情境
 
