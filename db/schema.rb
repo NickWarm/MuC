@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205115725) do
+ActiveRecord::Schema.define(version: 20161207040316) do
 
   create_table "managers", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -65,6 +65,10 @@ ActiveRecord::Schema.define(version: 20161205115725) do
     t.string   "provider",               limit: 255
     t.string   "taiwan_name",            limit: 255
     t.string   "english_name",           limit: 255
+    t.string   "cover_file_name",        limit: 255
+    t.string   "cover_content_type",     limit: 255
+    t.integer  "cover_file_size",        limit: 4
+    t.datetime "cover_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

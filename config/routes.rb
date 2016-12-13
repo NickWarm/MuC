@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get "/users/sign_in"  => redirect('/')
   end
                                  # 第一層：發表文章、編輯文章
-  resources :learningnotes       # 學習資源
+  resources :notes               # 學習資源
   resources :posts               # 實驗室公告
   resources :honors              # 榮譽榜
   resources :professorworks      # 教授的著作
@@ -20,9 +20,10 @@ Rails.application.routes.draw do
   get 'welcome/index'            # 首頁
   root 'welcome#index'
 
-  namespace :dashboard do        # 第二層：上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面
-                                 #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
-    resources :learningnotes
+  namespace :dashboard do        # 第二層：~~上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面~~，
+                                 #          其實只要before_action :authenticate_user!即可
+                                 #          查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
+    resources :notes
     resources :posts
     resources :honors
     resources :users             # 實驗室成員：編輯個資

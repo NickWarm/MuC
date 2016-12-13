@@ -37,7 +37,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'will_paginate'
 gem 'awesome_print'
 gem 'devise'
-gem 'paperclip'
+gem 'paperclip', "~> 5.0.0"
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
 gem 'therubyracer'

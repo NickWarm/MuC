@@ -350,8 +350,9 @@ Rails.application.routes.draw do
   get 'welcome/index'            # 首頁
   root 'welcome#index'
 
-  namespace :dashboard do        # 第二層：上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面
-                                 #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
+  namespace :dashboard do        # 第二層：~~上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面~~，
+                                 #          其實只要before_action :authenticate_user!即可
+                                 #          查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
     resources :learningnotes
     resources :posts
     resources :honors
@@ -413,8 +414,9 @@ Rails.application.routes.draw do
   get 'welcome/index'            # 首頁
   root 'welcome#index'
 
-  namespace :dashboard do        # 第二層：上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面
-                                 #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
+  namespace :dashboard do        # 第二層：~~上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面~~，
+                                 #          其實只要before_action :authenticate_user!即可
+                                 #          查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
     resources :learningnotes
     resources :posts
     resources :honors

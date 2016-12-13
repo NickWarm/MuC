@@ -75,7 +75,7 @@
       - 文章都是 **Markdown editable**
       - 一個 **partial form，input的資料型別用text**        
   - **CRUD**
-    - **LearningNote model**
+    - ~~**LearningNote model**~~，為了縮短簡稱，改成 **Note model**
     - 作者:string、標題:string、內容:text
     - `author:string title:string content:text other_can_edit:boolean`
 - 實驗室公告
