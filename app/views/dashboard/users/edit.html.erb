@@ -1,7 +1,23 @@
-<%= form_for @user, url: edit_dashboard_user, method: :patch do |f| %>
+<h1>This edit action</h1>
 
-  
+<%= form_for @user, url: edit_dashboard_user_path, method: :patch do |f| %>
 
+
+  <%= f.file_field :cover %><br><br>
+
+  <div class="ui modal">
+    hello
+  </div>
 
   <%= f.submit %>
+<% end %>
+
+<%= content_for :header do %>
+  <script>
+  $(function(){
+    $('#user_cover').change(function(){
+      $('.ui.modal').modal('show')
+    })
+  })
+  </script>
 <% end %>

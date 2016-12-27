@@ -283,10 +283,145 @@ so keep coding `app/views/dashboard/users/edit.html.erb`
 <% end %>
 ```
 
+然後就噴錯了
+
+後來再去看了一次以前讀過的資料，發現應該用`url: edit_dashboard_user_path`
+- [JCcart wiki - Step.9 開始修scaffold](https://github.com/NickWarm/jccart/wiki/Step.9-開始修scaffold#edit)
+- [rails API - form_for](http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_for)，搜尋「url: super_posts_path」
+
+
+so fix `app/views/dashboard/users/edit.html.erb`
+
+```
+<%= form_for @user, url: edit_dashboard_user_path, method: :patch do |f| %>
+
+
+  <%= f.submit %>
+<% end %>
+```
+
+## 插曲
+
+不知為何，以前直接`rake routes`就能查看路由，今天突然噴錯說這專案是`rake 11.3.0`，說我已經啟動了`rake 12.0.0`。必須要改用`bundle exec rake routes`才能work
+
+後來我用`rake --version`查看rake版本的確是`12.0.0`。雖然每次都用`bundle exec rake routes`也可以運作，但這樣很麻煩。
+
+後來讀到這篇的comment
+- [comment1：ruby on rails - Use older version of Rake - Stack Overflow](http://stackoverflow.com/a/6243314)
+
+我先在`Gemfile`裡給他加上`gem 'rake', '12.0.0'`然後`bundle install`
+
+接著噴錯，跟我說可以試用`bundle update rake`
+
+於是我改用`bundle update rake`，然後就順利讓`rake`升到`12.0.0`了。
+
+至於在`Gemfile`裡加上`gem 'rake', '12.0.0'`，經過測試沒有必要，所以我就把這段砍了，然後重新`bundle install`，小bug順利解掉！！！
+
+
+# Users index
+
+臉書登入，有了帳號後，要進到User的index頁面修改個人資料。實作時發現devise會預設把user的index關掉，所以`rake routes`時找不到index的路由，後來參考這篇
+- [comment：ruby on rails - Creating an index view for a devise user - Stack Overflow](http://stackoverflow.com/a/16931894)
+
+so, fix `routes.rb`
+
+```
+devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+resources :users, only: [:index]
+```
+
+and then it work!!!
+
+剛剛發現，devise連`user#show`也是預設關掉的，so keep fixing `routes.rb`
+
+```
+devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+resources :users, only: [:index, :show]
+```
+
+然後就可以撈到user的show頁面了
+
 # 繼續實作上傳圖片
 
 上面已經把上傳圖片基本的`form_for`格式(路由、HTTP Verb)打好了，現在繼續實作上傳圖片
 
-情境：一開始註冊後，是沒有個人照片，必須進到user個人頁面去新增你的個人照片
+~~情境：一開始註冊後，是沒有個人照片，必須進到user個人頁面去新增你的個人照片~~
 
-首先我們要有一個顯現個人資料的頁面(show action)，然後裡面可以看到
+~~首先我們要有一個顯現個人資料的頁面(show action)，然後裡面可以看到~~
+
+中間停了一段時間，研究上傳個人照片的機制
+
+# 實作semantic ui modal
+
+需要給`f.file_field`加上個id，後來查詢rails API後，發現可以直接撈`#user_cover`
+- [rails API - file_field](http://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-file_field)
+
+AJAX的部分，我參考這篇來寫
+- [comment2：javascript - how to use semantic-ui modal - Stack Overflow](http://stackoverflow.com/a/24885796)
+
+```
+<%= content_for :header do %>
+  <script>
+    $(function(){
+      $('#user_cover').click(function(){
+        $('.ui.modal').modal('show')
+      })
+    })
+  </script>
+<% end %>
+```
+
+後來發現，我沒有引用`semantic_ui.js`裡的`modal.js`、`dimmer.js`
+
+so fix `vendor/assets/javascripts/semantic_ui.js`
+
+```
+//= require semantic_ui/definitions/modules/modal.js
+//= require semantic_ui/definitions/modules/dimmer.js
+```
+
+成功啟動modal，但是這樣的寫法，會在我選照片時同時啟動modal。
+
+我希望的情境是，選完照片後才顯示modal
+
+一開始讀到MDN的input tag，type為`file`時的寫法
+- [Dynamically adding a change listener - Using files from web applications | MDN](https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications#Dynamically_adding_a_change_listener)
+
+但是`addEventListener`不知為何一直噴錯
+
+
+後來估狗下關鍵字「input type file eventlistner」找到這篇
+- [comment：what listeners are called when a file is selected from a file chooser in javascript - Stack Overflow](http://stackoverflow.com/a/16701171)
+
+so fix `app/views/dashboard/users/edit.html.erb`
+
+```
+<%= content_for :header do %>
+  <script>
+  $(function(){
+    $('#user_cover').on('change', function(){
+      $('.ui.modal').modal('show')
+    })
+  })
+  </script>
+<% end %>
+```
+
+之後估狗jQuery的API，發現可以更簡潔地直接用`.change`來寫
+- [.change() | jQuery API Documentation](https://api.jquery.com/change/)
+
+so fix `app/views/dashboard/users/edit.html.erb`
+
+```
+<%= content_for :header do %>
+  <script>
+  $(function(){
+    $('#user_cover').change(function(){
+      $('.ui.modal').modal('show')
+    })
+  })
+  </script>
+<% end %>
+```
+
+如此一來，就能成功地選完照片後，才顯示modal

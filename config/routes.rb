@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :professorworks      # 教授的著作
 
   devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  resources :users, only: [:index, :show]
                                  # 登入系統，實驗室成員資料，只能登入不能註冊
   devise_for :managers
 
@@ -36,5 +37,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '*path' => redirect('/')
+  # get '*path' => redirect('/')   #錯誤的路由，都會被導到首頁
 end

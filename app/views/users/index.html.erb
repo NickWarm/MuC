@@ -1,0 +1,12 @@
+<h1>Lab members</h1>
+
+<div class="">
+  <% @users.each do |user| %>
+    <div class="">
+
+      <!-- <%= user.fb_name %> -->
+      <!-- <%= link_to "show", user %> -->
+      <%= link_to user.fb_name, user %>
+    </div>
+  <% end %>
+</div>
