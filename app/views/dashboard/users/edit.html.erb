@@ -7,6 +7,7 @@
 
   <div class="ui modal">
     hello
+    <%= f.submit %>
   </div>
 
   <%= f.submit %>
@@ -16,7 +17,17 @@
   <script>
   $(function(){
     $('#user_cover').change(function(){
-      $('.ui.modal').modal('show')
+      var valuesToSubmit = $('form').serialize();
+
+      $.ajax({
+        type: "PATCH",
+        url: $('.edit_user').attr('action'), //sumbits it to the given url of the form
+        data: valuesToSubmit,
+        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+      }).success(function(json){
+        console.log("success", json);
+      });
+      return false; // prevents normal behaviour
     })
   })
   </script>

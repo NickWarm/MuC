@@ -12,4 +12,10 @@ class Dashboard::UsersController < Dashboard::DashboardController
   def find_user
     @user = User.find(params[:id])
   end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:cover)
+  end
 end

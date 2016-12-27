@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :post_authorities
   has_many :editable_posts, through: :post_authorities, source: :post
 
+   has_attached_file :cover
+
   def self.from_omniauth(auth)
 
     # Case 1: Find existing user by facebook uid
@@ -39,7 +41,7 @@ class User < ActiveRecord::Base
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
     user.fb_name = auth.info.name
-    user.fb_image = auth.info.image 
+    user.fb_image = auth.info.image
 
     user.save!
     return user
