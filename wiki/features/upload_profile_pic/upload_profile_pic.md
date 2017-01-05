@@ -55,3 +55,16 @@
 
 我已經實作paperclip + Jcrop放在GitHub上
 - [rails_paperclip_jcrop_WG](https://github.com/NickWarm/rails_paperclip_jcrop_WG)
+
+# paperclip AJAX upload
+
+已經完成了臨摹他的小專案放在GitHub上面
+- [paperclip_AJAX_upload_WG - GitHub](https://github.com/NickWarm/paperclip_AJAX_upload_WG)
+
+# 修改目標
+
+礙於感冒整個拖垮進度，現在必須要快速完成，功能砍成
+
+> 編輯個人頁面 -> paperclip AJAX upload image -> modal即時顯示圖片
+
+第一版不打算做裁切，時間不夠。等到開始投履歷時邊投邊做裁切

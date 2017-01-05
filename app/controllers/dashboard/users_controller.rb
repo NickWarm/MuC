@@ -6,7 +6,11 @@ class Dashboard::UsersController < Dashboard::DashboardController
   end
 
   def update
-
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
   def find_user
@@ -16,6 +20,6 @@ class Dashboard::UsersController < Dashboard::DashboardController
   private
 
   def user_params
-    params.require(:user).permit(:cover)
+    params.require(:user).permit(:taiwan_name, :english_name, :paper, :profile)
   end
 end

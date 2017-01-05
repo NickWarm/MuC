@@ -43,7 +43,8 @@ gem 'autoprefixer-rails'
 gem 'therubyracer'
 gem 'omniauth-facebook'
 # gem 'settingslogic'        # 管理金鑰用的
-
+gem 'pygments.rb', '~> 0.6.3' # markdown render
+gem 'redcarpet', '~> 3.3.4'   # markdown render
 
 
 group :development, :test do

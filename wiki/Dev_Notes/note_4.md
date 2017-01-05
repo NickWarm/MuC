@@ -425,3 +425,67 @@ so fix `app/views/dashboard/users/edit.html.erb`
 ```
 
 如此一來，就能成功地選完照片後，才顯示modal
+
+
+# 不用傳統的`f.submit`直接用AJAX傳資料進database
+
+參考這篇
+- [comment1：Submit form in rails 3 in an ajax way (with jQuery) - Stack Overflow](http://stackoverflow.com/a/6723501)
+
+改寫`app/views/dashboard/users/edit.html.erb`
+
+```
+<%= content_for :header do %>
+  <script>
+  $(function(){
+    $('#user_cover').change(function(){
+      var valuesToSubmit = $('form').serialize();
+
+      $.ajax({
+        type: "PATCH",
+        url: $('.edit_user').attr('action'), //sumbits it to the given url of the form
+        data: valuesToSubmit,
+        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+      }).success(function(json){
+        console.log("success", json);
+      });
+      return false; // prevents normal behaviour
+    })
+  })
+  </script>
+<% end %>
+```
+
+但是一直噴404說找不到路由
+
+![](../img/route_404_not_found.png)
+
+後來在偶然下重讀以前臨摹JC的筆記，發現我根本設錯路由了
+- [JCcart wiki - Step.9 開始修scaffold - edit](https://github.com/NickWarm/jccart/wiki/Step.9-開始修scaffold#edit)
+- 關鍵的這段話「我們在`edit`頁面，送出表單後會透過HTML動詞`Patch`來update資料，所以我們要找`dashboard/admin/items#update`。我們會看到update沒有Prefix可以用，我們就找他的上面一個，也就是`dashboard_admin_item`因為查看`URI Pattern`他們都是在同一層」
+
+so fix `app/views/dashboard/users/edit.html.erb`
+
+```
+<%= form_for @user, url: dashboard_user_path, method: :patch do |f| %>
+
+
+  <%= f.submit %>
+<% end %>
+```
+
+## 插曲：臨摹paperclip AJAX upload
+
+已經完成了臨摹他的小專案放在GitHub上面
+- [paperclip_AJAX_upload_WG - GitHub](https://github.com/NickWarm/paperclip_AJAX_upload_WG)
+
+臨摹該專案後，先前的image AJAX upload寫法會整個大改
+
+# edit user profile
+
+`rails g migration AddProfileAndPaperToUsers profile:text paper:text`
+
+
+
+
+# MuCat新的paperclip AJAX upload寫法

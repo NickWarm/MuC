@@ -1,11 +1,43 @@
 <h1>show action</h1>
 
-<%= @user.fb_name %>
 
-<br>
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+  <header>
+    <h1><%= @user.english_name %></h1>
+    <hr>
+  </header>
 
-<%= image_tag @user.fb_image %>
 
-<br>
 
-<%= link_to "edit profile", edit_dashboard_user_path %>
+
+  <div id="content">
+
+    <h2><%= @user.taiwan_name %></h2>
+
+    <br>
+
+
+
+    <br>
+
+    <%= markdown @user.profile %>
+
+    <br>
+
+
+
+    <br>
+
+    <% if user_signed_in? %>
+      <div id="admin_links">
+        <%= link_to "edit profile", edit_dashboard_user_path %>
+      </div>
+    <% end %>
+
+  </div>
+
+
+</div>
+
+
+<!-- <%= image_tag @user.fb_image %> -->

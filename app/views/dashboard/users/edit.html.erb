@@ -1,33 +1,43 @@
 <h1>This edit action</h1>
 
-<%= form_for @user, url: edit_dashboard_user_path, method: :patch do |f| %>
+FB：<%= @user.fb_name %>
 
+<%= form_for @user, url: dashboard_user_path, method: :patch do |f| %>
 
-  <%= f.file_field :cover %><br><br>
+  <%= f.label :taiwan_name, "Name" %>
+  <%= f.text_field :taiwan_name %>
 
-  <div class="ui modal">
-    hello
-    <%= f.submit %>
-  </div>
+  <br>
+
+  <%= f.label :english_name, "English Name" %>
+  <%= f.text_field :english_name %>
+
+  <br>
+
+  <!-- <%= f.label :paper, "論文題目" %>
+  <%= f.text_area :paper %> -->
+
+  <br>
+
+  <%= f.label :profile, "Profile" %>
+  <%= f.text_area :profile %>
+
+  <br>
 
   <%= f.submit %>
 <% end %>
+
+<div class="ui modal">
+  hello
+
+</div>
+
 
 <%= content_for :header do %>
   <script>
   $(function(){
     $('#user_cover').change(function(){
-      var valuesToSubmit = $('form').serialize();
 
-      $.ajax({
-        type: "PATCH",
-        url: $('.edit_user').attr('action'), //sumbits it to the given url of the form
-        data: valuesToSubmit,
-        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-      }).success(function(json){
-        console.log("success", json);
-      });
-      return false; // prevents normal behaviour
     })
   })
   </script>
