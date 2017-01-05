@@ -1,6 +1,17 @@
 <h1>This edit action</h1>
 
-FB：<%= @user.fb_name %>
+<h4>FB name： <%= @user.fb_name %></h4>
+
+<div id="personal_img">
+  <%= image_tag @user.cover.url(:medium), :width => 350, :height => 350  %>
+
+  <br>
+
+  <%= file_field_tag :cover %>
+</div>
+
+<br>
+
 
 <%= form_for @user, url: dashboard_user_path, method: :patch do |f| %>
 
@@ -12,15 +23,18 @@ FB：<%= @user.fb_name %>
   <%= f.label :english_name, "English Name" %>
   <%= f.text_field :english_name %>
 
-  <br>
 
-  <!-- <%= f.label :paper, "論文題目" %>
-  <%= f.text_area :paper %> -->
 
   <br>
 
   <%= f.label :profile, "Profile" %>
   <%= f.text_area :profile %>
+
+  <br>
+
+  <%= f.label :paper, "論文題目" %>
+  <%= f.text_area :paper %>
+
 
   <br>
 
@@ -36,9 +50,22 @@ FB：<%= @user.fb_name %>
 <%= content_for :header do %>
   <script>
   $(function(){
-    $('#user_cover').change(function(){
-
-    })
+    $('#cover').change(function(){
+      var formData = new FormData(),
+          $input = $(this);
+      formData.append('image[image]', $input[0].files[0]);
+      
+      $.ajax({
+        url: '<%= image_upload_path %>',
+        data: formData,
+        type: 'PUT',
+        cache:false,
+        contentType: false,
+        processData: false
+      }).done(function(result){
+          console.log(result.image_url);
+          $('#preview').attr('src', result.image_url );
+    });
   })
   </script>
 <% end %>

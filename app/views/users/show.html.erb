@@ -12,11 +12,18 @@
 
   <div id="content">
 
+
+    <div id="personal_img">
+      <%= image_tag @user.cover.url(:medium), :width => 400, :height => 400 %>
+    </div>
+
+    <br>
+
     <h2><%= @user.taiwan_name %></h2>
 
     <br>
 
-
+    <h1>Introdce Myself</h1>
 
     <br>
 
@@ -24,6 +31,11 @@
 
     <br>
 
+    <h1>Papers</h1>
+
+    <br>
+
+    <%= markdown @user.paper %>
 
 
     <br>

@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     resources :users             # 實驗室成員：編輯個資
                                  #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
 
+
+    put 'api/image_upload' => 'api#image_upload', as: :image_upload
+                                 # AJAX 更改個人大頭照圖片
+
     namespace :admin do          # 第三層：上線的版本要把admin改成亂碼
       resources :managers        # 網站管理員
       resources :users           # 刪除實驗室成員的權限
