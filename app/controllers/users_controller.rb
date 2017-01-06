@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
-    @image = @user.images.last
+    # @image = @user.images.find(params[:id])
+    # @image = Image.last
   end
 end
