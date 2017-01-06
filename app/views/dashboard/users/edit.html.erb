@@ -3,11 +3,11 @@
 <h4>FB name： <%= @user.fb_name %></h4>
 
 <div id="personal_img">
-  <%= image_tag @user.cover.url(:medium), :width => 350, :height => 350  %>
+  <img id='preview' src="#">
 
   <br>
 
-  <%= file_field_tag :cover %>
+  <%= file_field_tag :image %>
 </div>
 
 <br>
@@ -50,13 +50,12 @@
 <%= content_for :header do %>
   <script>
   $(function(){
-    $('#cover').change(function(){
+    $('#image').change(function(){
       var formData = new FormData(),
           $input = $(this);
       formData.append('image[image]', $input[0].files[0]);
-      
       $.ajax({
-        url: '<%= image_upload_path %>',
+        url: '<%= dashboard_image_upload_path %>',
         data: formData,
         type: 'PUT',
         cache:false,
@@ -65,7 +64,8 @@
       }).done(function(result){
           console.log(result.image_url);
           $('#preview').attr('src', result.image_url );
-    });
+      });
+    })
   })
   </script>
 <% end %>

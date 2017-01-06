@@ -486,6 +486,6 @@ so fix `app/views/dashboard/users/edit.html.erb`
 `rails g migration AddProfileAndPaperToUsers profile:text paper:text`
 
 
-
-
 # MuCat新的paperclip AJAX upload寫法
+
+由於要改的地方太多了，開新篇章[note_4_1.md](./note_4_1.md)記錄筆記。

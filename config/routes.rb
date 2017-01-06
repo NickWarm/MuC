@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'welcome/index'            # 首頁
   root 'welcome#index'
 
+
   namespace :dashboard do        # 第二層：~~上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面~~，
                                  #          其實只要before_action :authenticate_user!即可
                                  #          查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
@@ -30,9 +31,9 @@ Rails.application.routes.draw do
     resources :users             # 實驗室成員：編輯個資
                                  #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
 
-
     put 'api/image_upload' => 'api#image_upload', as: :image_upload
-                                 # AJAX 更改個人大頭照圖片
+                                 # AJAX 上傳個人大頭照圖片
+
 
     namespace :admin do          # 第三層：上線的版本要把admin改成亂碼
       resources :managers        # 網站管理員

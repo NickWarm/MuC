@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :post_authorities
   has_many :editable_posts, through: :post_authorities, source: :post
 
-
+  has_many :images
 
   def self.from_omniauth(auth)
 
