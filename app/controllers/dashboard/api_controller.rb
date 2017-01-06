@@ -1,7 +1,6 @@
 class Dashboard::ApiController < Dashboard::DashboardController
   def image_upload
-    @user = User.find(params[:id])
-    @image = @user.images.create(params[:image].permit(:image))
+    @image = current_user.images.create(img_params)
 
     if @image
       render :json => {:status => 'success', :image_url => @image.image.url(:medium)}
