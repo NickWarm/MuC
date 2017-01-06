@@ -286,3 +286,145 @@ dashboard_image_upload PUT      /dashboard/api/image_upload(.:format)           
 ```
 
 所以才必須把`url`改成`'<%= dashboard_image_upload_path %>'`
+
+# 在後台用paperclip AJAX upload的寫法
+
+## dashboard/api_controller.rb
+
+首先要修改`app/controllers/dashboard/api_controller.rb`
+
+最重要的是這一行`@image = current_user.images.create(img_params)`
+
+由於我已經讓`user`與`image`關聯了
+
+```
+<!-- user.rb -->
+has_many :images
+
+<!-- image.rb   -->
+belongs_to :user
+
+```
+
+而能夠進入後台(`dashboard`)，都是已經登入過的帳號(`current_user`)，所以可以直接寫`current_user.images.create`
+
+`app/controllers/dashboard/api_controller.rb`
+
+完整的code
+```
+class Dashboard::ApiController < Dashboard::DashboardController
+  before_action :authenticate_user!
+
+  def image_upload
+    @image = current_user.images.create(img_params)
+
+    if @image
+      render :json => {:status => 'success', :image_url => @image.image.url(:medium)}
+    else
+      render :json => {:status => 'fail'}
+    end
+  end
+
+
+  private
+
+  def img_params
+      params.require(:image).permit(:image)
+  end
+end
+```
+
+## 後台：實驗室成員編輯個資頁面
+
+接著要修改`app/controllers/dashboard/user_controller.rb`
+
+原本我都用`@user = User.find(params[:id])`來撈user的資料，但是這樣寫很危險，因為這樣後台的人只要改改user id，就能修改其他後台成員的資料，所以統一改成用`current_user`
+
+
+fix `app/controllers/dashboard/user_controller.rb`
+
+from
+
+```
+class Dashboard::UsersController < Dashboard::DashboardController
+  before_action :find_user, only: [:edit, :update]
+
+  def edit
+
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+    # @image = @user.images.find(params[:id])
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:taiwan_name, :english_name, :paper, :profile)
+  end
+end
+```
+
+to
+
+```
+class Dashboard::UsersController < Dashboard::DashboardController
+  before_action :authenticate_user!
+
+  def edit
+  end
+
+  def update
+    if current_user.update(user_params)
+      redirect_to current_user
+    else
+      render 'edit'
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:taiwan_name, :english_name, :paper, :profile)
+  end
+end
+```
+
+
+## 前台：讓他人查看實驗室成員的個人資訊
+
+fix `app/controllers/users_controller.rb`
+
+
+完整的code
+```
+class UsersController < ApplicationController
+  before_action :find_user, only: [:show]
+
+  def index
+    @users = User.all
+  end
+
+  def show
+    @image = @user.images.last
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+end
+```
+
+這一段在`show` action有個特別的寫法`@image = @user.images.last`，只撈最後一張上傳的圖片
+- [rails API - last](http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-last)
+
+正常應該要寫`each`，然後撈出所有上傳的圖片，接著再給`image` schema開一個 **布林欄位**，來做 **選取照片的功能**，但由於現在時間不夠，所以只做撈最後一張圖片的功能。

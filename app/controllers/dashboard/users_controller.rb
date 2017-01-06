@@ -1,21 +1,15 @@
 class Dashboard::UsersController < Dashboard::DashboardController
-  before_action :find_user, only: [:edit, :update]
+  before_action :authenticate_user!
 
   def edit
-
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to @user
+    if current_user.update(user_params)
+      redirect_to current_user
     else
       render 'edit'
     end
-  end
-
-  def find_user
-    @user = User.find(params[:id])
-    # @image = @user.images.find(params[:id])
   end
 
   private

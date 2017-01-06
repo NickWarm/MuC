@@ -1,6 +1,6 @@
 <h1>This edit action</h1>
 
-<h4>FB name： <%= @user.fb_name %></h4>
+<h4>FB name： <%= current_user.fb_name %></h4>
 
 <div id="personal_img">
   <img id='preview' src="#">
@@ -13,7 +13,7 @@
 <br>
 
 
-<%= form_for @user, url: dashboard_user_path, method: :patch do |f| %>
+<%= form_for current_user, url: dashboard_user_path, method: :patch do |f| %>
 
   <%= f.label :taiwan_name, "Name" %>
   <%= f.text_field :taiwan_name %>
