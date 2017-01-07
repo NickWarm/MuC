@@ -1,12 +1,37 @@
 <h1>Lab members</h1>
 
-<div class="">
-  <% @users.each do |user| %>
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+  <!-- <% @users.each do |user| %>
     <div class="">
 
-      <!-- <%= user.fb_name %> -->
-      <!-- <%= link_to "show", user %> -->
+
       <%= link_to user.fb_name, user %>
-    </div>
+    </div> -->
   <% end %>
+
+  <hr>
+
+  <h1>博士生</h1>
+
+
+  <% @users_doctor.each do |user_doctor| %>
+    <%= link_to user_doctor.fb_name, user_doctor %>
+  <% end %>
+
+  <hr>
+
+  <h1>研究生</h1>
+
+  <% @users_master.each do |user_master| %>
+    <%= link_to user_master.fb_name, user_master %>
+  <% end %>
+
+  <hr>
+
+  <h1>大學生</h1>
+
+  <% @users_college.each do |user_college| %>
+    <%= link_to user_college.fb_name, user_college %>
+  <% end %>
+
 </div>

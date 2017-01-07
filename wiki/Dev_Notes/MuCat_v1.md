@@ -104,8 +104,8 @@
         - 自我介紹:text -> `profile:text`          -> **done**
         - 論文題目:text -> `paper:text`            -> **done**
         - 學位:string -> `academic_degree:string`
-        - 入學學年:integer -> `joined_CYCU_year:integer`
-        - 現在幾年級:integer -> `spent_time_at_university:integer`
+        - 入學學年:integer -> `joined_CYCU_at_which_year:integer`
+        - 現在幾年級:integer -> `has_spent_how_much_time_at_CYCU:integer`
         - 是否離開學校:boolean -> `has_graduated:boolean`
     - 實驗室成員頁面排序
       - 在學生：新到舊

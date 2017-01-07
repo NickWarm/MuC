@@ -15,6 +15,8 @@ class Dashboard::UsersController < Dashboard::DashboardController
   private
 
   def user_params
-    params.require(:user).permit(:taiwan_name, :english_name, :paper, :profile)
+    params.require(:user).permit(:taiwan_name, :english_name, :paper, :profile,
+                                 :has_graduated, :academic_degree,
+                                 :joined_CYCU_at_which_year, :has_spent_how_much_time_at_CYCU)
   end
 end

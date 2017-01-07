@@ -25,7 +25,7 @@
  *= require semantic_ui/definitions/elements/icon.less
  * require semantic_ui/definitions/elements/image.less
  *= require semantic_ui/definitions/elements/input.less
- * require semantic_ui/definitions/views/item.less
+ *= require semantic_ui/definitions/views/item.less
  *= require semantic_ui/definitions/elements/label.less
  * require semantic_ui/definitions/elements/list.less
  * require semantic_ui/definitions/elements/loader.less
