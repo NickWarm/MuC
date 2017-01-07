@@ -14,10 +14,9 @@
 
 
     <div id="personal_img">
-
+      <% if @image.present? %>
         <%= image_tag @image.image.url(:medium) %>
-
-
+      <% end %>
     </div>
 
     <br>
@@ -30,7 +29,7 @@
 
     <br>
 
-    <%= markdown @user.profile %>
+    <%= markdown @user.profile unless @user.profile.nil? %>
 
     <br>
 
@@ -38,7 +37,7 @@
 
     <br>
 
-    <%= markdown @user.paper %>
+    <%= markdown @user.paper unless @user.profile.nil? %>
 
 
     <br>

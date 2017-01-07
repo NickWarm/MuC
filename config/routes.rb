@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :honors              # 榮譽榜
   resources :professorworks      # 教授的著作
 
-  devise_for :users, :controllers => { omniauth_callbacks: "users/omniauth_callbacks" }
+  devise_for :users, :controllers => {registrations: "users/registrations",
+                                      omniauth_callbacks: "users/omniauth_callbacks"  }
+
   resources :users, only: [:index, :show]
                                  # 登入系統，實驗室成員資料，只能登入不能註冊
   devise_for :managers

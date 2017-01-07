@@ -1,5 +1,6 @@
 class Dashboard::ApiController < Dashboard::DashboardController
   before_action :authenticate_user!
+  
 
   def image_upload
     @image = current_user.images.create(img_params)

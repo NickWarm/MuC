@@ -8,6 +8,6 @@ class Image < ActiveRecord::Base
       icon: "150x150#"
     },
     default_url: '/images/missing3.png'
-  
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end
