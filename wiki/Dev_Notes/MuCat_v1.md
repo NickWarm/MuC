@@ -97,10 +97,16 @@
     - ~~論文題目用nested_form去更新~~
     - 個人介紹採用Markdown editable
     - 一個 **partial form，input的資料型別用text**
-    - **CRUD**：個人照片、姓名、學籍、論文題目、自我介紹、學位(**博士生？研究生？大學生？**)、身份 (**在校生？畢業生？**)
+    - **CRUD**：個人照片、姓名、學籍、論文題目、自我介紹、學位(**博士生？研究生？大學生？**)、是否畢業 (**在校生？畢業生？**)
       - **User model**
-      - 姓名:string、入學學年:integer、論文題目:~~string~~(改成`paper:text`)、自我介紹:text、現在幾年級、身份狀態:string
-      - `name:string joined_CYCU_year:integer paper:text profile:text academic_degree:integer has_graduated:boolean`
+        - 中文名字:string -> `taiwan_name:string`  -> **done**
+        - 英文名字:string -> `english_name:string` -> **done**
+        - 自我介紹:text -> `profile:text`          -> **done**
+        - 論文題目:text -> `paper:text`            -> **done**
+        - 學位:string -> `academic_degree:string`
+        - 入學學年:integer -> `joined_CYCU_year:integer`
+        - 現在幾年級:integer -> `spent_time_at_university:integer`
+        - 是否離開學校:boolean -> `has_graduated:boolean`
     - 實驗室成員頁面排序
       - 在學生：新到舊
       - 畢業生：舊到新
@@ -192,7 +198,7 @@
 >- 在 **Learning Model** 開一個新的欄位`other_can_edit:boolean`
 
 
-### 登入系統
+### 登入系統  
 - devise的寫法
 - 用臉書、google帳號登入
 

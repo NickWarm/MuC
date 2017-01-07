@@ -1,4 +1,9 @@
-## 待實踐：客制devise controller
+## 更新
+
+已經實踐了，紀錄於[note_5_1.md](../../Dev_Notes/note_5_1.md)
+
+
+## ~~待實踐~~：客制devise controller
 
 礙於開發時間不夠，這邊沒實作，只有寫下構想
 
