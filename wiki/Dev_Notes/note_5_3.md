@@ -351,3 +351,89 @@ edit `app/views/users/index.html.erb`
 ```
 
 成功，work。
+
+### 畢業生頁面
+
+為了要讓外人看到以前待過實驗室的成員，所以我在`views/users`底下開了一個畢業生頁面
+
+create `app/views/users/graduates.html.erb`
+
+```
+<h1>This is graduates action</h1>
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+
+  <h1>博士生</h1>
+  <% @users_doctor.each do |user_doctor| %>
+    <%= link_to user_doctor.fb_name, user_doctor %>
+  <% end %>
+
+  <hr>
+
+  <h1>研究生</h1>
+  <% @users_master.each do |user_master| %>
+    <%= link_to user_master.fb_name, user_master %>
+  <% end %>
+
+  <hr>
+
+  <h1>大學生</h1>
+  <% @users_college.each do |user_college| %>
+    <%= link_to user_college.fb_name, user_college %>
+  <% end %>
+
+  <hr>
+
+</div>
+```
+
+然後去設定路由
+
+fix `config/routes.rb`
+
+```
+Rails.application.routes.draw do
+  devise_scope :user do
+    # 下面這行，把註冊的預設網址改成http://localhost:3000/lab515/sign_up，一樣上線版要改成不同的網址
+    get "/lab515/sign_up" => "devise/registrations#new", as: "new_user_registration"
+    get "/lab515/sign_in" => "devise/sessions#new"
+
+    get "/users/sign_up"  => redirect('/')     # 關掉devise原始路由設定
+    get "/users/sign_in"  => redirect('/')
+    get "/users/graduates"=> "users#graduates" # 顯示已畢業的實驗室成員
+  end
+
+  ...
+  ...
+end
+```
+
+最後去`users_controller.rb`設定`graduates action`
+
+fix `app/controllers/users_controller.rb`
+
+```
+def graduates
+  @users_doctor = User.doctor.has_graduated(true)
+  @users_master = User.master.has_graduated(true)
+  @users_college = User.college.has_graduated(true)
+end
+```
+
+最後，給這兩個頁面，一個超連結互通有無
+- 在學的實驗室成員：`app/views/users/index.html.erb`
+- 已畢業的實驗室成員：`app/views/users/graduates.html.erb`
+
+先`rake routes`查一下路由的prefix
+
+and then edit `app/views/users/index.html.erb`
+
+```
+<%= link_to "已畢業的實驗室成員", users_graduates_path %>
+```
+
+and  edit `app/views/users/graduates.html.erb`
+
+```
+<%= link_to "還在學校的實驗室成員", users_path %>
+```

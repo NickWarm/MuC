@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     get "/lab515/sign_up" => "devise/registrations#new", as: "new_user_registration"
     get "/lab515/sign_in" => "devise/sessions#new"
 
-    get "/users/sign_up"  => redirect('/')  # 關掉devise原始路由設定
+    get "/users/sign_up"  => redirect('/')     # 關掉devise原始路由設定
     get "/users/sign_in"  => redirect('/')
+    get "/users/graduates"=> "users#graduates" # 顯示已畢業的實驗室成員
   end
                                  # 第一層：發表文章、編輯文章
   resources :notes               # 學習資源
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: "users/registrations",
                                       omniauth_callbacks: "users/omniauth_callbacks"  }
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show]      # 開啟users的index, show頁面 
                                  # 登入系統，實驗室成員資料，只能登入不能註冊
   devise_for :managers
 

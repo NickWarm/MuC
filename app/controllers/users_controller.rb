@@ -11,6 +11,12 @@ class UsersController < ApplicationController
     @image = @user.images.last
   end
 
+  def graduates
+    @users_doctor = User.doctor.has_graduated(true)
+    @users_master = User.master.has_graduated(true)
+    @users_college = User.college.has_graduated(true)
+  end
+
   def find_user
     @user = User.find(params[:id])
   end

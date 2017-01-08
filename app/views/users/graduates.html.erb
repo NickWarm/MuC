@@ -1,11 +1,8 @@
-<h1>Lab members</h1>
+<h1>This is graduates action</h1>
 
 <div id="post_show_content" class="skinny_wrapper wrapper_padding">
 
-
   <h1>博士生</h1>
-
-
   <% @users_doctor.each do |user_doctor| %>
     <%= link_to user_doctor.fb_name, user_doctor %>
   <% end %>
@@ -13,7 +10,6 @@
   <hr>
 
   <h1>研究生</h1>
-
   <% @users_master.each do |user_master| %>
     <%= link_to user_master.fb_name, user_master %>
   <% end %>
@@ -21,13 +17,11 @@
   <hr>
 
   <h1>大學生</h1>
-
   <% @users_college.each do |user_college| %>
     <%= link_to user_college.fb_name, user_college %>
   <% end %>
 
   <hr>
 
-  <%= link_to "已畢業的實驗室成員", users_graduates_path %>
-
+  <%= link_to "還在學校的實驗室成員", users_path %>
 </div>
