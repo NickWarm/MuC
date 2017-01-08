@@ -22,7 +22,7 @@
 - 前台：`index`、`show`
 - markdown語法
 - 欄位：`author:string title:string content:text is_editable:boolean link_text:string link_site:string`
-- `is_editable:boolean`是開放權限，看你是否要讓其他所有實驗室成員都能夠編輯
+- `is_editable:boolean`是開放權限，看你是否要讓其他所有實驗室成員都能夠編輯，用semantic_ui的Toggle實作
 - 最後的`link_text:string link_site:string`是打算發布學習方法論那類文章，你只打算開個引言，然後導引到其他頁面時才用的。
 - `link_text:string`：超連結的文字
 - `link_site:string`：外部連結的網址
@@ -30,4 +30,25 @@
 
 create `note schema`
 
-`rails g migration CreateNoteTable`
+`rails g model note`
+
+edit `db/migrate/20170108125932_create_notes.rb`
+
+完整的code
+```
+class CreateNoteTable < ActiveRecord::Migration
+  def change
+    create_table :notes do |t|
+      t.string   :author
+      t.string   :title
+      t.text     :content
+      t.boolean  :is_editable
+      t.string   :link_text
+      t.string   :link_site
+      t.timestamps
+    end
+  end
+end
+```
+
+and then `rake db:migrate`

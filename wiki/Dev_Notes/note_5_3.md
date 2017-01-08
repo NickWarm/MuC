@@ -450,3 +450,28 @@ and  edit `app/views/users/graduates.html.erb`
   - 入學學年:integer -> `joined_CYCU_at_which_year:integer`
   - 現在幾年級:integer -> `has_spent_how_much_time_at_CYCU:integer`
   - 是否離開學校:boolean -> `has_graduated:boolean` -> **done**
+
+# 抓蟲趣
+
+因為後面的開發又把schema搞亂了，而`rake db:migrate:reset`，創建新帳號發現index頁面撈不到資料，後來查看database發現，雖然我預設`has_graduated`是false，但是我沒有預設`academic_degree`，但是我用`scope`撈資料時又會用到`academic_degree`，所以才會撈不到資料。
+
+![](../img/academic_degree_need_default_value.png)
+
+所以，我們要去修改`user schema`，讓`academic_degree`的default value為`college`
+
+edit `db/migrate/20170107112636_add_school_information_to_user.rb`
+
+```
+class AddSchoolInformationToUser < ActiveRecord::Migration
+  def change
+    add_column :users, :has_graduated,                   :boolean, default: false
+    add_column :users, :academic_degree,                 :string,  default: "college"
+    add_column :users, :joined_CYCU_at_which_year,       :integer
+    add_column :users, :has_spent_how_much_time_at_CYCU, :integer
+  end
+end
+```
+
+and then `rake db:migrate:reset`
+
+成功！！！
