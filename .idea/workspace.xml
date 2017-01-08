@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c675fdfb-56a1-4128-acfe-b3d2ac190b8c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20161122091021_add_has_graduated_to_users.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/system/images/images/000/000/001/original/12698714_920836658035699_932899906695284890_o.png" afterPath="$PROJECT_DIR$/public/system/images/images/000/000/001/original/12698714_920836658035699_932899906695284890_o.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/dashboard/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/dashboard/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/dashboard/users/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/dashboard/users/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/posts/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/index.html.erb" afterPath="$PROJECT_DIR$/app/views/users/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/assets/stylesheets/semantic_ui/semantic_ui.css" afterPath="$PROJECT_DIR$/vendor/assets/stylesheets/semantic_ui/semantic_ui.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wiki/Dev_Notes/MuCat_v1.md" afterPath="$PROJECT_DIR$/wiki/Dev_Notes/MuCat_v1.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wiki/Dev_Notes/note_5_2.md" afterPath="$PROJECT_DIR$/wiki/Dev_Notes/note_5_2.md" />
-    </list>
+    <list default="true" id="c675fdfb-56a1-4128-acfe-b3d2ac190b8c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
     <ignored path="$PROJECT_DIR$/public/system/" />
@@ -110,9 +96,9 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1483799569000" expanded="true" signature="100:288" ph=" ... end" />
-                <marker date="1483799569000" expanded="true" signature="300:337" ph=" ... end" />
-                <marker date="1483799569000" expanded="true" signature="390:395" ph=" ... end" />
+                <marker date="1483800225000" expanded="true" signature="100:291" ph=" ... end" />
+                <marker date="1483800225000" expanded="true" signature="303:340" ph=" ... end" />
+                <marker date="1483800225000" expanded="true" signature="393:398" ph=" ... end" />
               </folding>
             </state>
           </provider>
@@ -543,12 +529,12 @@
       <workItem from="1483693961718" duration="773000" />
       <workItem from="1483712610869" duration="229000" />
       <workItem from="1483713371690" duration="498000" />
-      <workItem from="1483760915151" duration="5152000" />
+      <workItem from="1483760915151" duration="5177000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38236000" />
+    <option name="totallyTimeSpent" value="38261000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1052,9 +1038,9 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1483799569000" expanded="true" signature="100:288" ph=" ... end" />
-            <marker date="1483799569000" expanded="true" signature="300:337" ph=" ... end" />
-            <marker date="1483799569000" expanded="true" signature="390:395" ph=" ... end" />
+            <marker date="1483800225000" expanded="true" signature="100:291" ph=" ... end" />
+            <marker date="1483800225000" expanded="true" signature="303:340" ph=" ... end" />
+            <marker date="1483800225000" expanded="true" signature="393:398" ph=" ... end" />
           </folding>
         </state>
       </provider>

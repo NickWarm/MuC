@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show]
 
   def index
-    # @users = User.all
     @users_doctor = User.doctor.has_graduated(false)
     @users_master = User.master.has_graduated(false)
     @users_college = User.college.has_graduated(false)

@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   scope :master,        -> { where(:academic_degree => 'master') }
   scope :college,       -> { where(:academic_degree => 'college') }
   scope :has_graduated, ->(status) { where( has_graduated: status) }
-  # scope :has_graduated, -> { where( has_graduated: true) }
+  
 
   def self.from_omniauth(auth)
 

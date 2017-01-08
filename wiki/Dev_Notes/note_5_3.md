@@ -224,7 +224,130 @@ so fix `app/views/dashboard/users/edit.html.erb`
 - 最初的筆記：[member_index.md](../features/member_index/member_index.md)
 - [scope | Rails 102](https://rocodev.gitbooks.io/rails-102/content/chapter1-mvc/m/scope.html)
 
-簡單回憶一下scope的用途，他可以讓我們的SQL語法做串接的功能，讓你把會用到的SQL包成一個method可以呼叫
+簡單回憶一下scope的用途，他可以讓我們的SQL語法做串接的功能，讓你把會重複用到的SQL查詢語法，用`scope`包成一個method可以呼叫
+
+#### 構想：user.rb
+
+最初的寫法是在前台的`users_controller.rb`用`@users = User.all`撈出全部的user。
+
+但由於，我希望把實驗室成員依照學位分成 **大學生**、**研究生**、**博士生**。
+
+所以我要把`users_controller.rb`的實驗室成員拆開分成
+- 大學生：`@users_college`
+- 研究生：`@users_master`
+- 博士生：`@users_doctor`
 
 
-so edit `uapp/models/user.rb`
+目標：
+- 為了從User database區別出 **大學生**、**研究生**、**博士生**，這務必需要用到SQL語法做查詢的動作。
+- 希望進入實驗室成員頁面時，看到的是「還在學校就讀的」成員，而不是「已經畢業的」成員
+
+所以用`scope`做下列功能：
+- 查詢「就讀的學位」
+
+```
+scope :doctor,        -> { where(:academic_degree => 'Ph.D') }
+scope :master,        -> { where(:academic_degree => 'master') }
+scope :college,       -> { where(:academic_degree => 'college') }
+```
+
+- 查詢「是否畢業」
+
+```
+scope :has_graduated, ->(status) { where( has_graduated: status) }
+```
+
+#### 實作：user.rb
+
+so edit `app/models/user.rb`
+
+```
+class User < ActiveRecord::Base
+  ...
+
+  scope :doctor,        -> { where(:academic_degree => 'Ph.D') }
+  scope :master,        -> { where(:academic_degree => 'master') }
+  scope :college,       -> { where(:academic_degree => 'college') }
+  scope :has_graduated, ->(status) { where( has_graduated: status) }
+
+
+  def self.from_omniauth(auth)
+    ....
+  end
+end
+
+```
+
+PS：這邊`scope :has_graduated`的寫法與最初[member_index.md](../features/member_index/member_index.md)有所不同
+
+最初`scope :has_graduated`是寫成`scope :has_graduated, ->(status) { where("has_graduated", status) }`，經過實測後確定這樣的寫法無法work
+
+後來讀到這篇，於是改成`->(status) where( has_graduated: status)`，如此一來就能傳不同的參數了
+- [scope (ActiveRecord::NamedScope::ClassMethods) - APIdock](http://apidock.com/rails/ActiveRecord/NamedScope/ClassMethods/scope)，搜尋「where(:color => color)」
+
+#### users_controller
+
+修改好`user.rb`後，接著去修前台的`users_controller.rb`，讓我們可以接到
+- 大學生：`@users_college`
+- 研究生：`@users_master`
+- 博士生：`@users_doctor`
+
+so edit `app/controllers/users_controller.rb`
+
+```
+def index
+  @users_doctor = User.doctor.has_graduated(false)
+  @users_master = User.master.has_graduated(false)
+  @users_college = User.college.has_graduated(false)
+end
+```
+
+稍微解釋一下，我們已經在`user.rb`裡用`scope`定義了四個查詢的方法
+- `doctor`
+- `master`
+- `college`
+- `has_graduated`
+
+使用`scope`的有一個好處，它可以讓你的`SQL`語法包成一個一個小組塊，然後讓他 **串接** 起來，舉例來說：
+
+`@users_doctor = User.doctor.has_graduated(false)`這句的意思是
+
+>我先用`doctor`方法撈出`User databse`裡的博士生，然後再用`has_graduated(false)`看看該學生畢業了沒有，如果沒有畢業(`has_graduated(false)`)就會顯示出來，出現在實驗室成員頁面(`views/users/index.html.erb`)
+
+#### users的index頁面
+
+最後我們要把學生依照不同學位撈出來，這邊很簡單就直接上code了
+
+edit `app/views/users/index.html.erb`
+
+```
+<h1>Lab members</h1>
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+
+
+  <hr>
+
+  <h1>博士生</h1>
+  <% @users_doctor.each do |user_doctor| %>
+    <%= link_to user_doctor.fb_name, user_doctor %>
+  <% end %>
+
+  <hr>
+
+  <h1>研究生</h1>
+  <% @users_master.each do |user_master| %>
+    <%= link_to user_master.fb_name, user_master %>
+  <% end %>
+
+  <hr>
+
+  <h1>大學生</h1>
+  <% @users_college.each do |user_college| %>
+    <%= link_to user_college.fb_name, user_college %>
+  <% end %>
+
+</div>
+```
+
+成功，work。
