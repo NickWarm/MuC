@@ -22,13 +22,14 @@
   - 上面是介紹文
   - 下面是教授的 **個人頁面連結**
 - 榮譽榜
-  - CRUD，WYSIWYG editor，**Honor model**
+  - CRUD，~~WYSIWYG editor~~，**Honor model**，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
 - 學習資源
   - CRUD，**Learning model**
 
 ### NavBar
 - 實驗室公告
-  - CRUD，WYSIWYG editor，**News model**
+  - CRUD，~~WYSIWYG editor~~，**News model**，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
+- 榮譽榜
 - 實驗室成員資料
   - 教授的著作
     - CRUD，**ProfessorWork model**
@@ -212,7 +213,7 @@
 #### Form use markdown
 - [Markdown & Syntax Highlighting - How to build a blog & portfolio with Rails 4 - YouTube](https://www.youtube.com/watch?v=fY2SuLqMD_w&index=15&list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq)
 
-#### Form use WYSIWYG editor
+#### Form use WYSIWYG editor (MuCat_v1暫不考慮)
 - [Rails 中如何集成帶圖片上傳功能的simditor 編輯器· Ruby China](https://ruby-china.org/topics/28467?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io)
 - [Rails项目集成Simditor编辑器 - 只想安静地做个美男子 - 开源中国社区](https://my.oschina.net/huangwenwei/blog/408998)
 - [手把手教你在Rails中集成Simditor富文本编辑器 - 写出来的都是shit，快关闭!](http://www.printshit.me/blog/2016/05/30/how-to-use-simditor-in-rails/)

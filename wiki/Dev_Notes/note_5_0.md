@@ -29,6 +29,10 @@ add files to `app/assets/stylesheets`
 主要參考自
 - [Markdown & Syntax Highlighting - How to build a blog & portfolio with Rails 4 - YouTube，請看6:59](https://youtu.be/fY2SuLqMD_w?list=PL23ZvcdS3XPK9Y4DRU-BiJtiY5L_QhUUq&t=419)
 
+其他參考資料
+- [Klog开发笔记——Markdown 与 Redcarpet 简介 - 万神劫 - Chaos的Blog](http://chaoskeh.com/blog/markdown-and-redcarpet.html)
+
+
 先在`Gemfile`裝下面兩個gem
 
 ```

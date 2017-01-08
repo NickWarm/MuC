@@ -437,3 +437,16 @@ and  edit `app/views/users/graduates.html.erb`
 ```
 <%= link_to "還在學校的實驗室成員", users_path %>
 ```
+
+很好，完成
+
+現在進度：
+- User schema
+  - 中文名字:string -> `taiwan_name:string`  -> **done**
+  - 英文名字:string -> `english_name:string` -> **done**
+  - 自我介紹:text -> `profile:text`          -> **done**
+  - 論文題目:text -> `paper:text`            -> **done**
+  - 學位:string -> `academic_degree:string` -> **done**
+  - 入學學年:integer -> `joined_CYCU_at_which_year:integer`
+  - 現在幾年級:integer -> `has_spent_how_much_time_at_CYCU:integer`
+  - 是否離開學校:boolean -> `has_graduated:boolean` -> **done**

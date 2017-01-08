@@ -25,6 +25,11 @@
 
     <br>
 
+    <h1>入學學年</h1>
+    <p> <%= @user.joined_CYCU_at_which_year %> 學年 </p>
+
+    <br>
+
     <h1>Introdce Myself</h1>
 
     <br>
@@ -38,7 +43,6 @@
     <br>
 
     <%= markdown @user.paper unless @user.profile.nil? %>
-
 
     <br>
 
