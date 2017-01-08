@@ -10,7 +10,7 @@
 
 只限本人編輯
 - 學生的論文
-  - 直接在user model下開一個欄位`paper:context`
+  - 直接在user model下開一個欄位`context:text`
   - 然後讓他用Markdown編輯
   - 瞬間什麼nested_form都不用考慮了XDDDDDDDDDD
 
