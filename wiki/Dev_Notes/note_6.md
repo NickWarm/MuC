@@ -42,7 +42,7 @@ class CreateNoteTable < ActiveRecord::Migration
       t.string   :author
       t.string   :title
       t.text     :content
-      t.boolean  :is_editable
+      t.boolean  :is_editable,   default: false
       t.string   :link_text
       t.string   :link_site
       t.timestamps
@@ -52,3 +52,17 @@ end
 ```
 
 and then `rake db:migrate`
+
+突然想起，忘記加上`user_id`
+
+so `rails g migration AddUserIdToNote`
+
+and edit `db/migrate/20170108132424_add_user_id_to_note.rb`
+
+```
+class AddUserIdToNote < ActiveRecord::Migration
+  def change
+    add_column :notes, :user_id, :integer
+  end
+end
+```

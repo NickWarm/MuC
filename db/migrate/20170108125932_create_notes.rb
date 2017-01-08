@@ -4,7 +4,7 @@ class CreateNotes < ActiveRecord::Migration
       t.string   :author
       t.string   :title
       t.text     :content
-      t.boolean  :is_editable
+      t.boolean  :is_editable,   default: false
       t.string   :link_text
       t.string   :link_site
       t.timestamps null: false

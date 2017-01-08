@@ -10,12 +10,13 @@ class User < ActiveRecord::Base
   has_many :editable_posts, through: :post_authorities, source: :post
 
   has_many :images
+  has_many :notes
 
   scope :doctor,        -> { where(:academic_degree => 'Ph.D') }
   scope :master,        -> { where(:academic_degree => 'master') }
   scope :college,       -> { where(:academic_degree => 'college') }
   scope :has_graduated, ->(status) { where( has_graduated: status) }
-  
+
 
   def self.from_omniauth(auth)
 

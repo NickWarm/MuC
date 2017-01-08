@@ -1,0 +1,35 @@
+<h1>note show action</h1>
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+
+  <header>
+    <h1><%= @note.title %></h1>
+
+    <p><%= @note.author.fb_name %></p>
+
+    <hr>
+  </header>
+
+  <div id="content">
+    <%= markdown @note.content %>
+  </div>
+
+  <br>
+
+  <% if @note.link_text.present? && @note.link_site.present? %>
+    <%= link_to @note.link_text, @note.link_site, class: "view_more" %>
+
+    <br>
+
+    <br>
+
+    <br>
+
+  <% end %>
+
+
+
+  <% if @note.is_written_by?(current_user) %>
+    <%= link_to "Edit", edit_dashboard_note_path, class: "view_more" %>
+  <% end %>
+</div>

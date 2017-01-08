@@ -13,51 +13,55 @@
 <br>
 
 
-<%= form_for current_user, url: dashboard_user_path, method: :patch do |f| %>
-  <%= f.label :taiwan_name, "Name" %>
-  <%= f.text_field :taiwan_name %>
+<div class="skinny_wrapper wrapper_padding">
 
-  <br>
+  <%= form_for current_user, url: dashboard_user_path, method: :patch do |f| %>
+    <%= f.label :taiwan_name, "Name", :required => true %>
+    <%= f.text_field :taiwan_name %>
 
-  <%= f.label :english_name, "English Name" %>
-  <%= f.text_field :english_name %>
+    <br>
 
-
-  <br>
-
-  <div class="ui toggle checkbox">
-    <%= f.check_box(:has_graduated) %>
-    <%= label_tag(:has_graduated, "已經畢業") %>
-  </div>
-
-  <br>
-
-  <div class="">
-    <%= f.label :academic_degree, "現在學歷" %>
-    <%= f.select :academic_degree, [["大學生", "college"], ["研究生", "master"], ["博士生", "Ph.D"]], {}, class: "ui dropdown" %>
-  </div>
-
-  <br>
-
-  <%= f.label :joined_CYCU_at_which_year, "入學學年" %>
-  <%= f.text_field :joined_CYCU_at_which_year %>
-
-  <br>
-
-  <h1><%= f.label :profile, "Profile" %></h1>
-
-  <%= f.text_area :profile, placeholder: "introduce yourself", :required => true %>
-
-  <br>
-
-  <%= f.label :paper, "論文題目" %>
-  <%= f.text_area :paper, placeholder: "The target you research", :required => true %>
+    <%= f.label :english_name, "English Name", :required => true %>
+    <%= f.text_field :english_name %>
 
 
-  <br>
+    <br>
 
-  <%= f.submit %>
-<% end %>
+    <div class="ui toggle checkbox">
+      <%= f.check_box(:has_graduated) %>
+      <%= label_tag(:has_graduated, "已經畢業") %>
+    </div>
+
+    <br>
+
+    <div class="">
+      <%= f.label :academic_degree, "現在學歷" %>
+      <%= f.select :academic_degree, [["大學生", "college"], ["研究生", "master"], ["博士生", "Ph.D"]], {}, class: "ui dropdown" %>
+    </div>
+
+    <br>
+
+    <%= f.label :joined_CYCU_at_which_year, "入學學年" %>
+    <%= f.text_field :joined_CYCU_at_which_year %>
+
+    <br>
+
+    <h1><%= f.label :profile, "Profile" %></h1>
+
+    <%= f.text_area :profile, placeholder: "introduce yourself", :required => true %>
+
+    <br>
+
+    <%= f.label :paper, "論文題目" %>
+    <%= f.text_area :paper, placeholder: "The target you research", :required => true %>
+
+
+    <br>
+
+    <%= f.submit %>
+  <% end %>
+
+</div>
 
 <div class="ui modal">
   hello

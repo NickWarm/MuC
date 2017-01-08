@@ -1,0 +1,13 @@
+<h1>note index view</h1>
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+
+  <% @notes.each do |note| %>
+    <%= link_to note.title, note %>
+  <% end %>
+
+</div>
+
+<% if user_signed_in? %>
+  <%= link_to "new note", new_dashboard_note_path %>
+<% end %>

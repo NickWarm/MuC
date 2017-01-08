@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108125932) do
+ActiveRecord::Schema.define(version: 20170108132424) do
 
   create_table "images", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -45,11 +45,12 @@ ActiveRecord::Schema.define(version: 20170108125932) do
     t.string   "author",      limit: 255
     t.string   "title",       limit: 255
     t.text     "content",     limit: 65535
-    t.boolean  "is_editable"
+    t.boolean  "is_editable",               default: false
     t.string   "link_text",   limit: 255
     t.string   "link_site",   limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.integer  "user_id",     limit: 4
   end
 
   create_table "post_authorities", force: :cascade do |t|
