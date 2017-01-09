@@ -67,8 +67,67 @@ class AddUserIdToNote < ActiveRecord::Migration
 end
 ```
 
+# user與note之間的關聯
 
-# partial form
+由於會需要
+- 查看這篇筆記是誰寫的
+- 這篇筆記是否開放給所有實驗室成員編輯
+
+所以必須在`note.rb`與`user.rb`做好關聯的設定
+
+直接上code
+
+## note.rb
+
+`app/models/note.rb`
+
+```
+class Note < ActiveRecord::Base
+  belongs_to :author, class_name: "User", foreign_key: :user_id
+
+  # 作者有權限編輯
+  def is_written_by?(user)
+    user && user == author
+  end
+end
+```
+
+在`note.rb`中我定義了一個`is_written_by?` method，方便我之後在`show`、`_form`的view使用
+
+這段
+```
+belongs_to :author, class_name: "User", foreign_key: :user_id
+```
+
+傳統我們是寫 `belongs_to :user`，但是寫成`belongs_to :author, class_name: "User"`可以讓我們更直觀地理解到
+
+這篇筆記屬於作者(`belongs_to :author`)，這位作者出自User model(`class_name: "User"`)
+
+接著我們透過`foreign_key`撈出這篇筆記(`note`)屬於哪位作者(`belongs_to :author`)
+
+
+這樣寫的好處，到時候會在`note`的`show`頁面用到，後面會解釋到。
+
+## user.rb
+
+`app/models/user.rb`
+
+部分code
+```
+class User < ActiveRecord::Base
+  ...
+
+  has_many :notes   # 與note.rb建立關聯
+
+  ...
+
+  def self.from_omniauth(auth)
+    ...
+  end
+end
+```
+
+# 建立筆記、編輯筆記：使用partial form
 
 由於`dashboard/notes/new.html.erb`與`dashboard/notes/edit.html.erb`表單的內容有重複，所以決定用partial form
 
@@ -105,7 +164,7 @@ create `app/views/dashboard/notes/_form.html.erb`
 <%= f.text_field :link_site  %>
 ```
 
-fix `app/views/dashboard/notes/new.html.erb`
+edit `app/views/dashboard/notes/new.html.erb`
 
 ```
 <h1>note new action</h1>
@@ -123,7 +182,7 @@ fix `app/views/dashboard/notes/new.html.erb`
 </div>
 ```
 
-fix `app/views/dashboard/notes/edit.html.erb`
+edit `app/views/dashboard/notes/edit.html.erb`
 
 ```
 <h1>note edit action</h1>
@@ -240,3 +299,188 @@ create `app/views/dashboard/notes/_form.html.erb`
 ```
 
 所以我在`new`與`edit`寫了兩個不同但是相同結果的寫法，完成。
+
+# 設定後台notes_controller
+
+由於先前就已經建過後台的`notes_controller.rb`，這邊也沒什麼新東西，所以直接上code
+
+`app/controllers/dashboard/notes_controller.rb`
+
+完整code
+```
+class Dashboard::NotesController < Dashboard::DashboardController
+  before_action :authenticate_user!
+  before_action :find_note, only: [:edit, :update]
+
+  def new
+    @note = current_user.notes.new
+  end
+
+  def create
+    @note = current_user.notes.create(note_params)
+
+    if @note.save
+      redirect_to @note
+    else
+      render `new`
+    end
+  end
+
+  def edit
+
+  end
+
+  def update
+
+    if @note.update(note_params)
+      redirect_to @note
+    else
+      render 'edit'
+    end
+  end
+
+  private
+
+  def note_params
+    params.require(:note).permit(:author, :title, :content, :is_editable,
+                                 :link_text, :link_site)
+  end
+
+  def find_note
+    @note = Note.find(params[:id])
+  end
+
+end
+```
+
+# 前台notes_controller
+
+`rails g controller notes`
+
+沒什麼新東西，直接上code
+
+`app/controllers/notes_controller.rb`
+
+完整code
+```
+class NotesController < ApplicationController
+  def index
+    @notes = Note.all
+  end
+
+  def show
+    @note = Note.find(params[:id])
+  end
+end
+
+```
+
+# 前台note的index頁面
+
+沒什麼新東西，直接上code
+
+`app/views/notes/index.html.erb`
+
+完整code
+```
+<h1>note index view</h1>
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+
+  <% @notes.each do |note| %>
+    <%= link_to note.title, note %>
+  <% end %>
+
+</div>
+
+<% if user_signed_in? %>
+  <%= link_to "new note", new_dashboard_note_path %>
+<% end %>
+
+```
+
+# 前台note的show頁面
+
+接下來拆分個小節描述
+
+## `note.rb`裡的`:author`的妙用
+
+先講有趣的東西。前面有提到，每篇筆記，我們都需要知道作者是誰。
+
+由於我們已經在`note.rb`用了`belongs_to :author, class_name: "User", foreign_key: :user_id`
+
+所以可以透過這寫法撈出該篇文章的作者
+
+```
+<p><%= @note.author.fb_name %></p>
+```
+
+在這邊，我是撈出`user schema`的`fb_name`這欄位，也可以改成用`english_name`、`taiwan_name`
+
+## 編輯權限
+
+一篇筆記最初只有作者有編輯權限，作者也可以開放編輯權限給其他實驗室成員
+
+於是我在`note.rb`裡定義了`is_written_by?`，最初寫成
+
+```
+<!-- 作者自己可以編輯 -->
+<% if @note.is_written_by?(current_user) %>
+  <%= link_to "Edit", edit_dashboard_note_path, class: "view_more" %>
+<% end %>
+
+<!-- 開放給其他實驗室成員都能編輯 -->
+<% if user_signed_in? && @note.is_editable %>
+  <%= link_to "其他實驗室成員可編輯", edit_dashboard_note_path, class: "view_more" %>
+<% end %>
+```
+
+但是這樣寫的缺點是，如果作者本人登入時，會有兩個edit button，為了解掉這問題，我把這段改寫成
+
+```
+<!-- 作者自己可以編輯 OR 開放給其他實驗室成員都能編輯  -->
+<% if @note.is_written_by?(current_user) || (user_signed_in? && @note.is_editable) %>
+  <%= link_to "Edit", edit_dashboard_note_path, class: "view_more" %>
+<% end %>
+```
+
+這樣就只會有一個eidt button了
+
+# 抓蟲趣
+
+最後一個解掉的Bug是在寫「開放權限給其他實驗室成員編輯」這邊
+
+我在`note.rb`開了`is_editable:boolean`
+
+然後前端用semantic_ui的Toggle，一開始寫成
+
+`app/views/dashboard/notes/_form.html.erb`
+
+```
+<% if f.is_written_by?(current_user) %>
+  <div class="ui toggle checkbox">
+    <%= f.check_box(:is_editable) %>
+    <%= label_tag(:is_editable, "開放給他人編輯") %>
+  </div>
+<% end %>
+```
+
+然後就噴了
+
+![](../img/wrong_use_f.png)
+
+起初，我一直把想到表單去，後來才想起來我想錯了，因為`is_written_by?`是定義在`note.rb`裡給`@note`用的method
+
+
+so fix `app/views/dashboard/notes/_form.html.erb`
+
+```
+<% if @note.is_written_by?(current_user) %>
+  <div class="ui toggle checkbox">
+    <%= f.check_box(:is_editable) %>
+    <%= label_tag(:is_editable, "開放給他人編輯") %>
+  </div>
+<% end %>
+```
+
+然後就解掉了。

@@ -5,6 +5,4 @@ class Note < ActiveRecord::Base
   def is_written_by?(user)
     user && user == author
   end
-
-
 end
