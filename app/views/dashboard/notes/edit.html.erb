@@ -5,26 +5,7 @@
 <div class="skinny_wrapper wrapper_padding">
   <%= form_for @note, url: dashboard_note_path, method: :patch do |f| %>
 
-    <h2><%= f.label :title, "Title" %></h2>
-    <%= f.text_field :title, :required => true  %>
-
-    <div class="ui toggle checkbox">
-      <%= f.check_box(:is_editable) %>
-      <%= label_tag(:is_editable, "開放給他人編輯") %>
-    </div>
-
-    <br>
-
-    <h2><%= f.label :content, "Content" %></h2>
-    <%= f.text_area :content, :required => true  %>
-
-    <h2>是否需要外部連結</h2>
-    <%= f.label :link_text, "超連結文字" %>
-    <%= f.text_field :link_text  %>
-    <%= f.label :link_site, "網址" %>
-    <%= f.text_field :link_site  %>
-
-
+    <%= render 'form', {:f => f} %>
 
     <%= f.submit %>
   <% end %>

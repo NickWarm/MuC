@@ -28,8 +28,13 @@
   <% end %>
 
 
-
-  <% if @note.is_written_by?(current_user) %>
+  <!-- 作者自己可以編輯 OR 開放給其他實驗室成員都能編輯  -->
+  <% if @note.is_written_by?(current_user) || (user_signed_in? && @note.is_editable) %>
     <%= link_to "Edit", edit_dashboard_note_path, class: "view_more" %>
   <% end %>
+
+  <!-- 開放給其他實驗室成員都能編輯 -->
+  <!-- <% if user_signed_in? && @note.is_editable %>
+    <%= link_to "其他實驗室成員可編輯", edit_dashboard_note_path, class: "view_more" %>
+  <% end %> -->
 </div>

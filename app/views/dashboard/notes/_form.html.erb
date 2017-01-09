@@ -1,0 +1,20 @@
+<h2><%= f.label :title, "Title" %></h2>
+<%= f.text_field :title, :required => true  %>
+
+<% if @note.is_written_by?(current_user) %>
+  <div class="ui toggle checkbox">
+    <%= f.check_box(:is_editable) %>
+    <%= label_tag(:is_editable, "開放給他人編輯") %>
+  </div>
+<% end %>
+
+<br>
+
+<h2><%= f.label :content, "Content" %></h2>
+<%= f.text_area :content, :required => true  %>
+
+<h2>是否需要外部連結 <span style="font-size:1rem;">(*非必要)</span></h2>
+<%= f.label :link_text, "超連結文字" %>
+<%= f.text_field :link_text  %>
+<%= f.label :link_site, "網址" %>
+<%= f.text_field :link_site  %>

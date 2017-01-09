@@ -21,7 +21,7 @@ class Dashboard::NotesController < Dashboard::DashboardController
   end
 
   def update
-    
+
     if @note.update(note_params)
       redirect_to @note
     else
@@ -39,4 +39,5 @@ class Dashboard::NotesController < Dashboard::DashboardController
   def find_note
     @note = Note.find(params[:id])
   end
+
 end
