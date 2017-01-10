@@ -5,18 +5,20 @@ class Dashboard::PostsController < Dashboard::DashboardController
   def new
     @post = current_user.posts.build
     @post_authorities = @post.post_authorities.build
-    # @users_still_in_college = User.all
+    @users_still_in_college = User.all.has_graduated(false)
   end
 
   def create
     @post = current_user.posts.build(post_params)
-    # @users_still_in_college = User.all
+    @users_still_in_college = User.all.has_graduated(false)
 
+    # 把user_id、post_id存入中介表
     params[:editors][:id].each do |editor|
       if !editor.empty?
         @post.post_authorities.build(:user_id => editor)
       end
     end
+
 
     if @post.save
       redirect_to @post

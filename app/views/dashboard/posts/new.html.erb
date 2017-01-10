@@ -14,13 +14,10 @@
       <%= fields_for @post_authorities, url: dashboard_posts_path, method: :post  do |p| %>
         <%= p.label "所有實驗室成員" %>
 
-        <%= collection_select :editors, :id, User.all, :id, :email,
+        <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
                               {multiple: true, include_blank:true},
                               {class: "ui dropdown selection multiple", "multiple" => " " } %>
 
-        <!-- <%= p.select  :user_id, User.all.map{|x| [x.email, x.id] unless x.has_graduated},
-                  {multiple: true, include_blank:true},
-                  {class: "ui dropdown selection multiple", "multiple" => " " } %> -->
       <% end %>
     <% end %>
 
