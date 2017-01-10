@@ -152,7 +152,7 @@ def create
 end
 ```
 
-這邊有趣的是`params[:editors][:id]`，我們先來看一下剛剛上面`ollection_select`的寫法會生出什麼樣的html
+這邊有趣的是`params[:editors][:id]`，我們先來看一下剛剛上面`collection_select`的寫法會生出什麼樣的html
 
 ![](../img/use_select_name.png)
 
@@ -277,3 +277,7 @@ fix `app/views/dashboard/posts/new.html.erb`
 ```
 
 實測後，順利可以work。
+
+#
+
+進度：準備寫edit頁面、實測「指定特定人能夠進入編輯頁面」，這週上線版本不實作admin與RWD
