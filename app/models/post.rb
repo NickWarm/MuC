@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :author, class_name: "User", foreign_key: :user_id
 
-  has_many :post_authorities                                    # 中介表
+  has_many :post_authorities                                    # post 與 user 中介表
   has_many :editors, through: :post_authorities, source: :user  # 多對多
 
   accepts_nested_attributes_for :post_authorities, allow_destroy: true
