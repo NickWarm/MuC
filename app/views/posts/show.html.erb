@@ -1,0 +1,26 @@
+<h1>post show action</h1>
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+
+  <header>
+    <h1><%= @post.title %></h1>
+
+    <p><%= @post.author.fb_name %></p>
+
+    <hr>
+  </header>
+
+  <div id="content">
+    <%= markdown @post.content %>
+  </div>
+
+  <br>
+
+
+
+  <!-- 作者自己可以編輯 OR 開放給其他實驗室成員都能編輯  -->
+  <% if @post.is_written_by?(current_user)  %>
+    <%= link_to "Edit", edit_dashboard_post_path, class: "view_more" %>
+  <% end %>
+
+</div>

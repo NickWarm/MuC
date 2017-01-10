@@ -24,11 +24,12 @@
 - 榮譽榜
   - CRUD，~~WYSIWYG editor~~，**Honor model**，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
 - 學習資源
-  - CRUD，**Learning model**
+  - CRUD，~~**Learning model**~~，改名為 **Note model**
 
 ### NavBar
 - 實驗室公告
-  - CRUD，~~WYSIWYG editor~~，**News model**，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
+  - ~~**News model**~~，改名為 **Post model**
+  - CRUD，~~WYSIWYG editor~~，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
 - 榮譽榜
 - 實驗室成員資料
   - 教授的著作
@@ -76,12 +77,12 @@
       - 文章都是 **Markdown editable**
       - 一個 **partial form，input的資料型別用text**        
   - **CRUD**
-    - ~~**LearningNote model**~~，為了縮短簡稱，改成 **Note model**
-    - 作者:string、標題:string、內容:text
+    - **Note model**
+    - 作者:string、標題:string、內容:text  
     - `author:string title:string content:text other_can_edit:boolean`
 - 實驗室公告
   - **CRUD**，WYSIWYG editor
-    - **News model**
+    - **Post model**
     - 標題:string、內容:text
     - `title:string content:text`
 - 實驗室成員資料   
@@ -104,10 +105,10 @@
         - 英文名字:string -> `english_name:string` -> **done**
         - 自我介紹:text -> `profile:text`          -> **done**
         - 論文題目:text -> `paper:text`            -> **done**
-        - 學位:string -> `academic_degree:string`
-        - 入學學年:integer -> `joined_CYCU_at_which_year:integer`
+        - 學位:string -> `academic_degree:string` -> **done**
+        - 入學學年:integer -> `joined_CYCU_at_which_year:integer` -> **done**
         - 現在幾年級:integer -> `has_spent_how_much_time_at_CYCU:integer`
-        - 是否離開學校:boolean -> `has_graduated:boolean`
+        - 是否離開學校:boolean -> `has_graduated:boolean`  -> **done**
     - 實驗室成員頁面排序
       - 在學生：新到舊
       - 畢業生：舊到新
@@ -149,12 +150,12 @@
     - 簡要介紹
       - `profile:text`
       - markdown
-- 實驗室公告，**News model**
+- 實驗室公告，**Post model**
   - 標題、內容
   - `title:string content:text`
 - 榮譽榜，**Honor model**
   - WYSIWYG editor
-- 學習資源，**Learning model**
+- 學習資源，**Note model**
   - markdown
   - 作者、標題、內容、他人是否可編輯
   - `author:string title:string content:text other_can_edit:boolean`
@@ -183,7 +184,7 @@
   - 我與老師
   - 擁有 **刪除** 的權限
 - 學習資源的文章
-  - 給學習資源的文章，在 **Learning Model** 開一個新的欄位`other_can_edit:boolean`
+  - 給學習資源的文章，在 **Note Model** 開一個新的欄位`other_can_edit:boolean`
     - 在表單裡弄成下拉式選單，發表文章時
       - `false`，只有發文者可以編輯
       - `true`，其他實驗室成員可以編輯
@@ -196,12 +197,12 @@
 >
 >學習資源的文章
 >- ~~我發表的文章，只有我有 **編輯** 的權限~~
->- 在 **Learning Model** 開一個新的欄位`other_can_edit:boolean`
+>- 在 **Note Model** 開一個新的欄位`other_can_edit:boolean`
 
 
 ### 登入系統  
-- devise的寫法
-- 用臉書、google帳號登入
+- devise的寫法  -> **done**
+- 用臉書~~、google~~帳號登入 -> **done**  
 
 ### SEO優化
 - friendly_id gem
