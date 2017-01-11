@@ -287,20 +287,157 @@ fix `app/views/dashboard/posts/new.html.erb`
 
 # edit頁面與edit、update actions
 
-
 進度：
-- 準備寫edit頁面
+- 準備寫edit、update action
+- 準備寫「進入edit頁面的button」
 - 實測「指定特定人能夠進入編輯頁面」
+- 準備寫，進入edit頁面後「下拉選單的default value 顯示上次選取的人」
 
-這週上線版本不實作admin與RWD
+現在來寫edit post時，所需要的`edit action`與`update action`
+
+這邊直接上code
+
+fix `app/controllers/dashboard/posts_controller.rb`
+
+```
+def edit
+  @post_authorities = @post.post_authorities.build
+  @users_still_in_college = User.all.has_graduated(false)
+end
+
+def update
+
+
+  if @post.update(post_params)
+
+    @post.editors = []
+    params[:editors][:id].each do |editor|
+      if !editor.empty?
+        @post.editors << User.find(editor)
+      end
+    end
+
+    redirect_to @post
+  else
+    render 'edit'
+  end
+end
+```
+
+有些post，最初發表時並沒有指派人，事後進入`edit`頁面下拉選單的`fields_for`要用，所以有必要在`edit action`建立`@post_authorities`
+
+post的`edit` 頁面的下拉選單
+
+```
+<%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
+  <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
+                        {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
+                        {class: "ui dropdown selection multiple", "multiple" => " " } %>
+
+<% end %>
+```
+
+接著存資料時，因為`collection_select`生出的資料是`params[:editors][:id]`，所以`update action`寫
+
+```
+@post.editors = []
+params[:editors][:id].each do |editor|
+  if !editor.empty?
+    @post.editors << User.find(editor)
+  end
+end
+```
+
+這邊可以用`@post.editors`來存入中介表`post_authorities`，是因為最初，我在`post.rb`裡定義的多對多關聯
+
+```
+has_many :editors, through: :post_authorities, source: :user  # 多對多
+```
+
+筆記完成。
 
 # 指定特定人能夠進入編輯頁面
 
-進度：
-- 準備寫edit頁面  -> **done**
+- 準備寫edit、update action -> **done**
+- 準備寫「進入edit頁面的button」
 - 實測「指定特定人能夠進入編輯頁面」
+- 準備寫，進入edit頁面後「下拉選單的default value 顯示上次選取的人」
+
+這邊卡了超久Bug。
+
+最初是構想在`post.rb`定義
+
+```
+# 授權的人能夠編輯
+def is_authorized_to_edit_by?(user)
+  post_authorities.where(user_id: user.id)
+end
+```
+然後在post的`show`頁面寫
+
+```
+<% if  @post.is_authorized_to_edit_by?(current_user)  %>
+  <%= link_to "授權編輯Edit", edit_dashboard_post_path, class: "view_more" %>
+<% end %>
+```
+
+但是這樣寫，只要任何帳號登入，就會在post的`show`頁面一直看到`授權編輯Edit` button
+
+最後是我是用`rails c`進入console
+
+![](../img/console_is_authorized_to_edit_by.png)
+
+首先用`p12 = Post.find(12)`來撈出`id = 12`的post
+
+接著對`p12.post_authorities`用`where(user_id: user.id)`條件，去查看不同的`user.id`會丟出什麼東西出來
+
+一開始我先用`p12.post_authorities`，知道這會吐出`user_id: 3`
+
+```
+[6] pry(main)> p12.post_authorities
+  PostAuthority Load (0.5ms)  SELECT `post_authorities`.* FROM `post_authorities` WHERE `post_authorities`.`post_id` = 12
+=> [#<PostAuthority:0x007fc5cc6e2de8 id: 7, user_id: 3, post_id: 12>]
+```
+
+接著我用`pry(main)> p12.post_authorities.where(user_id: 3)`如預期，可以得到上面那串
+
+接著我用`pry(main)> p12.post_authorities.where(user_id: 1)`，也如預期，會噴出空陣列
+
+```
+[8] pry(main)> p12.post_authorities.where(user_id: 4)
+  PostAuthority Load (2.7ms)  SELECT `post_authorities`.* FROM `post_authorities` WHERE `post_authorities`.`post_id` = 12 AND `post_authorities`.`user_id` = 4
+=> []
+```
+
+後來我想到，既然他吐`[]`出來，我只要在`post_authorities.where(user_id: user.id)`後面加上`present?`就可以驗證`@post.post_authorities.where(user_id: user.id)`裡是否有`user_id`相匹配的資料
+
+so fix `app/models/post.rb`
+
+```
+def is_authorized_to_edit_by?(user)
+  post_authorities.where(user_id: user.id).present?
+end
+```
+
+如此一來，`post`的show頁面
+
+```
+<% if  @post.is_authorized_to_edit_by?(current_user)  %>
+  <%= link_to "授權編輯Edit", edit_dashboard_post_path, class: "view_more" %>
+<% end %>
+```
+
+就能讓「被指派的人」進入edit頁面了。
+
+
 
 # edit頁面的「下拉選單」：顯示上次選的人
+
+進度：
+- 準備寫edit、update action   -> **done**
+- 準備寫「進入edit頁面的button」-> **done**
+- 實測「指定特定人能夠進入編輯頁面」-> **done**
+- 準備寫，進入edit頁面後「下拉選單的default value 顯示上次選取的人」
 
 一開始在`edit`頁面下拉選單的寫法
 
@@ -326,3 +463,33 @@ fix `app/views/dashboard/posts/edit.html.erb`
 ```
 
 然後就能work了
+
+`id = 17`的post，成功撈出上次選的人
+
+![](../img/id_17_post.png)
+
+可以在中介表中看到，對`post_id = 17`的文章，擁有編輯權限的是`user_id =2`與`user_id = 3`這兩個人
+
+![](../img/user_who_has_authority.png)
+
+成功從database撈出上次選的人的`email`資訊
+
+![](../img/get_emails_from_editors.png)
+
+在此要解釋一下，為何撈上次選的人時，我可以直接從`@post.editors`去撈。
+
+這是因為最初在定義`post.rb`的多對多關聯時，我是寫
+
+```
+has_many :editors, through: :post_authorities, source: :user  # 多對多
+```
+
+為了讓語意更清楚，我這邊用`editors`來表示「可以這篇文章編輯的人」，所以我要撈中介表的資料時就能直接寫`@post.editors`。
+
+筆記完成。
+
+進度：
+- 準備寫edit、update action    -> **done**
+- 準備寫「進入edit頁面的button」 -> **done**
+- 實測「指定特定人能夠進入編輯頁面」-> **done**
+- 準備寫，進入edit頁面後「下拉選單的default value 顯示上次選取的人」-> **done**
