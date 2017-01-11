@@ -152,6 +152,7 @@ def create
 end
 ```
 
+
 這邊有趣的是`params[:editors][:id]`，我們先來看一下剛剛上面`collection_select`的寫法會生出什麼樣的html
 
 ![](../img/use_select_name.png)
@@ -167,6 +168,12 @@ params[:editors][:id].each do |editor|
   end
 end
 ```
+
+然後就能work，順利存入中介表。
+
+![](../img/success_insert_to_post_authority.png)
+
+
 
 ## 為何這寫法，下拉選單用`select`寫會不恰當
 
@@ -278,6 +285,44 @@ fix `app/views/dashboard/posts/new.html.erb`
 
 實測後，順利可以work。
 
-#
+# edit頁面與edit、update actions
 
-進度：準備寫edit頁面、實測「指定特定人能夠進入編輯頁面」，這週上線版本不實作admin與RWD
+
+進度：
+- 準備寫edit頁面
+- 實測「指定特定人能夠進入編輯頁面」
+
+這週上線版本不實作admin與RWD
+
+# 指定特定人能夠進入編輯頁面
+
+進度：
+- 準備寫edit頁面  -> **done**
+- 實測「指定特定人能夠進入編輯頁面」
+
+# edit頁面的「下拉選單」：顯示上次選的人
+
+一開始在`edit`頁面下拉選單的寫法
+
+`app/views/dashboard/posts/edit.html.erb`
+
+```
+<%= collection_select :editors, :id, @users_still_in_college, :id, :email,
+                      {multiple: true, include_blank:true},
+                      {class: "ui dropdown selection multiple", "multiple" => " " } %>
+```
+
+後來發現這樣寫無法撈到先前選取的資料，後來我參考這篇的留言
+- [collection_select (ActionView::Helpers::FormOptionsHelper) - APIdock](http://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/collection_select)，搜尋「nachocab」
+
+改寫成下面這寫法
+
+fix `app/views/dashboard/posts/edit.html.erb`
+
+```
+<%= collection_select :editors, :id, @users_still_in_college, :id, :email,
+                      {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
+                      {class: "ui dropdown selection multiple", "multiple" => " " } %>
+```
+
+然後就能work了

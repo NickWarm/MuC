@@ -18,9 +18,14 @@
 
 
 
-  <!-- 作者自己可以編輯 OR 開放給其他實驗室成員都能編輯  -->
-  <% if @post.is_written_by?(current_user)  %>
+  <!-- 作者自己可以編輯 OR 指定特定人士能夠編輯  -->
+  <% if @post.is_written_by?(current_user)   %>
     <%= link_to "Edit", edit_dashboard_post_path, class: "view_more" %>
   <% end %>
+
+  <% if  @post.is_authorized_to_edit_by?(current_user)  %>
+    <%= link_to "授權編輯Edit", edit_dashboard_post_path, class: "view_more" %>
+  <% end %>
+
 
 </div>

@@ -28,10 +28,22 @@ class Dashboard::PostsController < Dashboard::DashboardController
   end
 
   def edit
+    @post_authorities = @post.post_authorities.build
+    @users_still_in_college = User.all.has_graduated(false)
   end
 
   def update
+
+
     if @post.update(post_params)
+
+      @post.editors = []
+      params[:editors][:id].each do |editor|
+        if !editor.empty?
+          @post.editors << User.find(editor)
+        end
+      end
+
       redirect_to @post
     else
       render 'edit'
@@ -47,7 +59,6 @@ class Dashboard::PostsController < Dashboard::DashboardController
 
   def find_post
     @post = Post.find(params[:id])
-    @post_authority = @post.post_authorities.find(params[:id])
   end
 
   def post_params
