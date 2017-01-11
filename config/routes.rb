@@ -20,8 +20,8 @@ Rails.application.routes.draw do
                                  # 登入系統，實驗室成員資料，只能登入不能註冊
   devise_for :managers
 
-  get 'welcome/index'            # 首頁
-  root 'welcome#index'
+  # get 'welcome/index'            # 首頁
+  root 'welcome#index'           # 首頁
 
 
   namespace :dashboard do        # 第二層：~~上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面~~，
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
                                  #          查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
 
     resources :notes
-    resources :posts             
+    resources :posts
     resources :users             # 實驗室成員：編輯個資
                                  #           查看該帳號發表過什麼文章，點選文章後進入第一層觀看文章，並且編輯之
 

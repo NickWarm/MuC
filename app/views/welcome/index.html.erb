@@ -1,17 +1,33 @@
-<h1>This is welcome index</h1>
-
-
-
-
-<% if user_signed_in? %>
-  <p>
-    Welcome back <%= current_user.fb_name %>
-    <% if current_user.fb_image.present? %>
-      <%= image_tag(current_user.fb_image, size: "40") %>
+<div class="wrapper wrapper_padding clearfix">
+  <div class="col-1 about homepage_content">
+    <h2>About</h2>
+    <hr>
+    <p>陳威齊 I'm a designer &amp; developer living in Colorado Springs,
+    Colorado.</p>
+    <p>By day I work as a front-end dev / designer at Precision
+    Nutrition, by night I teach how to design &amp; code reails
+    applications at <a href="http://www.el.cycu.edu.tw/wSite/ct?xItem=59028&ctNode=20241&mp=46002">繆紹綱</a>.</p>
+    <p>You can find me speaking in 140 characters on Twitter,
+    swooshing some pixels on Dribbble, and sharing some code on
+    GitHub.</p>
+  </div>
+  <div class="col-2 homepage_content">
+    <h2>Resources</h2>
+    <hr>
+    <% @notes.each do |note| %>
+      <h3><a href="#"><%= link_to note.title, note %></a></h3>
+      <p class="date"><%= note.created_at.strftime("%A, %b %d") %></p>
     <% end %>
-  </p>
-<% end %>
-
-<% if current_user %>
-  <%= link_to('登出', destroy_user_session_path, :method => :delete) %>
-<% end %>
+  </div>
+  <div class="col-3  homepage_content ">
+    <h2>Honor Roll</h2>
+    <hr>
+    <h3><a href="#">2016 計算機視覺會議最佳論文</a></h3>
+    <p class="date">Friday April 10th</p>
+    <h3><a href="#">2015 電子系專題實作競賽第一</a></h3>
+    <p class="date">Friday April 10th</p>
+    <h3><a href="#">2014 工研院搶鮮大賽入圍</a></h3>
+    <p class="date">Friday April 10th</p>
+    <a href="#" class="view_more">View More</a>
+  </div>
+</div>

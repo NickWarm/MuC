@@ -1,10 +1,8 @@
-<h1>note show action</h1>
-
 <div id="post_show_content" class="skinny_wrapper wrapper_padding">
 
   <header>
     <h1><%= @note.title %></h1>
-
+    <p class="date"><%= @note.created_at.strftime('%A, %B %d') %></p>
     <p><%= @note.author.fb_name %></p>
 
     <hr>
