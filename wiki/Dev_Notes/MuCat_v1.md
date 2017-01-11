@@ -22,12 +22,13 @@
   - 上面是介紹文
   - 下面是教授的 **個人頁面連結**
 - 榮譽榜
-  - CRUD，~~WYSIWYG editor~~，**Honor model**，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
+  - CRUD，~~WYSIWYG editor~~，~~**Honor model**~~，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
+  - 把 **Post model** 改成「榮譽榜」來用
 - 學習資源
   - CRUD，~~**Learning model**~~，改名為 **Note model**
 
 ### NavBar
-- 實驗室公告
+- ~~實驗室公告~~ -> 中原的學生要看修課公告，通常會選擇看學校的ilearning系統，不會刻意跑去實驗室網站看
   - ~~**News model**~~，改名為 **Post model**
   - CRUD，~~WYSIWYG editor~~，(礙於 **資安問題** 還無法解，MuCat_v1暫不考慮)
 - 榮譽榜
