@@ -16,18 +16,17 @@
     <hr>
     <% @notes.each do |note| %>
       <h3><a href="#"><%= link_to note.title, note %></a></h3>
-      <p class="date"><%= note.created_at.strftime("%A, %b %d") %></p>
+      <p class="date"><%= note.created_at.strftime("%b %d, %Y") %></p>
     <% end %>
+    <%= link_to "View More", notes_path, class: "view_more" %>
   </div>
   <div class="col-3  homepage_content ">
     <h2>Honor Roll</h2>
     <hr>
-    <h3><a href="#">2016 計算機視覺會議最佳論文</a></h3>
-    <p class="date">Friday April 10th</p>
-    <h3><a href="#">2015 電子系專題實作競賽第一</a></h3>
-    <p class="date">Friday April 10th</p>
-    <h3><a href="#">2014 工研院搶鮮大賽入圍</a></h3>
-    <p class="date">Friday April 10th</p>
-    <a href="#" class="view_more">View More</a>
+    <% @posts.each do |post| %>
+      <h3><a href="#"><%= link_to post.title, post %></a></h3>
+      <p class="date"><%= post.created_at.strftime("%b %d, %Y") %></p>
+    <% end %>
+    <%= link_to "View More", posts_path, class: "view_more" %>
   </div>
 </div>

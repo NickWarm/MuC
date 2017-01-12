@@ -1,58 +1,60 @@
-<h1>This edit action</h1>
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+  <header>
+    <h1>Edit Your Profile</h1>
+  </header>
 
-<h4>FB name： <%= current_user.fb_name %></h4>
+  <h2>上傳個人大頭照</h2>
 
-<div id="personal_img">
-  <img id='preview' src="#">
+  <div id="personal_img">
+    <img id='preview' src="#">
 
-  <br>
+    <br>
 
-  <%= file_field_tag :image %>
-</div>
-
-<br>
+    <%= file_field_tag :image %>
+  </div>
 
 
-<div class="skinny_wrapper wrapper_padding">
 
   <%= form_for current_user, url: dashboard_user_path, method: :patch do |f| %>
-    <%= f.label :taiwan_name, "Name", :required => true %>
+    <h2><%= f.label :taiwan_name, "中文名字", :required => true %></h2>
     <%= f.text_field :taiwan_name %>
 
     <br>
 
-    <%= f.label :english_name, "English Name", :required => true %>
+    <h2><%= f.label :english_name, "English Name", :required => true %></h2>
     <%= f.text_field :english_name %>
 
 
     <br>
+    <h2>學籍</h2>
 
     <div class="ui toggle checkbox">
-      <%= f.check_box(:has_graduated) %>
       <%= label_tag(:has_graduated, "已經畢業") %>
+      <%= f.check_box(:has_graduated) %>
     </div>
 
     <br>
+    <br>
 
     <div class="">
-      <%= f.label :academic_degree, "現在學歷" %>
+      <%= f.label :academic_degree, "現在學歷：" %>
       <%= f.select :academic_degree, [["大學生", "college"], ["研究生", "master"], ["博士生", "Ph.D"]], {}, class: "ui dropdown" %>
     </div>
 
     <br>
 
-    <%= f.label :joined_CYCU_at_which_year, "入學學年" %>
+    <h2><%= f.label :joined_CYCU_at_which_year, "入學學年" %></h2>
     <%= f.text_field :joined_CYCU_at_which_year %>
 
     <br>
 
-    <h1><%= f.label :profile, "Profile" %></h1>
+    <h2><%= f.label :profile, "Profile" %></h2>
 
     <%= f.text_area :profile, placeholder: "introduce yourself", :required => true %>
 
     <br>
 
-    <%= f.label :paper, "論文題目" %>
+    <h2><%= f.label :paper, "論文題目" %></h2>
     <%= f.text_area :paper, placeholder: "The target you research", :required => true %>
 
 
@@ -74,6 +76,8 @@
   $(function(){
     $(".ui.dropdown").dropdown()
 
+    $('#preview').hide();
+
     $('#image').change(function(){
       var formData = new FormData(),
           $input = $(this);
@@ -87,7 +91,7 @@
         processData: false
       }).done(function(result){
           console.log(result.image_url);
-          $('#preview').attr('src', result.image_url );
+          $('#preview').attr('src', result.image_url ).show();
       });
     })
   })

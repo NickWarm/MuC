@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 
-gem 'will_paginate'
+gem 'will_paginate', '~> 3.1.0'
 gem 'awesome_print'
 gem 'devise'
 gem 'paperclip', "~> 5.0.0"

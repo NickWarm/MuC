@@ -5,19 +5,25 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :posts
-  has_many :post_authorities
-  has_many :editable_posts, through: :post_authorities, source: :post
-
-  has_many :images
-  has_many :notes
-
+  # 給user index 頁面撈「不同學位」的實驗室成員
   scope :doctor,        -> { where(:academic_degree => 'Ph.D') }
   scope :master,        -> { where(:academic_degree => 'master') }
   scope :college,       -> { where(:academic_degree => 'college') }
   scope :has_graduated, ->(status) { where( has_graduated: status) }
 
+  has_many :posts
+  has_many :post_authorities
+  has_many :editable_posts, through: :post_authorities, source: :post
 
+  has_many :notes
+  has_many :images # 上傳個人大頭貼
+
+  # 撈user最後一張上傳的圖片，用於user index view
+  def last_image
+    images.last
+  end
+
+  #臉書登入
   def self.from_omniauth(auth)
 
     # Case 1: Find existing user by facebook uid

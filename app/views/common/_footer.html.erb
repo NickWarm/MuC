@@ -1,5 +1,5 @@
 <footer id="main_footer">
-  <p class="copyright">&copy; 2016 MuCat Lab</p>
+  <p class="copyright">&copy; 2017 MuCat Lab</p>
   <br>
   <p class="copyright">Website is made by <a href="https://github.com/NickWarm">NickWarm</a> ,
     UI design is adapted by <a href="https://github.com/mackenziechild">Mackenzie Child</a></p>
@@ -7,10 +7,8 @@
 
   <% if user_signed_in? %>
     <p class="copyright">
-      Welcome back <span style="color:#8bc6db;"><%= current_user.email %></span>
-      <%= link_to current_user %>
-      <%= link_to user_path(current_user) %>
-      <a href="/users/<%= current_user.id %>" >test</a> 
+      Welcome back <%= link_to current_user.email, current_user%>
+
       <% if current_user.fb_image.present? %>
         <%= image_tag(current_user.fb_image, size: "40") %>
       <% end %>,
@@ -19,5 +17,3 @@
   <% end %>
 
 </footer>
-
-<a href="#"></a>

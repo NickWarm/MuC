@@ -90,17 +90,17 @@
 
 // ----------- Pagination
 
-.paggination:before,
-.paggination:after {
+.pagination:before,
+.pagination:after {
   content: " ";
   display: table;
 }
 
-.paggination:after {
+.pagination:after {
   clear: box;
 }
 
-.paggination {
+.pagination {
   text-align: center;
   margin: 0 0 3em 0;
   a, .previous_page, .current, .next_page {

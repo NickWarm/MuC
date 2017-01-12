@@ -93,15 +93,22 @@
 
 .row {
   width: 100%;
+
   .lab_member {
+
     width: 14%;
     float: left;
     // margin-right: 2.5%;
-    margin: 0 auto;
+    // margin: 0 auto;
+    margin: 0 10px;
     img {
       width: 100%;
       max-width: 100%;
-      border-radius: .5em;
+      // width: 120px;
+      // height: 120px;
+      // display: block;
+      // border-radius: .5em;
+      border-radius: 8px;
     }
     .name {
       margin: auto;

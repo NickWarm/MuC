@@ -1,13 +1,19 @@
-<h1>post index view</h1>
+<h1 id="page_title">HONOR ROLL</h1>
 
-<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+<div id="posts_wrapper" class="skinny_wrapper">
+  <div class="post">
+    <% @posts.each do |post| %>
 
-  <% @posts.each do |post| %>
-    <%= link_to post.title, post %>
-  <% end %>
+        <h2><%= link_to post.title, post %></h2>
+        <p class="date"><%= post.created_at.strftime('%b %d, %Y') %></p>
+        <hr>
 
+    <% end %>
+
+    <% if user_signed_in? %>
+      <%= link_to "new post", new_dashboard_post_path, class: "view_more" %>
+    <% end %>
+  </div>
 </div>
 
-<% if user_signed_in? %>
-  <%= link_to "new post", new_dashboard_post_path %>
-<% end %>
+<%= will_paginate @posts %>

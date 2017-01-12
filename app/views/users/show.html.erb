@@ -5,12 +5,7 @@
     <hr>
   </header>
 
-
-
-
   <div id="content">
-
-
     <div id="personal_img">
       <% if @image.present? %>
         <%= image_tag @image.image.url %>
@@ -18,14 +13,7 @@
     </div>
 
     <br>
-
-    <!-- <h2><%= @user.taiwan_name %></h2> -->
-
     <br>
-
-    <!-- <h1>入學學年</h1>
-    <h2> <%= @user.joined_CYCU_at_which_year %> 學年 </h2> -->
-
     <br>
 
     <h1>Introdce Myself</h1>
@@ -44,16 +32,11 @@
 
     <br>
 
-    <% if user_signed_in? %>
+    <% if current_user == @user %>
       <div id="admin_links">
         <%= link_to "edit profile", edit_dashboard_user_path, class: "view_more" %>
       </div>
     <% end %>
 
   </div>
-
-
 </div>
-
-
-<!-- <%= image_tag @user.fb_image %> -->

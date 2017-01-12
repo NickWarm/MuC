@@ -12,7 +12,7 @@
  *= require semantic_ui/definitions/views/card.less
  *= require semantic_ui/definitions/modules/checkbox.less
  *= require semantic_ui/definitions/views/comment.less
- * require semantic_ui/definitions/elements/container.less
+ *= require semantic_ui/definitions/elements/container.less
  *= require semantic_ui/definitions/modules/dimmer.less
  *= require semantic_ui/definitions/elements/divider.less
  *= require semantic_ui/definitions/modules/dropdown.less
@@ -23,7 +23,7 @@
  * require semantic_ui/definitions/collections/grid.less
  * require semantic_ui/definitions/elements/header.less
  *= require semantic_ui/definitions/elements/icon.less
- * require semantic_ui/definitions/elements/image.less
+ *= require semantic_ui/definitions/elements/image.less
  *= require semantic_ui/definitions/elements/input.less
  *= require semantic_ui/definitions/views/item.less
  *= require semantic_ui/definitions/elements/label.less
