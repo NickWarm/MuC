@@ -21,7 +21,7 @@
     <%= link_to "Edit", edit_dashboard_post_path, class: "view_more" %>
   <% end %>
 
-  <% if  @post.is_authorized_to_edit_by?(current_user)  %>
+  <% if user_signed_in? && @post.is_authorized_to_edit_by?(current_user)  %>
     <%= link_to "授權編輯Edit", edit_dashboard_post_path, class: "view_more" %>
   <% end %>
 
