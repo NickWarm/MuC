@@ -1,4 +1,4 @@
-<h1>This is graduates action</h1>
+<!-- <h1>This is graduates action</h1>
 
 <div id="post_show_content" class="skinny_wrapper wrapper_padding">
 
@@ -23,5 +23,79 @@
 
   <hr>
 
-  <%= link_to "還在學校的實驗室成員", users_path, class: "view_more" %>
+
+</div> -->
+
+
+<div id="post_show_content" class="skinny_wrapper wrapper_padding">
+  <header>
+    <h1>畢業生</h1>
+  </header>
+
+  <h1>博士生</h1>
+  <div class="row clearfix">
+    <% @users_doctor.each do |doctor_user| %>
+      <div class="lab_member">
+        <% if doctor_user.last_image.present? %>
+          <%= link_to image_tag(doctor_user.last_image.image.url(:icon)), doctor_user %>
+        <% else %>
+          <%= image_tag asset_path 'images/missing.jpg' %>
+        <% end %>
+        <p class="name"><%= link_to doctor_user.taiwan_name, doctor_user %></p>
+        <p class="year"><%= doctor_user.joined_CYCU_at_which_year %>學年</p>
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <h1>研究生</h1>
+  <div class="row clearfix">
+    <% @users_master.each do |master_user| %>
+      <div class="lab_member">
+        <% if master_user.last_image.present? %>
+          <%= link_to image_tag(master_user.last_image.image.url(:icon)), master_user %>
+        <% else %>
+          <%= image_tag asset_path 'images/missing.jpg' %>
+        <% end %>
+        <p class="name"><%= link_to master_user.taiwan_name, master_user %></p>
+        <p class="year"><%= master_user.joined_CYCU_at_which_year %>學年</p>
+      </div>
+    <% end %>
+  </div>
+
+  <hr>
+
+  <h1>大學生</h1>
+  <div class="row clearfix">
+    <% @users_college.each do |college_user| %>
+      <div class="lab_member">
+        <% if college_user.last_image.present? %>
+          <!-- <%= image_tag college_user.last_image.image.url(:icon) %> -->
+          <%= link_to image_tag(college_user.last_image.image.url(:icon)), college_user %>
+        <% else %>
+          <%= image_tag asset_path 'images/missing.jpg' %>
+        <% end %>
+        <p class="name"><%= link_to college_user.taiwan_name, college_user %></p>
+        <p class="year"><%= college_user.joined_CYCU_at_which_year %>學年</p>
+      </div>
+    <% end %>
+  </div>
+
+
+  <section id="graduation" class="clearfix">
+    <div class="wrapper about homepage_content">
+      <hr>
+      <header class="clearfix">
+        <h2><%= link_to "還在學校的實驗室成員", users_path, class: "view_more" %></h2>
+      </header>
+      <hr>
+    </div>
+  </section>
+
+
+
 </div>
+
+
+<!-- <%= link_to "還在學校的實驗室成員", users_path, class: "view_more" %> -->

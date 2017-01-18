@@ -36,7 +36,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
 
 
     if @post.update(post_params)
-
+      
       @post.editors = []
       params[:editors][:id].each do |editor|
         if !editor.empty?
