@@ -10,15 +10,45 @@
     <br>
     <br>
 
-    <% if @post.is_written_by?(current_user)  %>
+    <!-- <% if @post.is_written_by?(current_user)  %>
       <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
       <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
                             {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
                             {class: "ui dropdown selection multiple", "multiple" => " " } %>
 
       <% end %>
+    <% end %> -->
+
+
+    <% if @post.is_written_by?(current_user)  %>
+    
+      <div>
+        <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
+        <%= p.label :editors %><br>
+        <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
+                              {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
+                              {class: "ui dropdown selection multiple", "multiple" => " " } %>
+        <% end %>
+      </div>
+
+    <% else %>
+
+      <div style = "display:none" >
+        <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
+        <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
+                              {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
+                              {class: "ui dropdown selection multiple", "multiple" => " " } %>
+        <% end %>
+      </div>
+
     <% end %>
 
+
+    <!-- <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
+    <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
+                          {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
+                          {class: "ui dropdown selection multiple", "multiple" => " " } %>
+    <% end %> -->
 
     <br>
     <br>

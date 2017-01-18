@@ -34,20 +34,18 @@ class Dashboard::PostsController < Dashboard::DashboardController
 
   def update
 
-
     if @post.update(post_params)
-      
-      @post.editors = []
-      params[:editors][:id].each do |editor|
-        if !editor.empty?
-          @post.editors << User.find(editor)
+        @post.editors = []
+        params[:editors][:id].each do |editor|
+          if !editor.empty?
+            @post.editors << User.find(editor)
+          end
         end
-      end
-
       redirect_to @post
     else
       render 'edit'
     end
+    
   end
 
   def destroy
