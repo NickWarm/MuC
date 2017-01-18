@@ -20,9 +20,7 @@ Rails.application.routes.draw do
                                  # 登入系統，實驗室成員資料，只能登入不能註冊
   devise_for :managers
 
-  # get 'welcome/index'            # 首頁
   root 'welcome#index'           # 首頁
-
 
   namespace :dashboard do        # 第二層：~~上線版要把dashboard改名，不能讓非實驗室成員能進入這頁面~~，
                                  #          其實只要before_action :authenticate_user!即可
