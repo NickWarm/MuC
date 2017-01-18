@@ -484,3 +484,36 @@ so fix `app/views/dashboard/notes/_form.html.erb`
 ```
 
 然後就解掉了。
+
+# 抓蟲趣2
+
+這是一個有點奇怪的Bug。如上面的筆記，在Toggle的實作，最初可以work的版本我是寫做
+
+```
+<div class="ui toggle checkbox">
+  <%= f.check_box(:is_editable) %>
+  <%= label_tag(:is_editable, "開放給他人編輯") %>
+</div>
+```
+
+改到不知第幾版時，我把原本上面的code改成下面這段
+
+```
+<div class="ui toggle checkbox">
+  <%= label_tag(:is_editable, "開放給他人編輯") %>
+  <%= f.check_box(:is_editable) %>
+</div>
+```
+
+然後就不能work了
+
+後來把它改回原始的寫法
+
+```
+<div class="ui toggle checkbox">
+  <%= f.check_box(:is_editable) %>
+  <%= label_tag(:is_editable, "開放給他人編輯") %>
+</div>
+```
+
+才能work，至於為何會這樣子，老實說我真的不知道....
