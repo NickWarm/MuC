@@ -1,4 +1,4 @@
-<h1 id="page_title">New Post</h1>
+<h1 id="page_title">Edit Post</h1>
 
 <div class="skinny_wrapper wrapper_padding">
 
@@ -10,18 +10,8 @@
     <br>
     <br>
 
-    <!-- <% if @post.is_written_by?(current_user)  %>
-      <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
-      <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
-                            {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
-                            {class: "ui dropdown selection multiple", "multiple" => " " } %>
-
-      <% end %>
-    <% end %> -->
-
-
     <% if @post.is_written_by?(current_user)  %>
-    
+
       <div>
         <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
         <%= p.label :editors %><br>
@@ -42,13 +32,6 @@
       </div>
 
     <% end %>
-
-
-    <!-- <%= fields_for @post_authorities, url: dashboard_post_path, method: :patch do |p| %>
-    <%= collection_select :editors, :id, @users_still_in_college, :id, :email,
-                          {multiple: true, include_blank:true, :selected => @post.editors.map(&:id)},
-                          {class: "ui dropdown selection multiple", "multiple" => " " } %>
-    <% end %> -->
 
     <br>
     <br>
