@@ -89,4 +89,18 @@ create new file `app/assets/stylesheets/pygments.scss`
 - 這邊我是直接複製貼上的：[blog_course_demo/app/assets/stylesheets/pygments.css.scss](https://github.com/mackenziechild/blog_course_demo/blob/master/app/assets/stylesheets/pygments.css.scss)
 - 原始出處：[gh-like.css - github markdown css+script with syntax highlighting.](https://gist.github.com/somebox/1082608)
 
+由於我需要`blockquote`的CSS，所以我直接複製這邊的，然後放入`pygments.scss`
+- [Github Markdown CSS - for Markdown Editor Preview](https://gist.github.com/andyferra/2554919)
+
+```
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+```
+
 and then fix `app/assets/stylesheets/mucat_v1.scss` to `@import 'pygments';`

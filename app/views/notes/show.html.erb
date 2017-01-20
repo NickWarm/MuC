@@ -14,7 +14,7 @@
 
   <br>
 
-  <% if @note.link_text.present? && @note.link_site.present? %>
+  <!-- <% if @note.link_text.present? && @note.link_site.present? %>
     <%= link_to @note.link_text, @note.link_site, class: "view_more" %>
 
     <br>
@@ -23,8 +23,19 @@
 
     <br>
 
-  <% end %>
+  <% end %> -->
 
+  <div class="wrapper about homepage_content">
+    <!-- <hr> -->
+    <header class="clearfix">
+
+      <% if @note.link_text.present? && @note.link_site.present? %>
+        <h2><%= link_to @note.link_text, @note.link_site, class: "view_more", target: "_blank" %></h2>
+      <% end %>
+
+    </header>
+    <!-- <hr> -->
+  </div>
 
   <!-- 作者自己可以編輯 OR 開放給其他實驗室成員都能編輯  -->
   <% if @note.is_written_by?(current_user) || (user_signed_in? && @note.is_editable) %>
