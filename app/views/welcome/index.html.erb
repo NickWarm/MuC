@@ -2,14 +2,20 @@
   <div class="col-1 about homepage_content">
     <h2>About</h2>
     <hr>
-    <p>陳威齊 I'm a designer &amp; developer living in Colorado Springs,
-    Colorado.</p>
-    <p>By day I work as a front-end dev / designer at Precision
-    Nutrition, by night I teach how to design &amp; code reails
-    applications at <a href="http://www.el.cycu.edu.tw/wSite/ct?xItem=59028&ctNode=20241&mp=46002">繆紹綱</a>.</p>
-    <p>You can find me speaking in 140 characters on Twitter,
-    swooshing some pixels on Dribbble, and sharing some code on
-    GitHub.</p>
+    <p>
+    <a href="http://www.el.cycu.edu.tw/wSite/ct?xItem=59028&ctNode=20241&mp=46002">繆紹綱</a>
+    老師所主持的：
+    多媒體計算與通訊實驗室 <br>
+    (Multimedia Computing and Telcommunications Lab,
+    <span style="font-weight:bold;">Mu-Cat</span>)。</p>
+
+    <p>本實驗室兼顧學術性之研究以及實務應用系統之開發。</p>
+
+    <p>舉凡生醫訊號、音頻訊號、影像、視訊等多媒體資訊之 <br>
+    <span style="font-weight:bold;">
+    壓縮、辨識、合成、儲存、傳輸及網路安全
+    </span>
+    等問題，都是目前本實驗室所感興趣的課題。</p>
   </div>
   <div class="col-2 homepage_content">
     <h2>Resources</h2>
@@ -21,7 +27,7 @@
     <%= link_to "View More", notes_path, class: "view_more" %>
   </div>
   <div class="col-3  homepage_content ">
-    <h2>Honor Roll</h2>
+    <h2>Bulletin Board</h2>
     <hr>
     <% @posts.each do |post| %>
       <h3><a href="#"><%= link_to post.title, post %></a></h3>
