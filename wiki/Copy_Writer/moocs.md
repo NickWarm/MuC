@@ -15,7 +15,7 @@
 
 # 訊號與系統
 
-以下兩個資源分別是 **交大 陳永平老師** 與 **台科大 黃騰毅老師**
+以下兩個資源分別是 **交大 陳永平老師** 與 **台科大 黃騰毅老師** 所提供的教材
 
 ### 交大訊號與系統課程
 - youtube：[NCTU OCW 訊號與系統 - YouTube](https://www.youtube.com/playlist?list=PLj6E8qlqmkFuHIK3xM0-OAlMF7N1ta-b7)
@@ -30,7 +30,9 @@
 
 
 # 影像處理
-我是陳威齊學長，我不推薦學弟妹用C語言入門影像處理，如果想真的 **會寫影像處理**，你該花時間學數學與學習如何 **用程式實踐數學**
+我是陳威齊學長，我不推薦學弟妹用C語言入門影像處理，如果想真的 **會寫影像處理**，你該花時間學數學與學習如何 **用程式實踐數學** 。
+
+至於實踐的語言，你不一定要像過去的學長姐一樣用C寫，也可以用影像處理這領域另一個多人使用的語言Python去寫
 
 ## 教學網站
 - [昨日](http://yester-place.blogspot.tw/)
@@ -38,7 +40,7 @@
   - 畢業後再看以前學影像處理的經驗，我的感想
     - 往年學長姐包括我在內的實驗室成員，都會必修資工[張元翔](http://uip.cycu.edu.tw/UIPWeb/wSite/sp?xdUrl=cycu/ApBlock/TeacherData.jsp&idCode=11641&mp=4700&ctNode=13793&idPath=13774_13790_13793)老師的影像處理
     - 但其實我不推薦學弟妹從C語言寫影像處理
-      - 印象中，中原電子系出來的，**C語言都寫不好**
+      - 印象中，中原電子系出來的，**C語言都寫得好不好，要看遇到哪位老師**
       - 而且大學老師教的C語言應該跟業界用的C語言差很多，詳情請見良葛格的這篇文章：[你腦袋的C更新了嗎？](http://www.ithome.com.tw/voice/108806)
     - 如果想真的 **會寫影像處理**，你該花時間學數學與學習如何 **用程式實踐數學**
     - 請參考張逸中老師的這篇文章：[想做影像辨識該學甚麼？ - 鄉下老師](http://blog.udn.com/yccsonar/25354225)
@@ -58,7 +60,7 @@
 ## MOOC
 - [Introduction to Computer Vision | Udacity](https://www.udacity.com/course/introduction-to-computer-vision--ud810)
 - [Image and Video Processing: From Mars to Hollywood with a Stop at the Hospital - 杜克大学 | Coursera](https://www.coursera.org/learn/image-processing)
-- [好大學在線CNMOOC_中國頂尖的慕課平台](http://www.cnmooc.org/portal/course/12/2023.mooc)
+- [數字圖像處理 - 好大學在線CNMOOC_中國頂尖的慕課平台](http://www.cnmooc.org/portal/course/12/2023.mooc)
 
 
 

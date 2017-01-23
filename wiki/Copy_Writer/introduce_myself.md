@@ -21,3 +21,6 @@
 - 100學年上(大四)：專題實作 複賽 佳作
 - 99學年下(大三)： 中原大學 創新創意實作競賽 第一名
 - 99學年下(大三)：中原大學 全人關懷獎 第一名
+
+畢業論文
+- [以ARCS動機模型與認知負荷理論 探討遊戲式學習-以機率與統計課程為例](http://ethesis.lib.cycu.edu.tw/etdservice/searching?query_word1=陳威齊&query_field1=all)

@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20170108132424) do
   add_index "managers", ["reset_password_token"], name: "index_managers_on_reset_password_token", unique: true, using: :btree
 
   create_table "notes", force: :cascade do |t|
-    t.string   "author",      limit: 255
     t.string   "title",       limit: 255
     t.text     "content",     limit: 65535
     t.boolean  "is_editable",               default: false

@@ -1,4 +1,4 @@
-# 朱鏡宏、黃心和同學榮獲95 學年度中華民國影像處理與圖形識別學會佳作論文獎
+# 中華民國影像處理與圖形識別學會佳作論文獎
 
 繆紹綱老師指導 **朱鏡宏、黃心和** 同學以「A JPEG-Based Region of Interest Coding for Lossless Compression of Capsule Endoscope Images」榮獲 95 學年度中華民國影像處理與圖形識別學會佳作論文獎。
 

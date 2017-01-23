@@ -2,7 +2,7 @@
 
   <header>
     <h1><%= @post.title %></h1>
-
+    <p class="date"><%= @post.created_at.strftime('%A, %B %d') %></p>
     <p><%= @post.author.fb_name %></p>
 
     <hr>
