@@ -23,3 +23,6 @@
 
 # Ignore tactics
 /wiki/Dev_Notes/tactics.md
+
+# Ingore server connect information
+/wiki/connect_server.md
