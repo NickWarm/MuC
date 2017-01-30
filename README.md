@@ -32,3 +32,13 @@ wiki
   ├── UI_note              # UI筆記
   └── userstory_versions   # 使用者故事
 ```
+
+放在GitHub上的是開發版的，註冊與登入帳號的路由
+- 註冊：`http://localhost:3000/lab515/sign_up`
+- 登入：`http://localhost:3000/lab515/sign_in`
+
+春節後回實驗室佈署，會把路由改掉。
+
+畫面如下
+
+![](./wiki/img/MuCat_v1_welcome.png)

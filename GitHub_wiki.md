@@ -1,6 +1,6 @@
 # 重點features
 
-做這專案時一路採了各種雷，想要看詳細的開發過程請見wiki資料夾底下的[Dev_Notes](https://github.com/NickWarm/MuCat_v1/tree/dev/wiki/Dev_Notes)
+做這專案時一路採了各種雷，想要看詳細的開發過程請見wiki資料夾底下的[Dev_Notes](https://github.com/NickWarm/MuCat_v1/tree/master/wiki/Dev_Notes)
 
 ## 開放權限給特定人編輯「實驗室公告」
 
