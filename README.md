@@ -15,6 +15,8 @@
   - 改掉登入、註冊頁面的預設路由
   - 改掉註冊後跳轉頁面
 
+專案學習點的筆記與抓蟲，會在[GitHub wiki](https://github.com/NickWarm/MuCat_v1/wiki)條列要去哪看筆記。
+
 # wiki結構
 
 開發筆記都記錄在專案的[wiki](./wiki/)資料夾裡面
