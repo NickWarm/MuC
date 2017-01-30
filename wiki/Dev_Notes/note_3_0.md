@@ -198,6 +198,20 @@ delete `Gemfile.lock`
 - 登入註冊頁面不公開
 - 後台與登入頁面寫入`robots.txt`
 
+`robots.txt`參考下面這幾篇
+- [RailsFun.tw 新手教學 day3 HD - YouTube，觀看1:06:10](https://youtu.be/MVMrVl0Pj80?t=3970)
+- 可參考[RailsFun.tw 新手教學 day3 HD « tienshunlo's Blog](http://tienshunlo-blog.logdown.com/posts/711616-railsfuntw-day3-novice-teaching-hd)，搜尋「robots.txt」
+- [有關robots.txt的大小事](https://sibevin.github.io/posts/2015-02-09-164401-robots-txt)
+
+
+fix `public/robots.txt`
+
+```
+User-agent: *
+Disallow: /dashboard/   # 不讓爬蟲爬後台
+Disallow: /lab515/      # 不讓爬蟲爬登入頁面
+```
+
 # footbar情境
 
 登入後要在footbar顯示「歡迎回來」
