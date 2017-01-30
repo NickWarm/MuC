@@ -11,26 +11,26 @@
   - 在後台的`post_controllers.rb`撰寫純Ruby來存入user與post的中介表，之後透過中介表去確認這篇文章能夠編輯的人
 
 實作筆記
-- [note_2_0.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/Dev_Notes/note_2_0.md)
+- [note_2_0.md](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/Dev_Notes/note_2_0.md)
 
 
 抓蟲筆記
-- [note_2_1.md - 爭扎時找到的資料](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/Dev_Notes/note_2_1.md#爭扎時找到的資料)
-- [note_2_1.md - 解掉無法存入中介表的bug](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/Dev_Notes/note_2_1.md#解掉無法存入中介表的bug)
-- [note_2_2.md - 抓蟲趣：被授權編輯的人按下update button後噴錯](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/Dev_Notes/note_2_2.md)
+- [note_2_1.md - 爭扎時找到的資料](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/Dev_Notes/note_2_1.md#爭扎時找到的資料)
+- [note_2_1.md - 解掉無法存入中介表的bug](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/Dev_Notes/note_2_1.md#解掉無法存入中介表的bug)
+- [note_2_2.md - 抓蟲趣：被授權編輯的人按下update button後噴錯](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/Dev_Notes/note_2_2.md)
 
 最初的構想
-- [controller_design.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/features/professor_assigned/controller_design.md)
-- [specific_one.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/features/professor_assigned/specific_one.md)
+- [controller_design.md](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/features/professor_assigned/controller_design.md)
+- [specific_one.md](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/features/professor_assigned/specific_one.md)
 
 ## 開放給所有人編輯「學習資源」
 
 使用Semantic_UI的[Toggle](http://semantic-ui.com/modules/checkbox.html#toggle)
 
 筆記
-- 實作：[not6_6.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/Dev_Notes/note_6.md)
-- 可行的想法：[onlyone_or_everyone.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/features/other_can_edit/onlyone_or_everyone.md)
-- 最初的錯誤想法：[wrong_way.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/features/other_can_edit/wrong_way.md)
+- 實作：[not6_6.md](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/Dev_Notes/note_6.md)
+- 可行的想法：[onlyone_or_everyone.md](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/features/other_can_edit/onlyone_or_everyone.md)
+- 最初的錯誤想法：[wrong_way.md](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/features/other_can_edit/wrong_way.md)
 
 抓蟲筆記
 - [not6_6 - 抓蟲趣1](https://github.com/NickWarm/MuCat_v1/blob/master/wiki/Dev_Notes/note_6.md#抓蟲趣)
