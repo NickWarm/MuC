@@ -1,23 +1,32 @@
 # 簡介
-實驗室網站，由101學年入學已經畢業的研究生陳威齊製作，使用Ruby on rails開發
-> ruby 2.2.2p95
->
-> Rails 4.2.5.2
+
+新的實驗室網站，剛開始開發時rails 5剛出，為了減少踩雷的點選用較穩定的`Rails 4.2.5.2`開發。
+
+這次的專案的學習點：
+- 客製化表單
+  - Semantic UI：[Toggle](http://semantic-ui.com/modules/checkbox.html#toggle)、[Multiple Selection](http://semantic-ui.com/modules/dropdown.html#multiple-selection)
+  - 多選下拉選單
+    - 不使用`accepts_nested_attributes_for`，寫純Ruby來存入多對多的中介表
+- `user.rb`用`scope`把會常用到的`SQL`包成可串接的methods，來做資料篩選
+- paperclip AJAX上傳圖片
+- 第三方API：OmniAuth實作臉書登入
+- `text_area`用Markdown render
+- 客制devise
+  - 改掉登入、註冊頁面的預設路由
+  - 改掉註冊後跳轉頁面
 
 # wiki結構
+
+開發筆記都記錄在專案的[wiki](./wiki/)資料夾裡面
+
 ```
 wiki
+  ├── Copy_Writer          # 實驗室網站的各種文案
   ├── Dev_Notes            # 開發紀錄
+  ├── features             # 開發feature的筆記
+  ├── icons                # 實驗室網站的icon的候選名單
+  ├── img                  # 筆記會用到的圖片
   ├── MuCat_v1_UI          # 第一版的UI
   ├── UI_note              # UI筆記
-  ├── features             # 開發feature的筆記
-  ├── icons                # 實驗室網站的icon
-  ├── img                  # 筆記會用到的圖片
-  ├── meetup               # 與老師討論的紀錄
   └── userstory_versions   # 使用者故事
 ```
-
-在`MuCat_v1/wiki`記錄了各種筆記
-- 各種概念、構想
-- 思考的過程
-- 實作的方法
