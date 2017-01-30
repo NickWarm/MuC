@@ -26,6 +26,3 @@
 
 # Ingore server connect information
 /wiki/connect_server.md
-
-# 忽略paperclip上傳的實驗室成員照片
-/public/system/
