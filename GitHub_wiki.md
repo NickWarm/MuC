@@ -20,8 +20,8 @@
 - [note_2_2.md - 抓蟲趣：被授權編輯的人按下update button後噴錯](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/Dev_Notes/note_2_2.md)
 
 最初的構想
-- [controller_design.md](wiki/features/professor_assigned/controller_design.md)
-- [specific_one.md](wiki/features/professor_assigned/specific_one.md)
+- [controller_design.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/features/professor_assigned/controller_design.md)
+- [specific_one.md](https://github.com/NickWarm/MuCat_v1/blob/dev/wiki/features/professor_assigned/specific_one.md)
 
 ## 開放給所有人編輯「學習資源」
 
