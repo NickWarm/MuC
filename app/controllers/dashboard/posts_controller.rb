@@ -45,7 +45,7 @@ class Dashboard::PostsController < Dashboard::DashboardController
     else
       render 'edit'
     end
-    
+
   end
 
   def destroy
@@ -56,7 +56,8 @@ class Dashboard::PostsController < Dashboard::DashboardController
   private
 
   def find_post
-    @post = Post.find(params[:id])
+    # @post = Post.find(params[:id])
+    @post = current_user.posts.find(params[:id])  #高見龍建議寫法，但是不能全部都work
   end
 
   def post_params
