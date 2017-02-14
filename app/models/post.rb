@@ -8,6 +8,19 @@ class Post < ActiveRecord::Base
   has_many :post_authorities                                    # post 與 user 的中介表
   has_many :editors, through: :post_authorities, source: :user  # 多對多
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize.to_s
+  end
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :created_at]
+    ]
+  end
 
   ### 定義在model裡的method可以在view裡使用
 

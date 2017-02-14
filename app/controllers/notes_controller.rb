@@ -4,6 +4,6 @@ class NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find(params[:id])
+    @note = Note.friendly.find(params[:id])
   end
 end

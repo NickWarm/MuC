@@ -37,7 +37,7 @@ class Dashboard::NotesController < Dashboard::DashboardController
   end
 
   def find_note
-    @note = Note.find(params[:id])
+    @note = Note.friendly.find(params[:id])
   end
 
 end
