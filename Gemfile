@@ -47,8 +47,8 @@ gem 'pygments.rb', '~> 0.6.3' # markdown render
 gem 'redcarpet', '~> 3.3.4'   # markdown render
 
 
-gem 'friendly_id', '~> 5.2.0'
-gem 'babosa', '~> 1.0.2'
+gem 'friendly_id', '~> 5.2.0' # 讓文章網址不要顯示ID
+gem 'babosa', '~> 1.0.2'      # 讓文章網址能顯示中文
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
