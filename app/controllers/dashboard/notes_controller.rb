@@ -29,6 +29,13 @@ class Dashboard::NotesController < Dashboard::DashboardController
     end
   end
 
+  def destroy
+    @note = current_user.notes.friendly.find(params[:id])
+    @note.destroy
+
+    redirect_to notes_path
+  end
+
   private
 
   def note_params

@@ -42,4 +42,10 @@
     <%= link_to "Edit", edit_dashboard_note_path, class: "view_more" %>
   <% end %>
 
+  <!-- 作者自己可以刪除 -->
+  <% if @note.is_written_by?(current_user) %>
+    <%= link_to "Delete", dashboard_note_path, class: "view_more",
+                                               method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+
 </div>

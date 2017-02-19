@@ -49,7 +49,10 @@ class Dashboard::PostsController < Dashboard::DashboardController
   end
 
   def destroy
+    @post = current_user.posts.friendly.find(params[:id])
     @post.destroy
+
+    redirect_to posts_path
   end
 
 
